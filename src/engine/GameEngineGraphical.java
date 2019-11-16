@@ -1,5 +1,7 @@
 package engine;
 
+import global.Clicks;
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *
@@ -57,7 +59,7 @@ public class GameEngineGraphical {
 		// boucle de game
 		while (!this.game.isFinished()) {
 			// demande controle utilisateur
-			Cmd c = this.gameController.getCommand();
+			Clicks c = this.gameController.getClicks();
 			// fait evoluer le game
 			this.game.evolve(c);
 			// affiche le game

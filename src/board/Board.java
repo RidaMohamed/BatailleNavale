@@ -1,6 +1,11 @@
 package board;
 
 import centuryFactory.boats.Boat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import centuryFactory.boats.Boat;
 import centuryFactory.boats.Position;
 import global.Constant;
 import global.Orientation;
@@ -12,14 +17,45 @@ import java.util.List;
 import java.util.Map;
 
 public class Board {
+
+    private ArrayList<Boat> playerBoats;
+    private ArrayList<Boat> ennemieBoats;
+    private Map<Position , String> shoots;
     private List<Boat> boats;
-    private Map<Position , Boat> shoots;
 
 
     public Board() {
         boats = new ArrayList<>();
         shoots = new HashMap<>();
     }
+
+    /**
+     * Le joueur humaine attack la position X et Y
+     * @param x
+     * @param y
+     */
+    public int attack(int x, int y ){
+        Boat boat ;
+        for (int i = 0; i< ennemieBoats.size();i++){
+             boat =ennemieBoats.get(i);
+            if (boat.isOnCase(x,y)){
+                boat.boatIsHit(x,y);
+                this.shoots.put(new Position(x, y), "Boat");
+                if (boat.isDistruct()){
+                    Map<Integer , Integer> position = boat.getPositionList();
+                    for (Map.Entry<Integer, Integer> entry : position.entrySet()){
+                        this.shoots.put(new Position(entry.getKey(), entry.getValue()), "Boat");
+                    }
+                    boat.deletePositions();
+                }
+                return 1;
+            }
+        }
+
+        this.shoots.put(new Position(x, y), "Null");
+        return 0;
+    }
+
 
     /**
      * Add boat to bard

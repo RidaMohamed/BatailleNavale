@@ -1,5 +1,7 @@
 package engine;
 
+import global.Clicks;
+
 import java.awt.event.KeyListener;
 
 /**
@@ -16,12 +18,12 @@ public interface GameController extends KeyListener {
 	 * 
 	 * @return commande faite par le joueur
 	 */
-	public Cmd getCommand();
+	public Clicks getClicks();
 
 
-    public void attack();
+   // public void attack();
 
-    public void moveBoat();
+   // public void moveBoat();
 
 
 }
