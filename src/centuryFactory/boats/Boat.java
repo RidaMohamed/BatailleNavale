@@ -10,5 +10,5 @@ public class Boat {
     private int boatHealth;
     private Orientation orientation;
 
-    
+
 }
