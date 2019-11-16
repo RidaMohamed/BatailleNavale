@@ -49,7 +49,7 @@ public class GameEngineGraphical {
 	/**
 	 * permet de lancer le game
 	 */
-	public void run() throws InterruptedException {
+/*	public void run() throws InterruptedException {
 
 		// creation de l'interface graphique
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
@@ -66,5 +66,5 @@ public class GameEngineGraphical {
 			Thread.sleep(100);
 		}
 	}
-
+*/
 }

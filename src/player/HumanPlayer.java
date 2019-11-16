@@ -1,17 +1,17 @@
 package player;
 
-import board.Board;
+import engine.Game;
 
 public class HumanPlayer extends Player {
 
-    public int ScoreHits ;
-    public int MissedShots ;
+    public int scoreHits ;
+    public int missedShots ;
 
 
-    public HumanPlayer(int boatsNumber, Board board,int num) {
-        super(boatsNumber ,board, num );
-        ScoreHits = 0;
-        MissedShots = 0;
+    public HumanPlayer(Game game) {
+        super(game);
+        this.scoreHits = 0;
+        this.missedShots = 0;
     }
 
     /**

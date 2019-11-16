@@ -2,6 +2,7 @@ package player;
 
 import board.Board;
 import centuryFactory.boats.Boat;
+import engine.Game;
 import player.strategy.StrategyMahcineAttack;
 
 public class MachinePlayer extends Player {
@@ -9,8 +10,9 @@ public class MachinePlayer extends Player {
 
     public StrategyMahcineAttack strategyMahcineAttack;
 
-    public MachinePlayer(int boatsNumber, Board board , int num ) {
-        super(boatsNumber, board, num);
+
+    public MachinePlayer(Game game) {
+        super(game);
     }
 
 

@@ -2,25 +2,21 @@ package player;
 
 import board.Board;
 import centuryFactory.boats.Boat;
+import engine.Game;
 
 public class Player {
 
     public int boatsNumber;
+    private Game game;
     private Board board;
 
-    public Player(int boatsNumber, Board board, int num) {
-        this.boatsNumber = boatsNumber;
-        this.board = board;
-        this.boatsNumber = num;
+
+    public Player(Game game) {
+        this.game = game;
+        this.board = new Board();
     }
 
-    /**
-     * Adding boat to the boats of machine player
-     * @param boat
-     */
-    public void addBoat(Boat boat){
 
-    }
 
     /**
      * Methode to get Mahcine player data
@@ -35,7 +31,7 @@ public class Player {
      * getting the borad which contains
      * the machine player positions
      */
-    public void getBoard(){
-
+    public Board getBoard(){
+         return this.board;
     }
 }
