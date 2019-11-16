@@ -41,7 +41,6 @@ public class BattleNavaleController implements GameController {
 	 * met a jour les commandes en fonctions des touches appuyees
 	 */
 	public void keyPressed(KeyEvent e) {
-
 		switch (e.getKeyChar()) {
 		// si on appuie sur 'q',commande joueur est gauche
 		case 'l':
@@ -49,7 +48,6 @@ public class BattleNavaleController implements GameController {
 			this.commandeEnCours = Clicks.IDLE;
 			break;
 		}
-
 	}
 
 	@Override

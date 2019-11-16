@@ -6,26 +6,19 @@ import engine.Game;
 
 public class Player {
 
-    public int boatsNumber;
     private Game game;
     private Board board;
-    private int scoreHits = 0;
-    private int missedShots = 0;
-
 
     public Player(Game game) {
         this.game = game;
         this.board = new Board();
     }
 
-
-
     /**
      * Methode to get Mahcine player data
-     * Boats positions , Number of boats
+     * Boats positions
      */
     public String getData(){
-
         return "";
     }
 
@@ -37,17 +30,6 @@ public class Player {
          return this.board;
     }
 
-    /**
-     *
-     * @param x
-     * @param y
-     */
-    public void attack(int x, int y ){
-        if (this.board.attack(x,y) ==1)
-            this.scoreHits++;
-        else
-            this.missedShots++;
-    }
 
 
 }

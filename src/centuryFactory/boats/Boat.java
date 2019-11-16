@@ -1,6 +1,7 @@
 package centuryFactory.boats;
 
 import global.Orientation;
+import global.Position;
 
 import java.util.HashMap;
 import java.util.Map;

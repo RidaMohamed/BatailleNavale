@@ -6,7 +6,4 @@ public class Constant {
     public static final int HEIGHT = 10;
     public static final int CASE_WIDTH = 50;
     public static final int CASE_HEIGHT = 50;
-
-
-
 }

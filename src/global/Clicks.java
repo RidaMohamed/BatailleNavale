@@ -1,5 +1,5 @@
 package global;
 
 public enum Clicks {
-    Century, IDLE
+    Century, IDLE, ATTACK
 }

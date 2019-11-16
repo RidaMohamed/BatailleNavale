@@ -5,21 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import centuryFactory.boats.Boat;
-import centuryFactory.boats.Position;
+import global.Position;
 import global.Constant;
 import global.Orientation;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Board {
 
-    private ArrayList<Boat> playerBoats;
-    private ArrayList<Boat> ennemieBoats;
     private Map<Position , String> shoots;
     private List<Boat> boats;
 
@@ -36,8 +30,8 @@ public class Board {
      */
     public int attack(int x, int y ){
         Boat boat ;
-        for (int i = 0; i< ennemieBoats.size();i++){
-             boat =ennemieBoats.get(i);
+        for (int i = 0; i< boats.size();i++){
+             boat =boats.get(i);
             if (boat.isOnCase(x,y)){
                 boat.boatIsHit(x,y);
                 this.shoots.put(new Position(x, y), "Boat");
@@ -56,16 +50,13 @@ public class Board {
         return 0;
     }
 
-
     /**
      * Add boat to bard
      * @param boat
      */
-
     public void addBoat(Boat boat){
         setBoatPosition(boat);
         boats.add(boat);
-
     }
 
     /**
@@ -130,8 +121,8 @@ public class Board {
         return true;
     }
 
-
     public List<Boat> getBoats() {
         return boats;
     }
+
 }

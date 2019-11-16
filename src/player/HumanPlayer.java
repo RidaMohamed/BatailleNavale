@@ -4,8 +4,8 @@ import engine.Game;
 
 public class HumanPlayer extends Player {
 
-    public int scoreHits ;
-    public int missedShots ;
+    private int scoreHits ;
+    private int missedShots ;
 
 
     public HumanPlayer(Game game) {
@@ -17,15 +17,24 @@ public class HumanPlayer extends Player {
     /**
      *
      */
-    public void inscreseScoreHits(){
-
-    }
+    public void inscreseScoreHits(){this.scoreHits++; }
 
     /**
      *
      */
-    public void inscreseMissedShots(){
+    public void inscreseMissedShots(){ this.missedShots++;}
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
+    private void attack(int x, int y ){
+        int i = super.getBoard().attack(x,y);
+        if (i ==1)
+            this.scoreHits++;
+        else
+            this.missedShots++;
     }
 
 }
