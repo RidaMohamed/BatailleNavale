@@ -23,7 +23,6 @@ public class Boat {
         this.cases = new ArrayList<>();
     }
 
-
     public Orientation getOrientation() {
         return orientation;
     }
@@ -109,11 +108,9 @@ public class Boat {
         this.positionList.clear();
     }
 
-
     public Map<Integer, Integer> getPositionList() {
         return positionList;
     }
-
 
     public  Position getPosition(){
         return new Position(this.x , this.y);

@@ -5,21 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import centuryFactory.BoatTimeFactory;
-import engine.Game;
-import global.Clicks;
 import global.Constant;
 import global.Turn;
 import player.HumanPlayer;
 import player.MachinePlayer;
 
-/**
- * @author Horatiu Cirstea, Vincent Thomas
- *
- *         Version avec personnage qui peut se deplacer. A completer dans les
- *         versions suivantes.
- * 
- */
-public class BattleNavaleGame implements Game {
+public class BattleNavaleGame {
 
 	private HumanPlayer humanPlayer;
 	private MachinePlayer machinePlayer;
@@ -99,24 +90,5 @@ public class BattleNavaleGame implements Game {
 		return machinePlayer;
 	}
 
-
-	/**
-	 * faire evoluer le jeu suite a une commande
-	 * 
-	 * @param commande
-	 */
-	@Override
-	public void evolve(Clicks commande) {
-		System.out.println("Execute "+commande);
-	}
-
-	/**
-	 * verifier si le jeu est fini
-	 */
-	@Override
-	public boolean isFinished() {
-		// le jeu n'est jamais fini
-		return false;
-	}
 
 }

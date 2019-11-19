@@ -24,33 +24,6 @@ public class Board {
     }
 
     /**
-     * Le joueur humaine attack la position X et Y
-     * @param x
-     * @param y
-     */
-    public int attack(int x, int y ){
-        Boat boat ;
-        for (int i = 0; i< boats.size();i++){
-             boat =boats.get(i);
-            if (boat.isOnCase(x,y)){
-                boat.boatIsHit(x,y);
-                this.shoots.put(new Position(x, y), "Boat");
-                if (boat.isDistruct()){
-                    Map<Integer , Integer> position = boat.getPositionList();
-                    for (Map.Entry<Integer, Integer> entry : position.entrySet()){
-                        this.shoots.put(new Position(entry.getKey(), entry.getValue()), "Boat");
-                    }
-                    boat.deletePositions();
-                }
-                return 1;
-            }
-        }
-
-        this.shoots.put(new Position(x, y), "Null");
-        return 0;
-    }
-
-    /**
      * Add boat to bard
      * @param boat
      */
@@ -121,8 +94,31 @@ public class Board {
         return true;
     }
 
+    /**
+     * Check if the position is not allready attackec
+     * @return
+     */
+    public Boolean isPosFree (int x , int y){
+        if (this.shoots.containsKey(new Position(x,y)))
+            return false;
+        else
+            return true;
+    }
+
     public List<Boat> getBoats() {
         return boats;
     }
 
+    public void addPosAttacked(int x , int y , String str) {
+        this.shoots.put(new Position(x, y), str);
+    }
+
+    /**
+     * This methode delete the distrcut boat from
+     * the list of board
+     * @param b
+     */
+    public void deleteBoat(Boat b) {
+        this.boats.remove(b);
+    }
 }

@@ -2,7 +2,7 @@ package player;
 
 import board.Board;
 import centuryFactory.boats.Boat;
-import engine.Game;
+import model.BattleNavaleGame;
 import player.strategy.StrategyMahcineAttack;
 
 public class MachinePlayer extends Player {
@@ -10,7 +10,7 @@ public class MachinePlayer extends Player {
 
     public StrategyMahcineAttack strategyMahcineAttack;
 
-    public MachinePlayer(Game game) {
+    public MachinePlayer(BattleNavaleGame game) {
         super(game);
     }
 
@@ -19,5 +19,8 @@ public class MachinePlayer extends Player {
      * the machine player
      * @param strategyMahcineAttack
      */
-    public void setStrategy(StrategyMahcineAttack strategyMahcineAttack){ }
+    public void setStrategy(StrategyMahcineAttack strategyMahcineAttack){
+
+        strategyMahcineAttack.attack(this);
+    }
 }

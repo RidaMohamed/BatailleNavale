@@ -2,14 +2,14 @@ package player;
 
 import board.Board;
 import centuryFactory.boats.Boat;
-import engine.Game;
+import model.BattleNavaleGame;
 
 public class Player {
 
-    private Game game;
-    private Board board;
+    protected BattleNavaleGame game;
+    protected Board board;
 
-    public Player(Game game) {
+    public Player(BattleNavaleGame game) {
         this.game = game;
         this.board = new Board();
     }
@@ -31,5 +31,7 @@ public class Player {
     }
 
 
-
+    public BattleNavaleGame getGame() {
+        return game;
+    }
 }
