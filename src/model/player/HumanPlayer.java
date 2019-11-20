@@ -78,7 +78,7 @@ public class HumanPlayer extends Player {
         StringBuilder str = new StringBuilder();
         List<Boat> boatList = this.board.getBoats();
         //boats numbers
-        str.append("boats numbres," + String.valueOf(boatList));
+        str.append("boats numbres," + String.valueOf(boatList.size()));
 
         for (Boat b: boatList) {
             str.append(
@@ -88,7 +88,7 @@ public class HumanPlayer extends Player {
             );
 
             List<Position> l = b.getCases();
-            str.append("PosLast," + String.valueOf( b.getCases()) + "\n");
+            str.append("PosLast," + String.valueOf( b.getCases().size()) + "\n");
             for (int i = 0 ; i < l.size(); i++)
                 str.append(l.get(i).getX() + "\n" + l.get(i).getY() + "\n");
         }
