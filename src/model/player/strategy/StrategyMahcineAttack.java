@@ -1,7 +1,6 @@
-package player.strategy;
+package model.player.strategy;
 
-import player.MachinePlayer;
-import player.Player;
+import model.player.MachinePlayer;
 
 public interface StrategyMahcineAttack {
 

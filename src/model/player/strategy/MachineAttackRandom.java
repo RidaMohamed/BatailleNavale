@@ -1,14 +1,13 @@
-package player.strategy;
+package model.player.strategy;
 
-import board.Board;
-import centuryFactory.boats.Boat;
-import global.Position;
-import player.MachinePlayer;
-import player.Player;
+import model.board.Board;
+import model.centuryFactory.boats.Boat;
+import model.global.Position;
+import model.player.MachinePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class MachineAttackRandom implements StrategyMahcineAttack {
 
@@ -22,7 +21,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
              randX = (int)(Math.round(Math.random()*50));
              randY = (int)(Math.round(Math.random()*50));
 
-            //get borad of humain player
+            //get borad of humain model.player
              board = machinePLayer.getBoard();
             //Verfie is the postions is ok to attack
             b = board.isPosFree(randX , randY);
@@ -36,12 +35,12 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
                 missedShot = false ;
                 boat.boatIsHit(randX,randY);
                 //adding the hited pos to the borad shoot list
-                board.addPosAttacked(randX,randY, "boat");
+                board.addPosAttacked(new Position(randX,randY), "boat");
                 //adding all the boat pos if he is destroyed to the borad shoot list
                 if (boat.isDistruct()){
-                    Map<Integer , Integer> position = boat.getPositionList();
-                    for (Map.Entry<Integer, Integer> entry : position.entrySet()){
-                        board.addPosAttacked(entry.getKey(), entry.getValue(), "boat");
+                    ArrayList<Position> positions = boat.getCases();
+                    for (int k = 0 ; k < positions.size() ; k++){
+                        board.addPosAttacked(positions.get(k), "Boat" );
                     }
                     boat.deletePositions();
                     board.deleteBoat(boat);
@@ -51,6 +50,6 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
 
         //case the machine missed the shot
         if (missedShot)
-            board.addPosAttacked(randX,randY, "null");
+            board.addPosAttacked(new Position(randX,randY), "null");
     }
 }

@@ -1,6 +1,4 @@
-package centuryFactory.boats;
-
-import global.Orientation;
+package model.centuryFactory.boats;
 
 public class Galion extends Boat {
     public Galion(int size) {

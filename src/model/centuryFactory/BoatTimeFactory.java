@@ -1,6 +1,6 @@
-package centuryFactory;
+package model.centuryFactory;
 
-import centuryFactory.boats.Boat;
+import model.centuryFactory.boats.Boat;
 
 public interface BoatTimeFactory {
 

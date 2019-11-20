@@ -1,6 +1,4 @@
-package centuryFactory.boats;
-
-import global.Orientation;
+package model.centuryFactory.boats;
 
 public class Croiseur extends Boat {
     public Croiseur(int size){

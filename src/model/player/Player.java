@@ -1,8 +1,10 @@
-package player;
+package model.player;
 
-import board.Board;
-import centuryFactory.boats.Boat;
+import model.board.Board;
 import model.BattleNavaleGame;
+import model.centuryFactory.boats.Boat;
+
+import java.util.List;
 
 public class Player {
 
@@ -15,16 +17,8 @@ public class Player {
     }
 
     /**
-     * Methode to get Mahcine player data
-     * Boats positions
-     */
-    public String getData(){
-        return "";
-    }
-
-    /**
      * getting the borad which contains
-     * the machine player positions
+     * the machine model.player positions
      */
     public Board getBoard(){
          return this.board;

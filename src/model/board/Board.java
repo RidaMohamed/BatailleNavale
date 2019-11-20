@@ -1,13 +1,13 @@
-package board;
+package model.board;
 
-import centuryFactory.boats.Boat;
+import model.centuryFactory.boats.Boat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import global.Position;
-import global.Constant;
-import global.Orientation;
+import model.global.Position;
+import model.global.Constant;
+import model.global.Orientation;
 
 import java.awt.*;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Board {
     }
 
     /**
-     * Add boat to bard
+     * Add boat to board
      * @param boat
      */
     public void addBoat(Boat boat){
@@ -109,16 +109,20 @@ public class Board {
         return boats;
     }
 
-    public void addPosAttacked(int x , int y , String str) {
-        this.shoots.put(new Position(x, y), str);
+    public void addPosAttacked(Position p, String str) {
+        this.shoots.put(p, str);
     }
 
     /**
      * This methode delete the distrcut boat from
-     * the list of board
+     * the list of model.board
      * @param b
      */
     public void deleteBoat(Boat b) {
         this.boats.remove(b);
+    }
+
+    public void addBoatToList(Boat boat){
+        boats.add(boat);
     }
 }

@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import centuryFactory.BoatTimeFactory;
-import global.Constant;
-import global.Turn;
-import player.HumanPlayer;
-import player.MachinePlayer;
+import model.centuryFactory.BoatTimeFactory;
+import model.global.Constant;
+import model.global.Turn;
+import model.player.HumanPlayer;
+import model.player.MachinePlayer;
+import model.save.FileManager;
 
 public class BattleNavaleGame {
 
@@ -16,11 +17,9 @@ public class BattleNavaleGame {
 	private MachinePlayer machinePlayer;
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
+	private FileManager fileManager;
 
-	/**
-	 * constructeur avec fichier source pour le help
-	 *
-	 */
+
 	public BattleNavaleGame(String source) {
 		BufferedReader helpReader;
 		try {
@@ -35,6 +34,14 @@ public class BattleNavaleGame {
 		}
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
+		fileManager = new FileManager(this);
+	}
+
+
+	public BattleNavaleGame() {
+		humanPlayer = new HumanPlayer(this);
+		machinePlayer = new MachinePlayer(this);
+		fileManager = new FileManager(this);
 	}
 
 	public void initialize(){
@@ -51,19 +58,18 @@ public class BattleNavaleGame {
 	}
 
 	public void moveBoat(){
-
 	}
 
 	public void setCentury(BoatTimeFactory timeFactory){
 		this.boatTimeFactory = timeFactory;
 	}
 
-	public void setFactory(BoatTimeFactory timeFactory){
-		this.boatTimeFactory = timeFactory;
+	public FileManager getFileManager() {
+		return fileManager;
 	}
 
-	public void getFileManager(){
-
+	public void setFactory(BoatTimeFactory timeFactory){
+		this.boatTimeFactory = timeFactory;
 	}
 
 	public void setHumanPlayer(HumanPlayer humanPlayer) {

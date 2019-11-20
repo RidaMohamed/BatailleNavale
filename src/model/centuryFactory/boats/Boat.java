@@ -1,7 +1,7 @@
-package centuryFactory.boats;
+package model.centuryFactory.boats;
 
-import global.Orientation;
-import global.Position;
+import model.global.Orientation;
+import model.global.Position;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Boat {
 
-    private HashMap<Integer , Integer> positionList;
     private int boatHealth;
     private int x;
     private int y;
@@ -62,7 +61,7 @@ public class Boat {
      * @return
      */
     public boolean isOnCase(int x, int y){
-        if (positionList.size()!= 0 && positionList.containsKey(x) )
+        if (cases.size()!= 0 && cases.contains(new Position(x,y)) )
             return true;
         else
             return false;
@@ -79,7 +78,7 @@ public class Boat {
         //delete the hited position
         //from positionList of the boat
         //to optimize the search for the next attack
-        this.positionList.remove(x,y);
+        this.cases.remove(new Position(x,y));
     }
 
     /**
@@ -105,11 +104,7 @@ public class Boat {
      * boat list positions
      */
     public void deletePositions(){
-        this.positionList.clear();
-    }
-
-    public Map<Integer, Integer> getPositionList() {
-        return positionList;
+        this.cases.clear();
     }
 
     public  Position getPosition(){
@@ -118,5 +113,17 @@ public class Boat {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+    }
+
+    public int getBoatHealth() {
+        return boatHealth;
+    }
+
+    public ArrayList<Position> getCases() {
+        return cases;
+    }
+
+    public void setCases(ArrayList<Position> cases) {
+        this.cases = cases;
     }
 }

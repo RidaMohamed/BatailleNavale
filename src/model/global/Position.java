@@ -1,4 +1,4 @@
-package global;
+package model.global;
 
 public class Position {
     private int x;

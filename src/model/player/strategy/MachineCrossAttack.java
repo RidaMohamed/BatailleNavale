@@ -1,6 +1,6 @@
-package player.strategy;
+package model.player.strategy;
 
-import player.MachinePlayer;
+import model.player.MachinePlayer;
 
 public class MachineCrossAttack implements StrategyMahcineAttack {
     @Override

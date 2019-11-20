@@ -1,9 +1,8 @@
-package centuryFactory;
+package model.centuryFactory;
 
-import centuryFactory.boats.Boat;
-import centuryFactory.boats.Croiseur;
-import centuryFactory.boats.Galion;
-import global.Orientation;
+import model.centuryFactory.boats.Boat;
+import model.centuryFactory.boats.Croiseur;
+import model.centuryFactory.boats.Galion;
 
 public class BoatFactoryXVCentury implements BoatTimeFactory {
     public  Boat createBoat(int len){
