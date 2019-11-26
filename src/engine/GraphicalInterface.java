@@ -1,6 +1,11 @@
 package engine;
 
+import engine.gameEditor.DrawingPanelEditor;
+import engine.gameParty.DrawingPanelParty;
+import engine.painter.Painter;
+
 import javax.swing.JFrame;
+import java.awt.*;
 
 
 /**
@@ -14,8 +19,9 @@ public class GraphicalInterface  {
 	/**
 	 * le Panel pour l'afficheur
 	 */
-	private DrawingPanel panel;
-	
+	private DrawingPanelParty party;
+	private DrawingPanelEditor editor;
+
 	/**
 	 * la construction de l'interface graphique: JFrame avec panel pour le game
 	 * 
@@ -23,17 +29,32 @@ public class GraphicalInterface  {
 	 * @param gameController l'afficheur a utiliser dans le moteur
 	 * 
 	 */
-	public GraphicalInterface(GamePainter gamePainter, GameController gameController){
+	public GraphicalInterface(Painter painter, GameController controller){
 		JFrame f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		painter.setGetScreenHeight((int) dim.getHeight());
+		painter.setScreenWidth((int) dim.getWidth());
+
+
 		// attacher le panel contenant l'afficheur du game
-		this.panel=new DrawingPanel(gamePainter);
-		f.setContentPane(this.panel);
-		
+		this.party=new DrawingPanelParty(painter , controller);
+		this.editor = new DrawingPanelEditor(painter , controller);
+		f.setContentPane(this.editor);
+
 		// attacher controller au panel du game
-		this.panel.addKeyListener(gameController);	
+		this.party.addKeyListener(controller);
 		
+        //Affichage plein ecran
+
+		GraphicsEnvironment env =
+				GraphicsEnvironment.getLocalGraphicsEnvironment();
+		f.setExtendedState(f.getExtendedState() | f.MAXIMIZED_BOTH);
+
+     	f.setUndecorated(true);
+
+
 		f.pack();
 		f.setVisible(true);
 		f.getContentPane().setFocusable(true);
@@ -44,7 +65,7 @@ public class GraphicalInterface  {
 	 * mise a jour du dessin
 	 */
 	public void paint() {
-		this.panel.drawGame();	
+		this.editor.drawGame();
 	}
 	
 }

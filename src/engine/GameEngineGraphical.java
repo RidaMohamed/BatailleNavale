@@ -1,5 +1,6 @@
 package engine;
 
+import engine.painter.Painter;
 import global.Clicks;
 
 /**
@@ -18,7 +19,7 @@ public class GameEngineGraphical {
 	/**
 	 * l'afficheur a utiliser pour le rendu
 	 */
-	private GamePainter gamePainter;
+	private Painter gamePainter;
 
 	/**
 	 * le controlleur a utiliser pour recuperer les commandes
@@ -41,20 +42,22 @@ public class GameEngineGraphical {
 	 *            controlleur a utiliser
 	 *            
 	 */
-	public GameEngineGraphical(Game game, GamePainter gamePainter, GameController gameController) {
+	public GameEngineGraphical(Game game, Painter gamePainter, GameController gameController) {
 		// creation du game
 		this.game = game;
 		this.gamePainter = gamePainter;
 		this.gameController = gameController;
 	}
 
+
+
 	/**
 	 * permet de lancer le game
 	 */
-/*	public void run() throws InterruptedException {
+	public void run() throws InterruptedException {
 
 		// creation de l'interface graphique
-		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
+		this.gui = new GraphicalInterface((Painter) this.gamePainter,this.gameController);
 
 		// boucle de game
 		while (!this.game.isFinished()) {
@@ -65,8 +68,8 @@ public class GameEngineGraphical {
 			// affiche le game
 			this.gui.paint();
 			// met en attente
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		}
 	}
-*/
+
 }

@@ -134,4 +134,8 @@ public class Board {
     public List<Boat> getBoats() {
         return boats;
     }
+
+    public Map<Position, String> getShoots() {
+        return shoots;
+    }
 }

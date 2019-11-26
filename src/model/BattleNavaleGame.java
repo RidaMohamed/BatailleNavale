@@ -30,8 +30,8 @@ public class BattleNavaleGame implements Game {
 	 * constructeur avec fichier source pour le help
 	 *
 	 */
-	public BattleNavaleGame(String source) {
-		BufferedReader helpReader;
+	public BattleNavaleGame(/*String source*/) {
+		/*BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
 			String ligne;
@@ -41,7 +41,7 @@ public class BattleNavaleGame implements Game {
 			helpReader.close();
 		} catch (IOException e) {
 			System.out.println("Help not available");
-		}
+		}*/
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 	}

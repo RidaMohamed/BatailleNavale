@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import engine.GameController;
 import global.Clicks;
@@ -21,8 +22,9 @@ public class BattleNavaleController implements GameController {
 
 	/**
 	 * construction du controleur par defaut le controleur n'a pas de commande
+	 * @param game
 	 */
-	public BattleNavaleController() {
+	public BattleNavaleController(BattleNavaleGame game) {
 		this.commandeEnCours = Clicks.IDLE;
 	}
 
@@ -58,6 +60,31 @@ public class BattleNavaleController implements GameController {
 	 */
 	public void keyReleased(KeyEvent e) {
 		this.commandeEnCours = Clicks.IDLE;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
 	}
 
 	@Override

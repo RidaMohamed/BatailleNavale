@@ -4,6 +4,8 @@ package engine;
  * @author Horatiu Cirstea, Vincent Thomas
  *
  */
+import engine.painter.Painter;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -20,37 +22,39 @@ public class DrawingPanel extends JPanel {
 	/**
 	 * la clase chargee de Dessiner
 	 */
-	private GamePainter painter;
+	protected GamePainter painter;
 
 	/**
 	 * image suivante est l'image cachee sur laquelle dessiner
 	 */
-	private BufferedImage nextImage;
+	protected BufferedImage nextImage;
 
 	/**
 	 * image en cours est l'image entrain d'etre affichee
 	 */
-	private BufferedImage currentImage;
+	protected BufferedImage currentImage;
 
 	/**
 	 * la taille des images
 	 */
-	private int width, height;
+	protected int width, height;
+
+
 
 	/**
 	 * constructeur Il construit les images pour doublebuffering ainsi que le
 	 * Panel associe. Les images stockent le painter et on demande au panel la
 	 * mise a jour quand le painter est fini
-	 * 
-	 * @param width
+	 *  @param width
 	 *            largeur de l'image
 	 * @param height
-	 *            hauteur de l'image
-	 */
-	public DrawingPanel(GamePainter painter) {
+     * @param screenWidth
+     * @param getScreenHeight
+     */
+	public DrawingPanel(Painter painter) {
 		super();
-		this.width = painter.getWidth();
-		this.height = painter.getHeight();
+		this.width = painter.getScreenWidth();
+		this.height = painter.getGetScreenHeight();
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.painter=painter;
 
