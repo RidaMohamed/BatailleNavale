@@ -22,6 +22,15 @@ public class Boat {
         this.cases = new ArrayList<>();
     }
 
+
+    public Boat( int size , int boatHealth, int x, int y) {
+        this.size = size;
+        this.boatHealth = boatHealth;
+        this.cases = new ArrayList<>();
+        this.x = x;
+        this.y = y;
+    }
+
     public Orientation getOrientation() {
         return orientation;
     }

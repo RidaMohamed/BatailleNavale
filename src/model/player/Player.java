@@ -18,14 +18,25 @@ public class Player {
 
     /**
      * getting the borad which contains
-     * the machine model.player positions
+     * the machine model.player boats positions
      */
     public Board getBoard(){
          return this.board;
     }
 
-
+    /**
+     * getting the Battle Navale Game class
+     * player know the Battle Navale Game class
+     * @return
+     */
     public BattleNavaleGame getGame() {
         return game;
+    }
+
+
+    public StringBuilder getData(){
+        StringBuilder str = new StringBuilder();
+        str.append("/");
+        return str;
     }
 }

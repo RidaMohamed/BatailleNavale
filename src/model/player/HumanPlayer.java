@@ -3,6 +3,7 @@ package model.player;
 import model.board.Board;
 import model.centuryFactory.boats.Boat;
 import model.BattleNavaleGame;
+import model.global.Orientation;
 import model.global.Position;
 
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ public class HumanPlayer extends Player {
     private int scoreHits ;
     private int missedShots ;
 
+    /**
+     * Simple constructor for Humaine player
+     * @param game
+     */
     public HumanPlayer(BattleNavaleGame game) {
         super(game);
         this.scoreHits = 0;
@@ -21,12 +26,13 @@ public class HumanPlayer extends Player {
     }
 
     /**
-     *
+     * Increase score hitted
      */
     public void inscreseScoreHits(){this.scoreHits++; }
 
     /**
-     *
+     * Increaser the missed shots
+     * score
      */
     public void inscreseMissedShots(){ this.missedShots++;}
 
@@ -78,29 +84,42 @@ public class HumanPlayer extends Player {
         StringBuilder str = new StringBuilder();
         List<Boat> boatList = this.board.getBoats();
         //boats numbers
-        str.append("boats numbres," + String.valueOf(boatList.size()));
+        str.append("boats numbres," + String.valueOf(boatList.size()) + "\n");
 
         for (Boat b: boatList) {
+            int u ;
+            if (b.getOrientation() == Orientation.HORIZONTAL)
+                u = 1;
+            else
+                u = 0 ;
             str.append(
-                    b.getOrientation() +"\n"+
-                    b.getBoatHealth() + "\n"+
-                    String.valueOf(b.getSize()) +"\n"
+                    u +","+
+                    b.getBoatHealth() + ","+
+                    String.valueOf(b.getSize()) + "\n"
             );
 
             List<Position> l = b.getCases();
             str.append("PosLast," + String.valueOf( b.getCases().size()) + "\n");
             for (int i = 0 ; i < l.size(); i++)
-                str.append(l.get(i).getX() + "\n" + l.get(i).getY() + "\n");
+                str.append(l.get(i).getX() + "/" + l.get(i).getY() + "\n");
         }
-        str.append(String.valueOf(this.missedShots)+"\n"+
-                   String.valueOf(this.scoreHits) +"\n");
+        str.append("Missedshot:" + String.valueOf(this.missedShots)+"\n"+
+                   "ScoreHit:" + String.valueOf(this.scoreHits));
         return str;
     }
 
+    /**
+     * Setting the score hits after loading the game
+     * @param scoreHits
+     */
     public void setScoreHits(int scoreHits) {
         this.scoreHits = scoreHits;
     }
 
+    /**
+     * Setting the mised shot score after loading the game
+     * @param missedShots
+     */
     public void setMissedShots(int missedShots) {
         this.missedShots = missedShots;
     }

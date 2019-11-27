@@ -1,4 +1,4 @@
-package model.save;
+package save;
 
 import model.BattleNavaleGame;
 import model.centuryFactory.boats.Boat;
@@ -6,9 +6,7 @@ import model.global.Orientation;
 import model.global.Position;
 
 import java.io.*;
-import java.net.Inet4Address;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FileManager {
 
@@ -22,69 +20,92 @@ public class FileManager {
 
     public void load() throws IOException {
 
-        InputStream file = FileManager.class.getClassLoader().getResourceAsStream("gamesSaves.txt");
+        InputStream file = FileManager.class.getClassLoader().getResourceAsStream("gameSaves.txt");
         InputStreamReader lecture = new InputStreamReader(file);
         BufferedReader buff = new BufferedReader(lecture);
         String line;
         Boat b;
         String[] boatsNumbers;
         String[] boatsNumbers1;
+        String[] info;
         int boatSize, X, Y, boatHealth;
+        int initX = 0, initY = 0;
         Orientation orientation;
         ArrayList<Position> list = new ArrayList<>();
 
         if ((line = buff.readLine()) != null){
-             boatsNumbers = line.split(",");
             //Loading Humaine player data
-            for(int i = 0; i<Integer.valueOf(boatsNumbers[1]);i++){
+            boatsNumbers = line.split(",");
+             for(int i = 0; i<Integer.valueOf(boatsNumbers[1]);i++){
+                 //orientation
                 line = buff.readLine();
-                orientation = Orientation.valueOf(line);
-                line = buff.readLine();
-                boatHealth = Integer.valueOf(line);
-                line = buff.readLine();
-                boatSize = Integer.valueOf(line);
+                info = line.split(",");
+                 if (info[0].equals(1))
+                     orientation = Orientation.HORIZONTAL;
+                 else
+                     orientation = Orientation.VERTICAL;
+                //boatHealth
+                boatHealth = Integer.valueOf(info[1]);
+                //boatSize
+                boatSize = Integer.valueOf(info[2]);
+                //boatsNumbers1
                 line = buff.readLine();
                 boatsNumbers1 = line.split(",");
+//                 System.out.println( info[0] + " " + info[1] + " " + info[2]);
                 for (int j=0 ; j < Integer.valueOf(boatsNumbers1[1]); j++){
                     line = buff.readLine();
-                    X = Integer.valueOf(line);
-                    line = buff.readLine();
-                    Y = Integer.valueOf(line);
+                    info = line.split("/");
+                    if (j == 0 ){
+                        initX = Integer.valueOf(info[0]);
+                        initY = Integer.valueOf(info[1]);
+                    }
+                    X = Integer.valueOf(info[0]);
+                    Y = Integer.valueOf(info[1]);
                     list.add(new Position(X,Y));
                 }
-                b = new Boat(boatSize,boatHealth);
+                b = new Boat(boatSize,boatHealth, initX,initY);
                 b.setOrientation(orientation);
                 b.setCases(list);
                 game.getHumanPlayer().getBoard().addBoatToList(b);
             }
             //setting the score and the missedshot
             line = buff.readLine();
-            int score = Integer.valueOf(line);
-            line = buff.readLine();
-            int missedShot = Integer.valueOf(line);
+            info = line.split(":");
+            int score = Integer.valueOf(info[1]);
+            info = line.split(":");
+            int missedShot = Integer.valueOf(info[1]);
             game.getHumanPlayer().setScoreHits(score);
             game.getHumanPlayer().setMissedShots(missedShot);
 
+            //////////////////////////////////////////////////////////
             list = new ArrayList<>();
+            line = buff.readLine();
             //Loading Machine pLayer data
             boatsNumbers1 = line.split(",");
             for(int i = 0; i<Integer.valueOf(boatsNumbers1[1]);i++){
                 line = buff.readLine();
-                orientation = Orientation.valueOf(line);
-                line = buff.readLine();
-                boatHealth = Integer.valueOf(line);
-                line = buff.readLine();
-                boatSize = Integer.valueOf(line);
+                info = line.split(",");
+                if (info[0].equals(1))
+                    orientation = Orientation.HORIZONTAL;
+                else
+                    orientation = Orientation.VERTICAL;
+                boatHealth = Integer.valueOf(info[1]);
+                boatSize = Integer.valueOf(info[2]);
+
                 line = buff.readLine();
                 boatsNumbers = line.split(",");
                 for (int j=0 ; j < Integer.valueOf(boatsNumbers[1]); j++){
                     line = buff.readLine();
-                    X = Integer.valueOf(line);
-                    line = buff.readLine();
-                    Y = Integer.valueOf(line);
+                    info = line.split("/");
+                    if (j == 0 ){
+                         initX = Integer.valueOf(info[0]);
+                         initY = Integer.valueOf(info[1]);
+                    }
+                    X = Integer.valueOf(info[0]);
+                    Y = Integer.valueOf(info[1]);
                     list.add(new Position(X,Y));
                 }
-                b = new Boat(boatSize,boatHealth);
+                b = new Boat(boatSize,boatHealth, initX, initY);
                 b.setOrientation(orientation);
                 b.setCases(list);
                 game.getMachinePlayer().getBoard().addBoatToList(b);
@@ -99,13 +120,14 @@ public class FileManager {
 
         //Writing the data on the saveFile
         try {
-            FileWriter fw = new FileWriter("res/gameSaves.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw);
+          //  FileWriter fw = new FileWriter("res/gameSaves.txt", true);
+          //  BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter("res/gameSaves.txt");
             out.print(dataH);
-            System.out.println(dataH);
+            out.println(dataH);
             out.print(dataM);
             System.out.println(dataM);
+            out.close();
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

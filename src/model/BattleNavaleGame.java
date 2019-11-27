@@ -9,7 +9,7 @@ import model.global.Constant;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
-import model.save.FileManager;
+import save.FileManager;
 
 public class BattleNavaleGame {
 
@@ -32,9 +32,9 @@ public class BattleNavaleGame {
 		} catch (IOException e) {
 			System.out.println("Help not available");
 		}
-		humanPlayer = new HumanPlayer(this);
+		humanPlayer   = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
-		fileManager = new FileManager(this);
+		fileManager   = new FileManager(this);
 	}
 
 
