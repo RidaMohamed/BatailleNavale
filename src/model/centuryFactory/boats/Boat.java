@@ -16,6 +16,11 @@ public class Boat {
     private Orientation orientation;
     private ArrayList<Position> cases;
 
+    /**
+     * Constructor for simple start game
+     * @param size
+     * @param boatHealth
+     */
     public Boat( int size , int boatHealth) {
         this.size = size;
         this.boatHealth = boatHealth;
@@ -23,20 +28,19 @@ public class Boat {
     }
 
 
+    /**
+     * Constructor used for loading game
+     * @param size
+     * @param boatHealth
+     * @param x
+     * @param y
+     */
     public Boat( int size , int boatHealth, int x, int y) {
         this.size = size;
         this.boatHealth = boatHealth;
         this.cases = new ArrayList<>();
         this.x = x;
         this.y = y;
-    }
-
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     /**
@@ -116,10 +120,6 @@ public class Boat {
         this.cases.clear();
     }
 
-    public  Position getPosition(){
-        return new Position(this.x , this.y);
-    }
-
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
@@ -135,4 +135,17 @@ public class Boat {
     public void setCases(ArrayList<Position> cases) {
         this.cases = cases;
     }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public  Position getPosition(){
+        return new Position(this.x , this.y);
+    }
+
 }

@@ -17,7 +17,9 @@ public class Board {
     private Map<Position , String> shoots;
     private List<Boat> boats;
 
-
+    /** S
+     * Simple Constructor
+     */
     public Board() {
         boats = new ArrayList<>();
         shoots = new HashMap<>();
@@ -79,17 +81,13 @@ public class Board {
             }else
                 rectangle1 = new Rectangle((boat.getPosition().getX()-1)*Constant.CASE_WIDTH , (boat.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (boat.getSize()+1)*Constant.CASE_HEIGHT);
 
-
             if (b.getOrientation() == Orientation.HORIZONTAL) {
                 rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , (b.getSize()+1)*Constant.CASE_WIDTH, Constant.CASE_HEIGHT*3);
             }else
                 rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (b.getSize()+1)*Constant.CASE_HEIGHT);
 
-
             if (rectangle1.intersects(rectangle2))
                 setBoatPosition(boat);
-
-
         }
         return true;
     }
@@ -105,10 +103,20 @@ public class Board {
             return true;
     }
 
+    /**
+     * Methode returns all the boats of
+     * the player
+     * @return
+     */
     public List<Boat> getBoats() {
         return boats;
     }
 
+    /**
+     *
+     * @param p
+     * @param str
+     */
     public void addPosAttacked(Position p, String str) {
         this.shoots.put(p, str);
     }

@@ -20,6 +20,11 @@ public class BattleNavaleGame {
 	private FileManager fileManager;
 
 
+	/**
+	 * Simple Constructor
+	 * To load the game
+	 * @param source
+	 */
 	public BattleNavaleGame(String source) {
 		BufferedReader helpReader;
 		try {
@@ -38,15 +43,22 @@ public class BattleNavaleGame {
 	}
 
 
+	/**
+	 * Simple Constructor
+	 */
 	public BattleNavaleGame() {
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		fileManager = new FileManager(this);
 	}
 
+
 	public void initialize(){
 	}
 
+	/**
+	 *
+	 */
 	public void createBoats(){
 		for (int i = Constant.boat_length_size.length-1; i>= 1 ; i--){
 			for (int j=0 ; j<Constant.boat_length_size[i]; j++){
@@ -54,9 +66,11 @@ public class BattleNavaleGame {
 				machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(i));
 			}
 		}
-
 	}
 
+	/**
+	 *
+	 */
 	public void moveBoat(){
 	}
 

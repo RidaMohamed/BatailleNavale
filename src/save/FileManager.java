@@ -18,6 +18,11 @@ public class FileManager {
         this.game = game;
     }
 
+    /**
+     * Methode to load saved data from a the save file
+     * then setting the game for the player
+     * @throws IOException
+     */
     public void load() throws IOException {
 
         InputStream file = FileManager.class.getClassLoader().getResourceAsStream("gameSaves.txt");
@@ -113,6 +118,11 @@ public class FileManager {
         }
     }
 
+    /**
+     * Methode to save the gam data
+     * Players (Machine and humaine)
+     * boats positions, sizes, scores
+     */
     public void save (){
         //Getting the data
         this.dataH = game.getHumanPlayer().getData().toString();
