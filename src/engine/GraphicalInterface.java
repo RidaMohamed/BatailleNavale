@@ -1,10 +1,10 @@
 package engine;
 
-import engine.gameEditor.DrawingPanelEditor;
+import engine.gameMenu.DrawingPanelSplashScreen;
 import engine.gameParty.DrawingPanelParty;
 import engine.painter.Painter;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 
 
@@ -20,39 +20,39 @@ public class GraphicalInterface  {
 	 * le Panel pour l'afficheur
 	 */
 	private DrawingPanelParty party;
-	private DrawingPanelEditor editor;
+	private DrawingPanelSplashScreen splashScreen;
+	private JPanel panel;
 
 	/**
 	 * la construction de l'interface graphique: JFrame avec panel pour le game
 	 * 
-	 * @param gamePainter l'afficheur a utiliser dans le moteur
-	 * @param gameController l'afficheur a utiliser dans le moteur
-	 * 
+	 *
 	 */
 	public GraphicalInterface(Painter painter, GameController controller){
 		JFrame f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		painter.setGetScreenHeight((int) dim.getHeight());
-		painter.setScreenWidth((int) dim.getWidth());
-
 
 		// attacher le panel contenant l'afficheur du game
 		this.party=new DrawingPanelParty(painter , controller);
-		this.editor = new DrawingPanelEditor(painter , controller);
-		f.setContentPane(this.editor);
+		this.splashScreen = new DrawingPanelSplashScreen(painter, controller);
 
-		// attacher controller au panel du game
-		this.party.addKeyListener(controller);
-		
+
         //Affichage plein ecran
 
 		GraphicsEnvironment env =
 				GraphicsEnvironment.getLocalGraphicsEnvironment();
 		f.setExtendedState(f.getExtendedState() | f.MAXIMIZED_BOTH);
 
-     	f.setUndecorated(true);
+     	//f.setUndecorated(true);
+
+		panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		//panel.add(this.scorePanel );
+		this.panel.add(this.splashScreen);
+		f.setContentPane(panel);
+
 
 
 		f.pack();
@@ -61,11 +61,29 @@ public class GraphicalInterface  {
 		f.getContentPane().requestFocus();
 	}
 	
-	/**
-	 * mise a jour du dessin
-	 */
-	public void paint() {
-		this.editor.drawGame();
+
+
+
+	public void paintParty(boolean over,String s) {
+		this.panel.removeAll();
+		this.panel.repaint();
+		this.panel.add(this.party);
+		this.party.drawGame();
+		this.panel.updateUI();
+
+
 	}
-	
+
+	public void paintSplash() {
+		this.panel.removeAll();
+		this.panel.repaint();
+		this.panel.add(this.splashScreen);
+		this.splashScreen.drawGame();
+		this.panel.updateUI();
+
+	}
+
+
+
+
 }

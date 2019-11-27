@@ -1,70 +1,42 @@
 package model;
 
+
+import engine.GameController;
+import model.global.Constant;
+import model.global.Position;
+import model.global.Turn;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import engine.GameController;
-import global.Clicks;
-
-
-/**
- * @author Horatiu Cirstea, Vincent Thomas
- *
- * controleur de type KeyListener
- * 
- */
 public class BattleNavaleController implements GameController {
 
-	/**
-	 * commande en cours
-	 */
-	private Clicks commandeEnCours;
+	private BattleNavaleGame battleNavaleGame;
 
-	/**
-	 * construction du controleur par defaut le controleur n'a pas de commande
-	 * @param game
-	 */
-	public BattleNavaleController(BattleNavaleGame game) {
-		this.commandeEnCours = Clicks.IDLE;
+	public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
+           this.battleNavaleGame = battleNavaleGame;
 	}
 
-	/**
-	 * quand on demande les commandes, le controleur retourne la commande en
-	 * cours
-	 * 
-	 * @return commande faite par le joueur
-	 */
-	public Clicks getClicks() {
-		return this.commandeEnCours;
-	}
-
-	@Override
-	/**
-	 * met a jour les commandes en fonctions des touches appuyees
-	 */
-	public void keyPressed(KeyEvent e) {
-
-		switch (e.getKeyChar()) {
-		// si on appuie sur 'q',commande joueur est gauche
-		case 'l':
-		case 'L':
-			this.commandeEnCours = Clicks.IDLE;
-			break;
-		}
-
-	}
-
-	@Override
-	/**
-	 * met a jour les commandes quand le joueur relache une touche
-	 */
-	public void keyReleased(KeyEvent e) {
-		this.commandeEnCours = Clicks.IDLE;
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+          if (battleNavaleGame.isFinished() == 1 ){
+          	 //if we are playing then the action is attacked player2
+			  int x = (e.getX() - e.getX() % Constant.CASE_WIDTH )/ Constant.CASE_WIDTH;
+			  int y = (e.getY() - e.getY() % Constant.CASE_HEIGHT +  Constant.CASE_HEIGHT) / Constant.CASE_HEIGHT;
+			  System.out.println(x + " "+y);
+			  battleNavaleGame.getHumanPlayer().attack(x , y);
 
+			  if (battleNavaleGame.getTurn() == Turn.MachineTurn) {
+				  try {
+					  Thread.sleep(2000);
+				  } catch (InterruptedException e1) {
+					  e1.printStackTrace();
+				  }
+				  this.battleNavaleGame.getMachinePlayer().attack();
+			  }
+
+		  }
 	}
 
 	@Override
@@ -87,12 +59,7 @@ public class BattleNavaleController implements GameController {
 
 	}
 
-	@Override
-	/**
-	 * ne fait rien
-	 */
-	public void keyTyped(KeyEvent e) {
-
+	public BattleNavaleGame getBattleNavaleGame() {
+		return battleNavaleGame;
 	}
-
 }

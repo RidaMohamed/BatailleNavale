@@ -1,10 +1,10 @@
 package engine.painter;
 
-import centuryFactory.boats.Boat;
-import centuryFactory.boats.Position;
-import global.Constant;
-import global.Orientation;
 import model.BattleNavaleGame;
+import model.centuryFactory.boats.Boat;
+import model.global.Constant;
+import model.global.Orientation;
+import model.global.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

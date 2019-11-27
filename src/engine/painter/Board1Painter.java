@@ -1,17 +1,15 @@
 package engine.painter;
 
-import centuryFactory.boats.Boat;
-import centuryFactory.boats.Position;
-import engine.Game;
-import global.Constant;
-import global.Orientation;
 import model.BattleNavaleGame;
+import model.centuryFactory.boats.Boat;
+import model.global.Constant;
+import model.global.Orientation;
+import model.global.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class Board1Painter {
 
@@ -57,15 +55,15 @@ public class Board1Painter {
                 }
 
 
-            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/point.png"));
-            BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/Ressources/croix.png"));
+            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/nottouched.png"));
+            BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/Ressources/touched.png"));
 
             for (Position pos : game.getHumanPlayer().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
-                if (game.getHumanPlayer().getBoard().getShoots().get(pos) == null)
-                    im.getGraphics().drawImage(image1 , (pos.getX() + 4)* Constant.CASE_WIDTH , pos.getY()* Constant.CASE_HEIGHT + Constant.CASE_HEIGHT * 3 , Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);
+                if (!game.getHumanPlayer().getBoard().getShoots().get(pos))
+                    im.getGraphics().drawImage(image1 , (pos.getX() + 14)* Constant.CASE_WIDTH , pos.getY()* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);
                 else
-                    im.getGraphics().drawImage(image2 , (pos.getX()+ 4 )* Constant.CASE_WIDTH , pos.getY()* Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(image2 , (pos.getX()+ 14 )* Constant.CASE_WIDTH , pos.getY()* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);
 
             }
 

@@ -22,7 +22,9 @@ public class DrawingPanel extends JPanel {
 	/**
 	 * la clase chargee de Dessiner
 	 */
-	protected GamePainter painter;
+	protected Painter painter;
+
+	protected GameController controller;
 
 	/**
 	 * image suivante est l'image cachee sur laquelle dessiner
@@ -45,18 +47,16 @@ public class DrawingPanel extends JPanel {
 	 * constructeur Il construit les images pour doublebuffering ainsi que le
 	 * Panel associe. Les images stockent le painter et on demande au panel la
 	 * mise a jour quand le painter est fini
-	 *  @param width
-	 *            largeur de l'image
-	 * @param height
-     * @param screenWidth
-     * @param getScreenHeight
-     */
-	public DrawingPanel(Painter painter) {
+	 * @param painter
+	 * @param controller
+	 */
+	public DrawingPanel(Painter painter, GameController controller) {
 		super();
 		this.width = painter.getScreenWidth();
-		this.height = painter.getGetScreenHeight();
+		this.height = painter.getScreenHeight();
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.painter=painter;
+		this.controller = controller;
 
 		// cree l'image buffer et son graphics
 		this.nextImage = new BufferedImage(width, height,

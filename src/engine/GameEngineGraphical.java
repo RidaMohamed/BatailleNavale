@@ -1,7 +1,7 @@
 package engine;
 
 import engine.painter.Painter;
-import global.Clicks;
+import model.BattleNavaleGame;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas
@@ -14,7 +14,7 @@ public class GameEngineGraphical {
 	/**
 	 * le game a executer
 	 */
-	private Game game;
+	private BattleNavaleGame game;
 
 	/**
 	 * l'afficheur a utiliser pour le rendu
@@ -42,11 +42,13 @@ public class GameEngineGraphical {
 	 *            controlleur a utiliser
 	 *            
 	 */
-	public GameEngineGraphical(Game game, Painter gamePainter, GameController gameController) {
+	public GameEngineGraphical(BattleNavaleGame game, Painter gamePainter, GameController gameController) {
 		// creation du game
 		this.game = game;
 		this.gamePainter = gamePainter;
 		this.gameController = gameController;
+		this.gui = new GraphicalInterface((Painter) this.gamePainter,this.gameController);
+
 	}
 
 
@@ -56,19 +58,30 @@ public class GameEngineGraphical {
 	 */
 	public void run() throws InterruptedException {
 
+		game.setIsFinished(-3);
+
+
+		if (game.isFinished() == -3) {
+			System.out.println("splash");
+			this.gui.paintSplash();
+			Thread.sleep(4000);
+			game.setIsFinished(1);
+		}
+
+
 		// creation de l'interface graphique
-		this.gui = new GraphicalInterface((Painter) this.gamePainter,this.gameController);
 
 		// boucle de game
-		while (!this.game.isFinished()) {
+		while (this.game.isFinished() >=0 ) {
 			// demande controle utilisateur
-			Clicks c = this.gameController.getClicks();
+			//Clicks c = this.gameController.getClicks();
 			// fait evoluer le game
-			this.game.evolve(c);
+			//this.game.evolve(c);
 			// affiche le game
-			this.gui.paint();
+			if (this.game.isFinished() == 1)
+			this.gui.paintParty(false , "");
 			// met en attente
-			Thread.sleep(1000);
+			Thread.sleep(100);
 		}
 	}
 

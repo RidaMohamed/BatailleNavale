@@ -1,9 +1,8 @@
 package engine.painter;
 
-import centuryFactory.boats.Position;
-import engine.Game;
-import global.Constant;
 import model.BattleNavaleGame;
+import model.global.Constant;
+import model.global.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,12 +23,12 @@ public class Board2Painter  {
 
     public void draw(BufferedImage im) {
         try {
-            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/point.png"));
-            BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/Ressources/croix.png"));
+            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/nottouched.png"));
+            BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/Ressources/touched.png"));
 
             for (Position pos : game.getMachinePlayer().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
-                if (game.getMachinePlayer().getBoard().getShoots().get(pos) == null)
+                if (!game.getMachinePlayer().getBoard().getShoots().get(pos))
                     im.getGraphics().drawImage(image1 , pos.getX()* Constant.CASE_WIDTH , pos.getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT, Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);
                 else
                     im.getGraphics().drawImage(image2 , pos.getX()* Constant.CASE_WIDTH , pos.getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT, null);

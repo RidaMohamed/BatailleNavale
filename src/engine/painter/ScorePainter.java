@@ -1,6 +1,6 @@
 package engine.painter;
 
-import engine.Game;
+import model.BattleNavaleGame;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class ScorePainter {
 
-    private Game game;
+    private BattleNavaleGame game;
 
-    public ScorePainter(Game game) {
+    public ScorePainter(BattleNavaleGame game) {
         this.game = game;
     }
 
-    public Game getGame() {
+    public BattleNavaleGame getGame() {
         return game;
     }
 

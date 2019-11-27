@@ -1,7 +1,8 @@
 package engine.gameParty;
 
+import engine.GameController;
 import engine.painter.Painter;
-import global.Constant;
+import model.BattleNavaleController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,14 +13,16 @@ import java.io.IOException;
 public class DrawingScore extends JPanel {
 
     private Painter painter;
+    private GameController controller;
     private int width, height;
 
-    public DrawingScore(Painter painter) {
+    public DrawingScore(Painter painter, GameController controller) {
         super();
         this.width = painter.getScreenWidth();
         this.height = 100;
         this.setPreferredSize(new Dimension(this.width, this.height));
         this.painter=painter;
+        this.controller = controller;
     }
 
     public void drawGame(BufferedImage im) {
@@ -33,19 +36,19 @@ public class DrawingScore extends JPanel {
 
             BufferedImage water = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/water-hit.png"));
             im.getGraphics().drawImage(water , 400 , 30 , 50 , 50, null);
-            im.getGraphics().drawString("17" , 500 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots()) , 500 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(390 , 20 , 150 , 70);
 
             BufferedImage hit = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/hit.png"));
             im.getGraphics().drawImage(hit , 600 , 25 , 50 , 50, null);
-            im.getGraphics().drawString("17" , 700 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 700 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(590 , 20 , 150 , 70);
 
             BufferedImage sniper = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/sniper.png"));
             im.getGraphics().drawImage(sniper , 800 , 30 , 50 , 50, null);
-            im.getGraphics().drawString("17" , 900 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots() + controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 900 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(790 , 20 , 150 , 70);
 

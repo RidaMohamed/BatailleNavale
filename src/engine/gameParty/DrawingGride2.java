@@ -7,7 +7,7 @@ package engine.gameParty;
 
 import engine.GameController;
 import engine.painter.Painter;
-import global.Constant;
+import model.global.Constant;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -32,7 +32,6 @@ public class DrawingGride2 extends JPanel {
 		this.height = 500;
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.painter=painter;
-		this.addMouseListener(controller);
 	}
 
 	public void draw(BufferedImage im) {

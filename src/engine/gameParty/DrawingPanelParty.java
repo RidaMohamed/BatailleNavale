@@ -8,11 +8,14 @@ package engine.gameParty;
 import engine.DrawingPanel;
 import engine.GameController;
 import engine.painter.Painter;
-import global.Constant;
+import model.global.Constant;
+import model.global.Turn;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -28,12 +31,12 @@ public class DrawingPanelParty extends DrawingPanel {
 
 
 	public DrawingPanelParty(Painter painter , GameController controller ) {
-		super(painter);
+		super(painter, controller);
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 
-		score = new DrawingScore(painter);
+		score = new DrawingScore(painter, controller);
 
         add(score);
 
@@ -42,8 +45,10 @@ public class DrawingPanelParty extends DrawingPanel {
 
 		this.gride1=new DrawingGride1(painter);
 		this.gride2= new DrawingGride2(painter ,controller);
+		this.gride2.addMouseListener(controller);
 
-		panel.add(new JButton("Pause"));
+
+
 
 		panel.add(this.gride2);
 		panel.add(this.gride1 );
@@ -82,6 +87,8 @@ public class DrawingPanelParty extends DrawingPanel {
 
 		try {
 			BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/left_direction.png"));
+			if (controller.getBattleNavaleGame().getTurn() == Turn.PlayerTurn)
+				image2 = mirror(image2);
 			this.nextImage.getGraphics().drawImage(image2 , 2* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH, 7 * Constant.CASE_HEIGHT , Constant.CASE_WIDTH * 2 , Constant.CASE_HEIGHT * 2, null);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -101,7 +108,17 @@ public class DrawingPanelParty extends DrawingPanel {
 		// met a jour l'image a afficher sur le panel
 
 		this.repaint();
-	     this.paintComponent(this.nextImage.getGraphics());
+		//this.paintComponent(this.nextImage.getGraphics());
+	}
+
+
+	public BufferedImage mirror(BufferedImage image){
+		AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+		tx.translate(-image.getWidth(null), 0);
+		AffineTransformOp op = new AffineTransformOp(tx,
+				AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+		image = op.filter(image, null);
+		return image;
 	}
 
 
@@ -109,6 +126,7 @@ public class DrawingPanelParty extends DrawingPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+
 
 	}
 

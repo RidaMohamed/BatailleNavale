@@ -1,6 +1,7 @@
 package engine;
 
-import global.Clicks;
+
+import model.BattleNavaleGame;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,7 +14,9 @@ import java.awt.event.MouseListener;
  * controleur qui envoie des commandes au jeu 
  * 
  */
-public interface GameController extends KeyListener, MouseListener {
+
+
+public interface GameController extends  MouseListener {
 
 	/**
 	 * quand on demande les commandes, le controleur retourne la commande en
@@ -21,18 +24,8 @@ public interface GameController extends KeyListener, MouseListener {
 	 * 
 	 * @return commande faite par le joueur
 	 */
-	public Clicks getClicks();
 
-    @Override
-    void keyTyped(KeyEvent e);
-
-    @Override
-    void keyPressed(KeyEvent e);
-
-    @Override
-    void keyReleased(KeyEvent e);
-
-    @Override
+	@Override
     void mouseClicked(MouseEvent e);
 
     @Override
@@ -47,6 +40,7 @@ public interface GameController extends KeyListener, MouseListener {
     @Override
     void mouseExited(MouseEvent e);
 
+    BattleNavaleGame getBattleNavaleGame();
 
     // public void attack();
 

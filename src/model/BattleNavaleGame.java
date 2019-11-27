@@ -4,34 +4,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import centuryFactory.BoatTimeFactory;
-import engine.Game;
-import global.Clicks;
-import global.Constant;
-import global.Turn;
-import player.HumanPlayer;
-import player.MachinePlayer;
+import model.centuryFactory.BoatTimeFactory;
+import model.global.Constant;
+import model.global.Turn;
+import model.player.HumanPlayer;
+import model.player.MachinePlayer;
+import model.player.strategy.MachineAttackRandom;
+import model.save.FileManager;
 
-/**
- * @author Horatiu Cirstea, Vincent Thomas
- *
- *         Version avec personnage qui peut se deplacer. A completer dans les
- *         versions suivantes.
- * 
- */
-public class BattleNavaleGame implements Game {
+public class BattleNavaleGame {
 
 	private HumanPlayer humanPlayer;
 	private MachinePlayer machinePlayer;
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
+	private FileManager fileManager;
+    private int isFinished;
 
-	/**
-	 * constructeur avec fichier source pour le help
-	 *
-	 */
-	public BattleNavaleGame(/*String source*/) {
-		/*BufferedReader helpReader;
+	public BattleNavaleGame(String source) {
+		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
 			String ligne;
@@ -41,9 +32,22 @@ public class BattleNavaleGame implements Game {
 			helpReader.close();
 		} catch (IOException e) {
 			System.out.println("Help not available");
-		}*/
+		}
 		humanPlayer = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this);
+		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
+		fileManager = new FileManager(this);
+		isFinished = -3;
+		turn = Turn.PlayerTurn;
+
+	}
+
+
+	public BattleNavaleGame() {
+		humanPlayer = new HumanPlayer(this);
+		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
+		fileManager = new FileManager(this);
+		isFinished = -3;
+		turn = Turn.PlayerTurn;
 	}
 
 	public void initialize(){
@@ -60,19 +64,18 @@ public class BattleNavaleGame implements Game {
 	}
 
 	public void moveBoat(){
-
 	}
 
 	public void setCentury(BoatTimeFactory timeFactory){
 		this.boatTimeFactory = timeFactory;
 	}
 
-	public void setFactory(BoatTimeFactory timeFactory){
-		this.boatTimeFactory = timeFactory;
+	public FileManager getFileManager() {
+		return fileManager;
 	}
 
-	public void getFileManager(){
-
+	public void setFactory(BoatTimeFactory timeFactory){
+		this.boatTimeFactory = timeFactory;
 	}
 
 	public void setHumanPlayer(HumanPlayer humanPlayer) {
@@ -91,6 +94,10 @@ public class BattleNavaleGame implements Game {
 		this.turn = turn;
 	}
 
+	public Turn getTurn() {
+		return turn;
+	}
+
 	public HumanPlayer getHumanPlayer() {
 		return humanPlayer;
 	}
@@ -100,23 +107,11 @@ public class BattleNavaleGame implements Game {
 	}
 
 
-	/**
-	 * faire evoluer le jeu suite a une commande
-	 * 
-	 * @param commande
-	 */
-	@Override
-	public void evolve(Clicks commande) {
-		System.out.println("Execute "+commande);
+    public int isFinished() {
+        return isFinished;
 	}
 
-	/**
-	 * verifier si le jeu est fini
-	 */
-	@Override
-	public boolean isFinished() {
-		// le jeu n'est jamais fini
-		return false;
+	public void setIsFinished(int isFinished) {
+		this.isFinished = isFinished;
 	}
-
 }

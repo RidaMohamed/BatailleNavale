@@ -1,17 +1,22 @@
 package engine.painter;
 
+import model.BattleNavaleGame;
+import model.global.Position;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public  class Painter implements engine.GamePainter {
+public  class Painter {
 
     private Board1Painter board1Panter;
     private Board2Painter board2Painter;
-    private editorPainter editorPainter;
-    private int screenWidth , getScreenHeight;
+    private int screenWidth , screenHeight;
 
-    public Painter(Board1Painter board1Panter, Board2Painter board2Painter){
-        this.board1Panter = board1Panter;
-        this.board2Painter = board2Painter;
+    public Painter(BattleNavaleGame battleNavaleGame){
+        this.board1Panter = new Board1Painter(battleNavaleGame);
+        this.board2Painter = new Board2Painter(battleNavaleGame);
+        this.screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+        this.screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 
     }
 
@@ -27,31 +32,11 @@ public  class Painter implements engine.GamePainter {
     public int getScreenWidth() {
         return screenWidth;
     }
-
-    public void setScreenWidth(int screenWidth) {
-        this.screenWidth = screenWidth;
+    public int getScreenHeight() {
+        return this.screenHeight;
     }
 
-    public int getGetScreenHeight() {
-        return getScreenHeight;
-    }
 
-    public void setGetScreenHeight(int getScreenHeight) {
-        this.getScreenHeight = getScreenHeight;
-    }
-
-    @Override
-    public void draw(BufferedImage image) {
-
-    }
-
-    @Override
-    public int getWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getHeight() {
-        return 0;
+    public void draw(BufferedImage nextImage) {
     }
 }

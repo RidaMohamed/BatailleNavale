@@ -6,13 +6,13 @@ package engine.gameParty;
  */
 
 import engine.painter.Painter;
-import global.Constant;
+import model.global.Constant;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -39,6 +39,7 @@ public class DrawingGride1 extends JPanel {
 		try {
 
 			BufferedImage youImage = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/you.png"));
+
 			im.getGraphics().drawImage(youImage , 5* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH, 3 * Constant.CASE_HEIGHT + 10 + Constant.HEIGHT * Constant.CASE_HEIGHT  , 90 , 25 , null);
 
 
@@ -58,19 +59,8 @@ public class DrawingGride1 extends JPanel {
 
 			}
 
-		/*addMouseMotionListener(
-				new MouseMotionAdapter() {
-
-					public void mouseDragged(MouseEvent e) {
-
-						if (e.getX()>=440 ||e.getX()<40 || e.getY()<40 || e.getY() >=440)
-							return;
-					}
-
-				});
-*/
-
 	}
+
 
 	public void paint(Graphics g) {
 		super.paint(g);
