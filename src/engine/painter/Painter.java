@@ -15,8 +15,8 @@ public  class Painter {
     public Painter(BattleNavaleGame battleNavaleGame){
         this.board1Panter = new Board1Painter(battleNavaleGame);
         this.board2Painter = new Board2Painter(battleNavaleGame);
-        this.screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-        this.screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.screenWidth = 1050;
+        this.screenHeight = 700;
 
     }
 

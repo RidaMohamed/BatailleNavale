@@ -36,7 +36,7 @@ public class BattleNavaleGame {
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
 		fileManager = new FileManager(this);
-		isFinished = -3;
+		isFinished = 1;
 		turn = Turn.PlayerTurn;
 
 	}
@@ -46,7 +46,7 @@ public class BattleNavaleGame {
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
 		fileManager = new FileManager(this);
-		isFinished = -3;
+		isFinished = 1;
 		turn = Turn.PlayerTurn;
 	}
 

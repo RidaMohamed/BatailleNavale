@@ -42,8 +42,6 @@ public class HumanPlayer extends Player {
             return;
 
 
-        System.out.println("player attack position " + x + "  "+y);
-
         Board board = game.getMachinePlayer().board;
         List<Boat> boats = board.getBoats();
         Boat boat ;

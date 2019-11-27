@@ -28,8 +28,8 @@ public class DrawingGride1 extends JPanel {
 
 	public DrawingGride1(Painter painter) {
 		super();
-		this.width = 500;
-		this.height = 500;
+		this.width = Constant.CASE_WIDTH * Constant.WIDTH;
+		this.height = Constant.CASE_HEIGHT * Constant.HEIGHT;
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.painter=painter;
 	}

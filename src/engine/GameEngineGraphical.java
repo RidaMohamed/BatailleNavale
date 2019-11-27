@@ -73,6 +73,7 @@ public class GameEngineGraphical {
 
 		// boucle de game
 		while (this.game.isFinished() >=0 ) {
+
 			// demande controle utilisateur
 			//Clicks c = this.gameController.getClicks();
 			// fait evoluer le game

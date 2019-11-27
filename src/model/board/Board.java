@@ -99,10 +99,10 @@ public class Board {
      * @return
      */
     public Boolean isPosFree (int x , int y){
-        if (this.shoots.containsKey(new Position(x,y)))
-            return false;
-        else
-            return true;
+        for (Position pos : shoots.keySet())
+            if (pos.getX() == x && pos.getY() == y)
+                return false;
+         return true;
     }
 
     public List<Boat> getBoats() {

@@ -22,14 +22,15 @@ public class GraphicalInterface  {
 	private DrawingPanelParty party;
 	private DrawingPanelSplashScreen splashScreen;
 	private JPanel panel;
-
+    private JFrame f;
+    private Menu menu;
 	/**
 	 * la construction de l'interface graphique: JFrame avec panel pour le game
 	 * 
 	 *
 	 */
 	public GraphicalInterface(Painter painter, GameController controller){
-		JFrame f=new JFrame();
+		f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -40,9 +41,7 @@ public class GraphicalInterface  {
 
         //Affichage plein ecran
 
-		GraphicsEnvironment env =
-				GraphicsEnvironment.getLocalGraphicsEnvironment();
-		f.setExtendedState(f.getExtendedState() | f.MAXIMIZED_BOTH);
+		f.setPreferredSize(new Dimension(painter.getScreenWidth() , painter.getScreenHeight()));
 
      	//f.setUndecorated(true);
 
@@ -53,7 +52,8 @@ public class GraphicalInterface  {
 		this.panel.add(this.splashScreen);
 		f.setContentPane(panel);
 
-
+        menu = new Menu();
+        f.setJMenuBar(menu);
 
 		f.pack();
 		f.setVisible(true);
