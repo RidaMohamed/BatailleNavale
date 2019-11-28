@@ -1,42 +1,26 @@
 package start;
 
+import engine.GameController;
+import engine.GameEngineGraphical;
+import engine.painter.Painter;
+import model.BattleNavaleController;
 import model.centuryFactory.BoatFactoryXXCentury;
 import model.centuryFactory.boats.Boat;
 import model.BattleNavaleGame;
 
-import java.io.IOException;
-
 public class Main {
 
-    static public void main(String [] args){
+    static public void main(String [] args) throws InterruptedException {
         BattleNavaleGame game = new BattleNavaleGame();
         game.setCentury(new BoatFactoryXXCentury());
         game.createBoats();
 
-        System.out.println("/////////////////////////////");
-        // save
-        game.getFileManager().save();
+        // creation du jeu particulier et de son afficheur
+        Painter painter = new Painter(game);
+        GameController controller = new BattleNavaleController(game);
 
-        // load
-//        try {
-//            game.getFileManager().load();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        System.out.println("Human model.player boats");
-
-        for (Boat boat : game.getHumanPlayer().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
-                    "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
-        }
-
-        System.out.println("Machine model.player boats");
-
-        for (Boat boat : game.getMachinePlayer().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
-                    "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
-        }
+        GameEngineGraphical engine = new GameEngineGraphical(game, painter, controller);
+        engine.run();
 
     }
 }

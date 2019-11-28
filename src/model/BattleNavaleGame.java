@@ -9,6 +9,7 @@ import model.global.Constant;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
+import model.player.strategy.MachineAttackRandom;
 import save.FileManager;
 
 public class BattleNavaleGame {
@@ -18,7 +19,7 @@ public class BattleNavaleGame {
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
 	private FileManager fileManager;
-
+	private int isFinished;
 
 	/**
 	 * Simple Constructor
@@ -38,18 +39,23 @@ public class BattleNavaleGame {
 			System.out.println("Help not available");
 		}
 		humanPlayer   = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this);
+		machinePlayer = new MachinePlayer(this , new MachineAttackRandom(this));
 		fileManager   = new FileManager(this);
+		turn = Turn.PlayerTurn;
 	}
 
 
 	/**
 	 * Simple Constructor
 	 */
+
+
 	public BattleNavaleGame() {
 		humanPlayer = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this);
+		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
 		fileManager = new FileManager(this);
+		isFinished = 1;
+		turn = Turn.PlayerTurn;
 	}
 
 
@@ -102,6 +108,10 @@ public class BattleNavaleGame {
 		this.turn = turn;
 	}
 
+	public Turn getTurn() {
+		return turn;
+	}
+
 	public HumanPlayer getHumanPlayer() {
 		return humanPlayer;
 	}
@@ -111,4 +121,11 @@ public class BattleNavaleGame {
 	}
 
 
+    public int isFinished() {
+        return isFinished;
+	}
+
+	public void setIsFinished(int isFinished) {
+		this.isFinished = isFinished;
+	}
 }

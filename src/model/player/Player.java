@@ -2,9 +2,6 @@ package model.player;
 
 import model.board.Board;
 import model.BattleNavaleGame;
-import model.centuryFactory.boats.Boat;
-
-import java.util.List;
 
 public class Player {
 

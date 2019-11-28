@@ -2,9 +2,6 @@ package model.centuryFactory.boats;
 
 import model.global.Orientation;
 import model.global.Position;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
 
 public class Boat {
@@ -74,10 +71,10 @@ public class Boat {
      * @return
      */
     public boolean isOnCase(int x, int y){
-        if (cases.size()!= 0 && cases.contains(new Position(x,y)) )
-            return true;
-        else
-            return false;
+        for (Position pos : cases)
+            if (pos.getX() == x && pos.getY() == y)
+                return true;
+        return false;
     }
 
     /**
@@ -118,11 +115,9 @@ public class Boat {
      */
     public void deletePositions(){
         this.cases.clear();
+        this.cases.clear();
     }
 
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-    }
 
     public int getBoatHealth() {
         return boatHealth;
@@ -147,5 +142,12 @@ public class Boat {
     public  Position getPosition(){
         return new Position(this.x , this.y);
     }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+
+
 
 }

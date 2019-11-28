@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Board {
 
-    private Map<Position , String> shoots;
+    private Map<Position , Boolean> shoots;
     private List<Boat> boats;
 
     /** S
@@ -97,28 +97,18 @@ public class Board {
      * @return
      */
     public Boolean isPosFree (int x , int y){
-        if (this.shoots.containsKey(new Position(x,y)))
-            return false;
-        else
-            return true;
+        for (Position pos : shoots.keySet())
+            if (pos.getX() == x && pos.getY() == y)
+                return false;
+         return true;
     }
 
-    /**
-     * Methode returns all the boats of
-     * the player
-     * @return
-     */
     public List<Boat> getBoats() {
         return boats;
     }
 
-    /**
-     *
-     * @param p
-     * @param str
-     */
-    public void addPosAttacked(Position p, String str) {
-        this.shoots.put(p, str);
+    public void addPosAttacked(Position p, Boolean isOnBoat) {
+        this.shoots.put(p, isOnBoat);
     }
 
     /**
@@ -132,5 +122,9 @@ public class Board {
 
     public void addBoatToList(Boat boat){
         boats.add(boat);
+    }
+
+    public Map<Position, Boolean> getShoots() {
+         return this.shoots;
     }
 }
