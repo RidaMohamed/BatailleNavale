@@ -22,15 +22,10 @@ public class ScorePainter {
     public void draw(Graphics g) {
         //TODO get ALL BOATS
         try {
-            BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/point.png"));
+            BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/point.png"));
             //g.drawImage(image , game.getBoat().getX() * 40, game.getBoat().getY() * 40, 40, 40, null);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }

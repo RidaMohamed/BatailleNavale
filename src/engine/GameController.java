@@ -42,9 +42,4 @@ public interface GameController extends  MouseListener {
 
     BattleNavaleGame getBattleNavaleGame();
 
-    // public void attack();
-
-   // public void moveBoat();
-
-
 }

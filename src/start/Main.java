@@ -4,9 +4,10 @@ import engine.GameController;
 import engine.GameEngineGraphical;
 import engine.painter.Painter;
 import model.BattleNavaleController;
-import model.centuryFactory.BoatFactoryXXCentury;
-import model.centuryFactory.boats.Boat;
+import model.century_factory.BoatFactoryXXCentury;
+import model.century_factory.boats.Boat;
 import model.BattleNavaleGame;
+
 
 public class Main {
 
@@ -21,6 +22,20 @@ public class Main {
 
         GameEngineGraphical engine = new GameEngineGraphical(game, painter, controller);
         engine.run();
+
+
+        System.out.println("Human player boats");
+
+        for (Boat boat : game.getHumanPlayer().getBoard().getBoats()){
+            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() + "  orientation: "+boat.getOrientation() + " size"+boat.getSize());
+        }
+
+        System.out.println("Machine model.player boats");
+
+        for (Boat boat : game.getMachinePlayer().getBoard().getBoats()){
+            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
+                    "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
+        }
 
     }
 }

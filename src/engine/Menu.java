@@ -4,10 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Menu extends JMenuBar {
-
     private JMenu file , strategy;
     private JMenuItem save , quit , random , cross;
-
 
     Menu(){
         file = new JMenu("File");
@@ -25,8 +23,6 @@ public class Menu extends JMenuBar {
 
         strategy.add(random);
         strategy.add(cross);
-
-
     }
 
     @Override
@@ -35,7 +31,6 @@ public class Menu extends JMenuBar {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth() , getHeight());
-
     }
 
 

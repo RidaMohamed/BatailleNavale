@@ -1,10 +1,10 @@
-package model.centuryFactory;
+package model.century_factory;
 
-import model.centuryFactory.boats.Boat;
-import model.centuryFactory.boats.Croiseur;
-import model.centuryFactory.boats.Galion;
+import model.century_factory.boats.Boat;
+import model.century_factory.boats.Croiseur;
+import model.century_factory.boats.Galion;
 
-public class BoatFactoryXXCentury implements BoatTimeFactory {
+public class BoatFactoryXVCentury implements BoatTimeFactory {
 
     /**
      *

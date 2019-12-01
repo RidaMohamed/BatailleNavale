@@ -48,32 +48,22 @@ public class GameEngineGraphical {
 		this.gamePainter = gamePainter;
 		this.gameController = gameController;
 		this.gui = new GraphicalInterface((Painter) this.gamePainter,this.gameController);
-
 	}
-
-
 
 	/**
 	 * permet de lancer le game
 	 */
 	public void run() throws InterruptedException {
-
 		game.setIsFinished(-3);
-
-
 		if (game.isFinished() == -3) {
-			System.out.println("splash");
 			this.gui.paintSplash();
 			Thread.sleep(4000);
 			game.setIsFinished(1);
 		}
 
-
 		// creation de l'interface graphique
-
 		// boucle de game
 		while (this.game.isFinished() >=0 ) {
-
 			// demande controle utilisateur
 			//Clicks c = this.gameController.getClicks();
 			// fait evoluer le game

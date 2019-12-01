@@ -1,9 +1,7 @@
-package engine.gameParty;
+package engine.game_party;
 
 import engine.GameController;
 import engine.painter.Painter;
-import model.BattleNavaleController;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -28,42 +26,39 @@ public class DrawingScore extends JPanel {
     public void drawGame(BufferedImage im) {
 
         try {
-            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/header.png"));
+            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/header.png"));
             im.getGraphics().drawImage(image1 , 0 , 0 , this.width , this.height, null);
 
-            BufferedImage logo = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/logo.png"));
+            BufferedImage logo = ImageIO.read(this.getClass().getResourceAsStream("/logo.png"));
             im.getGraphics().drawImage(logo , 9 , 10 , 200 , 75, null);
 
-            BufferedImage water = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/water-hit.png"));
+            BufferedImage water = ImageIO.read(this.getClass().getResourceAsStream("/water-hit.png"));
             im.getGraphics().drawImage(water , 400 , 30 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots()) , 500 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots())
+                    , 500 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(390 , 20 , 150 , 70);
 
-            BufferedImage hit = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/hit.png"));
+            BufferedImage hit = ImageIO.read(this.getClass().getResourceAsStream("/hit.png"));
             im.getGraphics().drawImage(hit , 600 , 25 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 700 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getScoreHits())
+                    , 700 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(590 , 20 , 150 , 70);
 
-            BufferedImage sniper = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/sniper.png"));
+            BufferedImage sniper = ImageIO.read(this.getClass().getResourceAsStream("/sniper.png"));
             im.getGraphics().drawImage(sniper , 800 , 30 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots() + controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 900 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots()
+                    + controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 900 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(790 , 20 , 150 , 70);
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void paint(Graphics g) {
         super.paint(g);
     }
-
 }

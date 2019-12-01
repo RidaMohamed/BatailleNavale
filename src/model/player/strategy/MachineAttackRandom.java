@@ -1,23 +1,19 @@
 package model.player.strategy;
 
-import model.BattleNavaleGame;
 import model.board.Board;
-import model.centuryFactory.boats.Boat;
-import model.global.Constant;
+import model.century_factory.boats.Boat;
 import model.global.Position;
+import model.global.Constant;
+import model.global.Turn;
+import model.player.MachinePlayer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MachineAttackRandom implements StrategyMahcineAttack {
 
-    private final BattleNavaleGame battleNavaleGame;
-
-    public MachineAttackRandom(BattleNavaleGame battleNavaleGame){
-        this.battleNavaleGame = battleNavaleGame;
-    }
-
     @Override
-    public void attack() {
+    public void attack(MachinePlayer machinePLayer) {
         boolean b;
         Board board;
         int randX, randY;
@@ -25,15 +21,14 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
             // Generating a random
             randX = (int) (Math.random()*(Constant.WIDTH )+1);
             randY = (int) (Math.random()*(Constant.HEIGHT)+1);
-            System.out.println("la machine a choisi " + randX + "  "+randY);
 
             //get borad of humain model.player
-             board = battleNavaleGame.getHumanPlayer().getBoard();
+            board = machinePLayer.getGame().getHumanPlayer().getBoard();
             //Verfie is the postions is ok to attack
             b = board.isPosFree(randX , randY);
         }while(!b);
 
-        List<Boat> boats = battleNavaleGame.getHumanPlayer().getGame().getHumanPlayer().getBoard().getBoats();
+        List<Boat> boats = machinePLayer.getGame().getHumanPlayer().getBoard().getBoats();
 
         boolean missedShot = true;
         for ( Boat boat: boats  ) {
@@ -57,5 +52,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         //case the machine missed the shot
         if (missedShot)
             board.addPosAttacked(new Position(randX,randY), false);
+
+        machinePLayer.getGame().getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
     }
 }

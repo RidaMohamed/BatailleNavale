@@ -1,6 +1,6 @@
 package model.board;
 
-import model.centuryFactory.boats.Boat;
+import model.century_factory.boats.Boat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class Board {
     private Map<Position , Boolean> shoots;
     private List<Boat> boats;
 
-    /** S
+    /**
      * Simple Constructor
      */
     public Board() {
@@ -64,7 +64,6 @@ public class Board {
                 boat.setPostion(x , y);
             }
         }while (!isPosOk(boat));
-
     }
 
     /**
@@ -73,19 +72,16 @@ public class Board {
      * @return
      */
     public boolean isPosOk(Boat boat) {
-
         for (Boat b : boats){
             Rectangle rectangle1 , rectangle2;
             if (boat.getOrientation() == Orientation.HORIZONTAL) {
                 rectangle1 = new Rectangle((boat.getPosition().getX()-1)*Constant.CASE_WIDTH , (boat.getPosition().getY()-1)*Constant.CASE_HEIGHT , (boat.getSize()+1)*Constant.CASE_WIDTH, Constant.CASE_HEIGHT*3);
             }else
                 rectangle1 = new Rectangle((boat.getPosition().getX()-1)*Constant.CASE_WIDTH , (boat.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (boat.getSize()+1)*Constant.CASE_HEIGHT);
-
             if (b.getOrientation() == Orientation.HORIZONTAL) {
                 rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , (b.getSize()+1)*Constant.CASE_WIDTH, Constant.CASE_HEIGHT*3);
             }else
                 rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (b.getSize()+1)*Constant.CASE_HEIGHT);
-
             if (rectangle1.intersects(rectangle2))
                 setBoatPosition(boat);
         }
@@ -103,10 +99,20 @@ public class Board {
          return true;
     }
 
+    /**
+     * Methode returns all the boats of
+     * the player
+     * @return
+     */
     public List<Boat> getBoats() {
         return boats;
     }
 
+    /**
+     *
+     * @param p
+     * @param isOnBoat
+     */
     public void addPosAttacked(Position p, Boolean isOnBoat) {
         this.shoots.put(p, isOnBoat);
     }
@@ -125,6 +131,6 @@ public class Board {
     }
 
     public Map<Position, Boolean> getShoots() {
-         return this.shoots;
+        return this.shoots;
     }
 }

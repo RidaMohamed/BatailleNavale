@@ -1,9 +1,5 @@
-package engine.gameParty;
+package engine.game_party;
 
-/**
- * @author Horatiu Cirstea, Vincent Thomas
- *
- */
 
 import engine.GameController;
 import engine.painter.Painter;
@@ -18,9 +14,6 @@ import java.io.IOException;
 
 public class DrawingGride2 extends JPanel {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Painter painter;
@@ -35,19 +28,17 @@ public class DrawingGride2 extends JPanel {
 	}
 
 	public void draw(BufferedImage im) {
-
-
 		try {
-			BufferedImage advarsayimage = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/advarsary.png"));
-			im.getGraphics().drawImage(advarsayimage , Constant.CASE_WIDTH , 3 * Constant.CASE_HEIGHT + 10 + Constant.HEIGHT * Constant.CASE_HEIGHT  , 140 , 30, null);
+			BufferedImage advarsayimage = ImageIO.read(this.getClass().getResourceAsStream("/advarsary.png"));
+			im.getGraphics().drawImage(advarsayimage , Constant.CASE_WIDTH , 3 * Constant.CASE_HEIGHT + 10 +
+					Constant.HEIGHT * Constant.CASE_HEIGHT  , 140 , 30, null);
 
-
-			BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/Ressources/sea.jpeg"));
-			im.getGraphics().drawImage(image1 , Constant.CASE_WIDTH , 3 * Constant.CASE_HEIGHT  , Constant.CASE_WIDTH * Constant.WIDTH , Constant.CASE_HEIGHT * Constant.HEIGHT, null);
+			BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/sea.jpeg"));
+			im.getGraphics().drawImage(image1 , Constant.CASE_WIDTH , 3 * Constant.CASE_HEIGHT  ,
+					Constant.CASE_WIDTH * Constant.WIDTH , Constant.CASE_HEIGHT * Constant.HEIGHT, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 
 		this.painter.getBoard2Painter().draw(im);
 		Graphics2D g1 = (Graphics2D)im.getGraphics();
@@ -57,16 +48,9 @@ public class DrawingGride2 extends JPanel {
 				Rectangle2D rect = new Rectangle2D.Double(x* Constant.CASE_WIDTH, y* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT);
 				g1.draw(rect);
 				g1.setColor(Color.decode("#3498db"));
-				//g1.fill(rect);
-
 			}
-
 	}
-
 	public void paint(Graphics g) {
 		super.paint(g);
 	}
-
-
-
 }

@@ -1,11 +1,12 @@
 package model.player;
 
 import model.board.Board;
-import model.centuryFactory.boats.Boat;
+import model.century_factory.boats.Boat;
 import model.BattleNavaleGame;
 import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +42,8 @@ public class HumanPlayer extends Player {
      * @param y
      */
     public void attack(int x, int y ){
-
         if (!game.getMachinePlayer().getBoard().isPosFree(x , y))
             return;
-        System.out.println("human attack "+x  +"  " + y);
 
         Board board = game.getMachinePlayer().board;
         List<Boat> boats = board.getBoats();
@@ -57,12 +56,12 @@ public class HumanPlayer extends Player {
                 missedShot = false;
                 boat.boatIsHit(x,y);
                 //adding the hited pos to shoot list of model.board
-                game.getMachinePlayer().board.addPosAttacked(new Position(x,y), true );
+                board.addPosAttacked(new Position(x,y), true );
                 //adding all the hited pos to shoot list of model.board
                 if (boat.isDistruct()){
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
-                        game.getMachinePlayer().board.addPosAttacked(positions.get(k), true );
+                        board.addPosAttacked(positions.get(k), true );
                     }
                     boat.deletePositions();
                     board.deleteBoat(boat);
@@ -71,7 +70,7 @@ public class HumanPlayer extends Player {
         }
 
         if (missedShot){
-            game.getMachinePlayer().board.addPosAttacked(new Position(x,y), false);
+            board.addPosAttacked(new Position(x,y), false );
             this.missedShots++;
         }
         else{
@@ -122,15 +121,19 @@ public class HumanPlayer extends Player {
         this.scoreHits = scoreHits;
     }
 
+    /**
+     * Setting the mised shot score after loading the game
+     * @param missedShots
+     */
+    public void setMissedShots(int missedShots) {
+        this.missedShots = missedShots;
+    }
+
     public int getScoreHits() {
         return scoreHits;
     }
 
     public int getMissedShots() {
         return missedShots;
-    }
-
-    public void setMissedShots(int missedShots) {
-        this.missedShots = missedShots;
     }
 }

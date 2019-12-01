@@ -4,13 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import model.centuryFactory.BoatTimeFactory;
+import model.century_factory.BoatTimeFactory;
 import model.global.Constant;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
-import model.player.strategy.MachineAttackRandom;
 import save.FileManager;
+import model.player.strategy.MachineAttackRandom;
+
+
 
 public class BattleNavaleGame {
 
@@ -19,7 +21,7 @@ public class BattleNavaleGame {
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
 	private FileManager fileManager;
-	private int isFinished;
+    private int isFinished;
 
 	/**
 	 * Simple Constructor
@@ -39,25 +41,24 @@ public class BattleNavaleGame {
 			System.out.println("Help not available");
 		}
 		humanPlayer   = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this , new MachineAttackRandom(this));
+		machinePlayer = new MachinePlayer(this);
+		machinePlayer.setStrategy( new MachineAttackRandom());
 		fileManager   = new FileManager(this);
-		turn = Turn.PlayerTurn;
 	}
 
 
 	/**
 	 * Simple Constructor
 	 */
-
-
 	public BattleNavaleGame() {
 		humanPlayer = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this, new MachineAttackRandom(this));
+		machinePlayer = new MachinePlayer(this);
+		machinePlayer.setStrategy( new MachineAttackRandom());
 		fileManager = new FileManager(this);
 		isFinished = 1;
 		turn = Turn.PlayerTurn;
-	}
 
+	}
 
 	public void initialize(){
 	}
@@ -119,7 +120,6 @@ public class BattleNavaleGame {
 	public MachinePlayer getMachinePlayer() {
 		return machinePlayer;
 	}
-
 
     public int isFinished() {
         return isFinished;

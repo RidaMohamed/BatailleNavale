@@ -1,7 +1,7 @@
 package save;
 
 import model.BattleNavaleGame;
-import model.centuryFactory.boats.Boat;
+import model.century_factory.boats.Boat;
 import model.global.Orientation;
 import model.global.Position;
 

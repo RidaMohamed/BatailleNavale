@@ -17,7 +17,6 @@ public  class Painter {
         this.board2Painter = new Board2Painter(battleNavaleGame);
         this.screenWidth = 1050;
         this.screenHeight = 700;
-
     }
 
     public Board1Painter getBoard1Panter() {
@@ -28,14 +27,13 @@ public  class Painter {
         return board2Painter;
     }
 
-
     public int getScreenWidth() {
         return screenWidth;
     }
+
     public int getScreenHeight() {
         return this.screenHeight;
     }
-
 
     public void draw(BufferedImage nextImage) {
     }

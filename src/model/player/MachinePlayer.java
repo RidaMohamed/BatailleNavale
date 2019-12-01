@@ -1,22 +1,23 @@
 package model.player;
 
 import model.BattleNavaleGame;
-import model.centuryFactory.boats.Boat;
+import model.century_factory.boats.Boat;
 import model.global.Orientation;
 import model.global.Position;
-import model.global.Turn;
 import model.player.strategy.StrategyMahcineAttack;
 
 import java.util.List;
 
 public class MachinePlayer extends Player {
 
+    private StrategyMahcineAttack strategyMahcineAttack;
 
-    public StrategyMahcineAttack strategyMahcineAttack;
-
-    public MachinePlayer(BattleNavaleGame game, StrategyMahcineAttack strategyMahcineAttack) {
+    /**
+     * Simple Constructor
+     * @param game
+     */
+    public MachinePlayer(BattleNavaleGame game) {
         super(game);
-        this.strategyMahcineAttack = strategyMahcineAttack;
     }
 
     /**
@@ -25,18 +26,14 @@ public class MachinePlayer extends Player {
      * @param strategyMahcineAttack
      */
     public void setStrategy(StrategyMahcineAttack strategyMahcineAttack){
-
         this.strategyMahcineAttack = strategyMahcineAttack;
     }
 
     /**
      * Attack boats of Human player
      */
-
     public void attack(){
-
-        this.strategyMahcineAttack.attack();
-        game.setTurn(Turn.PlayerTurn);
+        this.strategyMahcineAttack.attack(this);
     }
 
     /**

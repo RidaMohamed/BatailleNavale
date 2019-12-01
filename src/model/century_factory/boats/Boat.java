@@ -1,7 +1,8 @@
-package model.centuryFactory.boats;
+package model.century_factory.boats;
 
 import model.global.Orientation;
 import model.global.Position;
+
 import java.util.ArrayList;
 
 public class Boat {
@@ -24,7 +25,6 @@ public class Boat {
         this.cases = new ArrayList<>();
     }
 
-
     /**
      * Constructor used for loading game
      * @param size
@@ -38,6 +38,14 @@ public class Boat {
         this.cases = new ArrayList<>();
         this.x = x;
         this.y = y;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     /**
@@ -59,7 +67,6 @@ public class Boat {
             for (int i = 1 ; i<size ; i++){
                 cases.add(new Position(pos.getX(), pos.getY()+i));
             }
-
         }
     }
 
@@ -115,9 +122,11 @@ public class Boat {
      */
     public void deletePositions(){
         this.cases.clear();
-        this.cases.clear();
     }
 
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
 
     public int getBoatHealth() {
         return boatHealth;
@@ -131,23 +140,8 @@ public class Boat {
         this.cases = cases;
     }
 
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
     public  Position getPosition(){
         return new Position(this.x , this.y);
     }
-
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-    }
-
-
-
 
 }
