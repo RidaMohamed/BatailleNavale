@@ -5,7 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import model.century_factory.BoatTimeFactory;
-import model.global.Constant;
+import model.century_factory.boats.Boat;
+import model.global.Constants;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
@@ -21,7 +22,7 @@ public class BattleNavaleGame {
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
 	private FileManager fileManager;
-    private int isFinished;
+	private int isFinished;
 
 	/**
 	 * Simple Constructor
@@ -67,18 +68,21 @@ public class BattleNavaleGame {
 	 *
 	 */
 	public void createBoats(){
-		for (int i = Constant.boat_length_size.length-1; i>= 1 ; i--){
-			for (int j=0 ; j<Constant.boat_length_size[i]; j++){
-				humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(i));
-				machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(i));
-			}
+		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
+			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
 	}
 
 	/**
 	 *
 	 */
-	public void moveBoat(){
+	public void moveBoats() throws InterruptedException {
+		humanPlayer.getBoard().getBoats().clear();
+		Thread.sleep(200);
+		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
+			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+		}
 	}
 
 	public void setCentury(BoatTimeFactory timeFactory){
@@ -121,8 +125,8 @@ public class BattleNavaleGame {
 		return machinePlayer;
 	}
 
-    public int isFinished() {
-        return isFinished;
+	public int isFinished() {
+		return isFinished;
 	}
 
 	public void setIsFinished(int isFinished) {

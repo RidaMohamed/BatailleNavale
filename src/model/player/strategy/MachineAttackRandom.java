@@ -3,7 +3,7 @@ package model.player.strategy;
 import model.board.Board;
 import model.century_factory.boats.Boat;
 import model.global.Position;
-import model.global.Constant;
+import model.global.Constants;
 import model.global.Turn;
 import model.player.MachinePlayer;
 
@@ -19,8 +19,8 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         int randX, randY;
         do {
             // Generating a random
-            randX = (int) (Math.random()*(Constant.WIDTH )+1);
-            randY = (int) (Math.random()*(Constant.HEIGHT)+1);
+            randX = (int) (Math.random()*(Constants.WIDTH )+1);
+            randY = (int) (Math.random()*(Constants.HEIGHT)+1);
 
             //get borad of humain model.player
             board = machinePLayer.getGame().getHumanPlayer().getBoard();

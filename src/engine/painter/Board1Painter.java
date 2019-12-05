@@ -2,7 +2,7 @@ package engine.painter;
 
 import model.BattleNavaleGame;
 import model.century_factory.boats.Boat;
-import model.global.Constant;
+import model.global.Constants;
 import model.global.Orientation;
 import model.global.Position;
 
@@ -36,7 +36,7 @@ public class Board1Painter {
                         case 5 : boat1img = ImageIO.read(this.getClass().getResourceAsStream("/boat5.png")); break;
                     }
 
-                    im.getGraphics().drawImage(boat1img, (boat.getPosition().getX() + 4) * Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH, boat.getPosition().getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT, Constant.CASE_WIDTH, boat.getSize() * Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(boat1img, (boat.getPosition().getX() + 4) * Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH, boat.getPosition().getY() * Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT, Constants.CASE_WIDTH, boat.getSize() * Constants.CASE_HEIGHT, null);
                 }else {
                     switch (boat.getSize()){
                         case 2 : boat1img = ImageIO.read(this.getClass().getResourceAsStream("/boat2H.png")); break;
@@ -44,7 +44,7 @@ public class Board1Painter {
                         case 4 : boat1img = ImageIO.read(this.getClass().getResourceAsStream("/boat4H.png")); break;
                         case 5 : boat1img = ImageIO.read(this.getClass().getResourceAsStream("/boat5H.png")); break;
                     }
-                    im.getGraphics().drawImage(boat1img, (boat.getPosition().getX() + 4) * Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH, boat.getPosition().getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT, boat.getSize() * Constant.CASE_WIDTH,  Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(boat1img, (boat.getPosition().getX() + 4) * Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH, boat.getPosition().getY() * Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT, boat.getSize() * Constants.CASE_WIDTH,  Constants.CASE_HEIGHT, null);
                 }
             }
 
@@ -54,13 +54,13 @@ public class Board1Painter {
             for (Position pos : game.getHumanPlayer().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (!game.getHumanPlayer().getBoard().getShoots().get(pos))
-                    im.getGraphics().drawImage(image1 , (pos.getX() + 14)* Constant.CASE_WIDTH ,
-                            pos.getY()* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH ,
-                            Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(image1 , (pos.getX() + 14)* Constants.CASE_WIDTH ,
+                            pos.getY()* Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
+                            Constants.CASE_HEIGHT, null);
                 else
-                    im.getGraphics().drawImage(image2 , (pos.getX()+ 14 )* Constant.CASE_WIDTH ,
-                            pos.getY()* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH ,
-                            Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(image2 , (pos.getX()+ 14 )* Constants.CASE_WIDTH ,
+                            pos.getY()* Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
+                            Constants.CASE_HEIGHT, null);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,7 @@
 package engine.game_party;
 
 import engine.painter.Painter;
-import model.global.Constant;
+import model.global.Constants;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,8 +18,8 @@ public class DrawingGride1 extends JPanel {
 
 	public DrawingGride1(Painter painter) {
 		super();
-		this.width = Constant.CASE_WIDTH * Constant.WIDTH;
-		this.height = Constant.CASE_HEIGHT * Constant.HEIGHT;
+		this.width = Constants.CASE_WIDTH * Constants.WIDTH;
+		this.height = Constants.CASE_HEIGHT * Constants.HEIGHT;
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.painter=painter;
 	}
@@ -27,23 +27,23 @@ public class DrawingGride1 extends JPanel {
 	public void draw(BufferedImage im) {
 		try {
 			BufferedImage youImage = ImageIO.read(this.getClass().getResourceAsStream("/you.png"));
-			im.getGraphics().drawImage(youImage , 5* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH,
-					3 * Constant.CASE_HEIGHT + 10 + Constant.HEIGHT * Constant.CASE_HEIGHT  , 90 , 25 , null);
+			im.getGraphics().drawImage(youImage , 5* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+					3 * Constants.CASE_HEIGHT + 10 + Constants.HEIGHT * Constants.CASE_HEIGHT  , 90 , 25 , null);
 
 			BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/sea.jpeg"));
-			im.getGraphics().drawImage(image1 , 5* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH,
-					3 * Constant.CASE_HEIGHT , Constant.CASE_WIDTH * Constant.WIDTH ,
-					Constant.CASE_HEIGHT * Constant.HEIGHT, null);
+			im.getGraphics().drawImage(image1 , 5* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+					3 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * Constants.WIDTH ,
+					Constants.CASE_HEIGHT * Constants.HEIGHT, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.painter.getBoard1Panter().draw(im);
+		this.painter.getBoard1Painter().draw(im);
 
 		for ( int x = 1; x <= 10; x++ )
 			for ( int y = 1; y <= 10; y ++ ){
 				im.getGraphics().setColor(Color.decode("#3498db"));
-				im.getGraphics().drawRect((x + 4 )* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH,
-						y* Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH , Constant.CASE_HEIGHT);
+				im.getGraphics().drawRect((x + 4 )* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+						y* Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH , Constants.CASE_HEIGHT);
 			}
 	}
 

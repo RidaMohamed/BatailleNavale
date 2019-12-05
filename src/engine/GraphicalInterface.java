@@ -2,6 +2,7 @@ package engine;
 
 import engine.game_menu.DrawingPanelSplashScreen;
 import engine.game_party.DrawingPanelParty;
+import engine.gamepositioning.DrawingPanelPositioning;
 import engine.painter.Painter;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class GraphicalInterface  {
 	 * le Panel pour l'afficheur
 	 */
 	private DrawingPanelParty party;
+	private DrawingPanelPositioning positioning;
 	private DrawingPanelSplashScreen splashScreen;
 	private JPanel panel;
     private JFrame f;
@@ -25,7 +27,8 @@ public class GraphicalInterface  {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// attacher le panel contenant l'afficheur du game
-		this.party=new DrawingPanelParty(painter , controller);
+		this.party = new DrawingPanelParty(painter , controller);
+		this.positioning = new DrawingPanelPositioning(painter , controller);
 		this.splashScreen = new DrawingPanelSplashScreen(painter, controller);
 
         //Affichage plein ecran
@@ -59,6 +62,14 @@ public class GraphicalInterface  {
 		this.panel.updateUI();
 	}
 
+	public void paintPositioning(boolean over,String s) {
+		menu.setVisible(true);
+		this.panel.removeAll();
+		this.panel.repaint();
+		this.panel.add(this.positioning);
+		this.positioning.drawGame();
+		this.panel.updateUI();
+	}
 	public void paintSplash() {
 		menu.setVisible(false);
 		this.panel.removeAll();

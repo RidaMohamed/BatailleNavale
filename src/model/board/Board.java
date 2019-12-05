@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.global.Position;
-import model.global.Constant;
+import model.global.Constants;
 import model.global.Orientation;
 
 import java.awt.*;
@@ -48,7 +48,7 @@ public class Board {
             if (orientation == 1) {
                 boat.setOrientation(Orientation.HORIZONTAL);
                 Min = 1;
-                Max = Constant.WIDTH - boat.getSize();
+                Max = Constants.WIDTH - boat.getSize();
                 x = Min + (int) (Math.random() * ((Max - Min) + 1));
                 Max = 10;
                 y = Min + (int) (Math.random() * ((Max - Min) + 1));
@@ -57,7 +57,7 @@ public class Board {
             } else {
                 boat.setOrientation(Orientation.VERTICAL);
                 Min = 1;
-                Max = Constant.HEIGHT - boat.getSize();
+                Max = Constants.HEIGHT - boat.getSize();
                 y = Min + (int) (Math.random() * ((Max - Min) + 1));
                 Max = 10;
                 x = Min + (int) (Math.random() * ((Max - Min) + 1));
@@ -75,13 +75,13 @@ public class Board {
         for (Boat b : boats){
             Rectangle rectangle1 , rectangle2;
             if (boat.getOrientation() == Orientation.HORIZONTAL) {
-                rectangle1 = new Rectangle((boat.getPosition().getX()-1)*Constant.CASE_WIDTH , (boat.getPosition().getY()-1)*Constant.CASE_HEIGHT , (boat.getSize()+1)*Constant.CASE_WIDTH, Constant.CASE_HEIGHT*3);
+                rectangle1 = new Rectangle((boat.getPosition().getX()-1)* Constants.CASE_WIDTH , (boat.getPosition().getY()-1)* Constants.CASE_HEIGHT , (boat.getSize()+1)* Constants.CASE_WIDTH, Constants.CASE_HEIGHT*3);
             }else
-                rectangle1 = new Rectangle((boat.getPosition().getX()-1)*Constant.CASE_WIDTH , (boat.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (boat.getSize()+1)*Constant.CASE_HEIGHT);
+                rectangle1 = new Rectangle((boat.getPosition().getX()-1)* Constants.CASE_WIDTH , (boat.getPosition().getY()-1)* Constants.CASE_HEIGHT , Constants.CASE_WIDTH*3 , (boat.getSize()+1)* Constants.CASE_HEIGHT);
             if (b.getOrientation() == Orientation.HORIZONTAL) {
-                rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , (b.getSize()+1)*Constant.CASE_WIDTH, Constant.CASE_HEIGHT*3);
+                rectangle2 = new Rectangle((b.getPosition().getX()-1)* Constants.CASE_WIDTH , (b.getPosition().getY()-1)* Constants.CASE_HEIGHT , (b.getSize()+1)* Constants.CASE_WIDTH, Constants.CASE_HEIGHT*3);
             }else
-                rectangle2 = new Rectangle((b.getPosition().getX()-1)*Constant.CASE_WIDTH , (b.getPosition().getY()-1)*Constant.CASE_HEIGHT , Constant.CASE_WIDTH*3 , (b.getSize()+1)*Constant.CASE_HEIGHT);
+                rectangle2 = new Rectangle((b.getPosition().getX()-1)* Constants.CASE_WIDTH , (b.getPosition().getY()-1)* Constants.CASE_HEIGHT , Constants.CASE_WIDTH*3 , (b.getSize()+1)* Constants.CASE_HEIGHT);
             if (rectangle1.intersects(rectangle2))
                 setBoatPosition(boat);
         }

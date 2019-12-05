@@ -3,7 +3,7 @@ package engine.game_party;
 import engine.DrawingPanel;
 import engine.GameController;
 import engine.painter.Painter;
-import model.global.Constant;
+import model.global.Constants;
 import model.global.Turn;
 
 import javax.imageio.ImageIO;
@@ -18,8 +18,8 @@ public class DrawingPanelParty extends DrawingPanel {
 
 	private static final long serialVersionUID = 1L;
 	private DrawingGride1 gride1;
-	private  DrawingGride2 gride2;
-	private  DrawingScore score;
+	private DrawingGride2 gride2;
+	private DrawingScore score;
 
 	public DrawingPanelParty(Painter painter , GameController controller ) {
 		super(painter, controller);
@@ -67,8 +67,8 @@ public class DrawingPanelParty extends DrawingPanel {
 			BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/left_direction.png"));
 			if (controller.getBattleNavaleGame().getTurn() == Turn.PlayerTurn)
 				image2 = mirror(image2);
-			this.nextImage.getGraphics().drawImage(image2 , 2* Constant.CASE_WIDTH + Constant.CASE_WIDTH * Constant.WIDTH,
-					7 * Constant.CASE_HEIGHT , Constant.CASE_WIDTH * 2 , Constant.CASE_HEIGHT * 2, null);
+			this.nextImage.getGraphics().drawImage(image2 , 2* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+					7 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * 2 , Constants.CASE_HEIGHT * 2, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,7 +1,7 @@
 package engine.painter;
 
 import model.BattleNavaleGame;
-import model.global.Constant;
+import model.global.Constants;
 import model.global.Position;
 
 import javax.imageio.ImageIO;
@@ -29,13 +29,13 @@ public class Board2Painter  {
             for (Position pos : game.getMachinePlayer().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (!game.getMachinePlayer().getBoard().getShoots().get(pos))
-                    im.getGraphics().drawImage(image1 , pos.getX()* Constant.CASE_WIDTH ,
-                            pos.getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT, Constant.CASE_WIDTH ,
-                            Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(image1 , pos.getX()* Constants.CASE_WIDTH ,
+                            pos.getY() * Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT, Constants.CASE_WIDTH ,
+                            Constants.CASE_HEIGHT, null);
                 else
-                    im.getGraphics().drawImage(image2 , pos.getX()* Constant.CASE_WIDTH ,
-                            pos.getY() * Constant.CASE_HEIGHT + 2*Constant.CASE_HEIGHT , Constant.CASE_WIDTH ,
-                            Constant.CASE_HEIGHT, null);
+                    im.getGraphics().drawImage(image2 , pos.getX()* Constants.CASE_WIDTH ,
+                            pos.getY() * Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
+                            Constants.CASE_HEIGHT, null);
             }
         } catch (IOException e) {
             e.printStackTrace();

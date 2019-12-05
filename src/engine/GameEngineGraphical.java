@@ -33,14 +33,14 @@ public class GameEngineGraphical {
 
 	/**
 	 * construit un moteur
-	 * 
+	 *
 	 * @param game
 	 *            game a lancer
 	 * @param gamePainter
 	 *            afficheur a utiliser
 	 * @param gameController
 	 *            controlleur a utiliser
-	 *            
+	 *
 	 */
 	public GameEngineGraphical(BattleNavaleGame game, Painter gamePainter, GameController gameController) {
 		// creation du game
@@ -57,20 +57,19 @@ public class GameEngineGraphical {
 		game.setIsFinished(-3);
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
-			Thread.sleep(4000);
-			game.setIsFinished(1);
+			Thread.sleep(1000);
+			game.setIsFinished(0);
 		}
+
 
 		// creation de l'interface graphique
 		// boucle de game
 		while (this.game.isFinished() >=0 ) {
-			// demande controle utilisateur
-			//Clicks c = this.gameController.getClicks();
-			// fait evoluer le game
-			//this.game.evolve(c);
+			if(this.game.isFinished() == 0)
+				this.gui.paintPositioning(false,"");
 			// affiche le game
 			if (this.game.isFinished() == 1)
-			this.gui.paintParty(false , "");
+				this.gui.paintParty(false , "");
 			// met en attente
 			Thread.sleep(100);
 		}
