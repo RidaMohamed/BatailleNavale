@@ -1,13 +1,14 @@
-package engine;
+package engine.menu_bar;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Menu extends JMenuBar {
+
     private JMenu file , strategy;
     private JMenuItem save , quit , random , cross;
 
-    Menu(){
+    public Menu(){
         file = new JMenu("File");
         strategy = new JMenu("Strategy");
         add(file);

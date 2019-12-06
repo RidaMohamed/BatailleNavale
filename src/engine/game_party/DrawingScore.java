@@ -1,7 +1,8 @@
 package engine.game_party;
 
 import engine.GameController;
-import engine.painter.Painter;
+import model.BattleNavalePainter;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,16 +11,16 @@ import java.io.IOException;
 
 public class DrawingScore extends JPanel {
 
-    private Painter painter;
+    private BattleNavalePainter battleNavalePainter;
     private GameController controller;
     private int width, height;
 
-    public DrawingScore(Painter painter, GameController controller) {
+    public DrawingScore(BattleNavalePainter battleNavalePainter, GameController controller) {
         super();
-        this.width = painter.getScreenWidth();
+        this.width = battleNavalePainter.getScreenWidth();
         this.height = 100;
         this.setPreferredSize(new Dimension(this.width, this.height));
-        this.painter=painter;
+        this.battleNavalePainter = battleNavalePainter;
         this.controller = controller;
     }
 

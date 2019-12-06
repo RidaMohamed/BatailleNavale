@@ -2,7 +2,7 @@ package engine.game_menu;
 
 import engine.DrawingPanel;
 import engine.GameController;
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +13,11 @@ public class DrawingPanelSplashScreen extends DrawingPanel {
     private static final long serialVersionUID = 1L;
     private SplashScreenPainter grideMenu;
 
-    public DrawingPanelSplashScreen(Painter painter , GameController controller) {
-        super(painter, controller);
-        this.setPreferredSize(new Dimension(painter.getScreenWidth(), painter.getScreenHeight()));
+    public DrawingPanelSplashScreen(BattleNavalePainter battleNavalePainter, GameController controller) {
+        super(battleNavalePainter, controller);
+        this.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth(), battleNavalePainter.getScreenHeight()));
 
-        this.grideMenu = new SplashScreenPainter(painter);
+        this.grideMenu = new SplashScreenPainter(battleNavalePainter);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add(this.grideMenu );
 

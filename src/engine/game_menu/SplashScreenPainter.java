@@ -1,6 +1,6 @@
 package engine.game_menu;
 
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,19 +11,19 @@ import java.io.IOException;
 public class SplashScreenPainter extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private Painter painter;
+    private BattleNavalePainter battleNavalePainter;
 
-    public SplashScreenPainter(Painter painter){
+    public SplashScreenPainter(BattleNavalePainter battleNavalePainter){
         super();
-        this.setPreferredSize(new Dimension(painter.getScreenWidth(), painter.getScreenHeight()));
-        this.painter=painter;
+        this.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth(), battleNavalePainter.getScreenHeight()));
+        this.battleNavalePainter = battleNavalePainter;
     }
 
     public void draw(BufferedImage im){
         Graphics g = im.getGraphics();
         try {
             BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/background.jpg"));
-            g.drawImage(image ,0 ,0 , painter.getScreenWidth() , painter.getScreenHeight(), null);
+            g.drawImage(image ,0 ,0 , battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight(), null);
             image = ImageIO.read(this.getClass().getResourceAsStream("/logo.png"));
             g.drawImage(image ,50 ,50 , 250 , 50, null);
         } catch (IOException e) {

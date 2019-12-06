@@ -2,7 +2,7 @@ package engine.game_party;
 
 
 import engine.GameController;
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 import model.global.Constants;
 
 import javax.imageio.ImageIO;
@@ -16,15 +16,15 @@ public class DrawingGride2 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private Painter painter;
+	private BattleNavalePainter battleNavalePainter;
 	private int width, height;
 
-	public DrawingGride2(Painter painter , GameController controller) {
+	public DrawingGride2(BattleNavalePainter battleNavalePainter, GameController controller) {
 		super();
 		this.width = 500;
 		this.height = 500;
 		this.setPreferredSize(new Dimension(this.width, this.height));
-		this.painter=painter;
+		this.battleNavalePainter = battleNavalePainter;
 	}
 
 	public void draw(BufferedImage im) {
@@ -40,7 +40,7 @@ public class DrawingGride2 extends JPanel {
 			e.printStackTrace();
 		}
 
-		this.painter.getBoard2Painter().draw(im);
+		this.battleNavalePainter.getBoard2Painter().draw(im);
 		Graphics2D g1 = (Graphics2D)im.getGraphics();
 
 		for ( int x = 1; x <= 10; x++ )

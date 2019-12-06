@@ -1,6 +1,6 @@
 package engine;
 
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 import model.BattleNavaleGame;
 
 /**
@@ -19,7 +19,7 @@ public class GameEngineGraphical {
 	/**
 	 * l'afficheur a utiliser pour le rendu
 	 */
-	private Painter gamePainter;
+	private BattleNavalePainter gameBattleNavalePainter;
 
 	/**
 	 * le controlleur a utiliser pour recuperer les commandes
@@ -36,18 +36,18 @@ public class GameEngineGraphical {
 	 *
 	 * @param game
 	 *            game a lancer
-	 * @param gamePainter
+	 * @param gameBattleNavalePainter
 	 *            afficheur a utiliser
 	 * @param gameController
 	 *            controlleur a utiliser
 	 *
 	 */
-	public GameEngineGraphical(BattleNavaleGame game, Painter gamePainter, GameController gameController) {
+	public GameEngineGraphical(BattleNavaleGame game, BattleNavalePainter gameBattleNavalePainter, GameController gameController) {
 		// creation du game
 		this.game = game;
-		this.gamePainter = gamePainter;
+		this.gameBattleNavalePainter = gameBattleNavalePainter;
 		this.gameController = gameController;
-		this.gui = new GraphicalInterface((Painter) this.gamePainter,this.gameController);
+		this.gui = new GraphicalInterface((BattleNavalePainter) this.gameBattleNavalePainter,this.gameController);
 	}
 
 	/**

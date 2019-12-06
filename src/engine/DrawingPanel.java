@@ -4,7 +4,7 @@ package engine;
  * @author Horatiu Cirstea, Vincent Thomas
  *
  */
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -22,7 +22,7 @@ public class DrawingPanel extends JPanel {
 	/**
 	 * la clase chargee de Dessiner
 	 */
-	protected Painter painter;
+	protected BattleNavalePainter Painter;
 
 	protected GameController controller;
 
@@ -45,17 +45,17 @@ public class DrawingPanel extends JPanel {
 
 	/**
 	 * constructeur Il construit les images pour doublebuffering ainsi que le
-	 * Panel associe. Les images stockent le painter et on demande au panel la
-	 * mise a jour quand le painter est fini
-	 * @param painter
+	 * Panel associe. Les images stockent le battleNavalePainter et on demande au panel la
+	 * mise a jour quand le battleNavalePainter est fini
+	 * @param Painter
 	 * @param controller
 	 */
-	public DrawingPanel(Painter painter, GameController controller) {
+	public DrawingPanel(BattleNavalePainter Painter, GameController controller) {
 		super();
-		this.width = painter.getScreenWidth();
-		this.height = painter.getScreenHeight();
+		this.width = Painter.getScreenWidth();
+		this.height = Painter.getScreenHeight();
 		this.setPreferredSize(new Dimension(this.width, this.height));
-		this.painter=painter;
+		this.Painter = Painter;
 		this.controller = controller;
 
 		// cree l'image buffer et son graphics
@@ -71,7 +71,7 @@ public class DrawingPanel extends JPanel {
 	 */
 	public void drawGame() {
 		// generer la nouvelle image
-		this.painter.draw(this.nextImage);
+		this.Painter.draw(this.nextImage);
 
 		// inverses les images doublebuffereing
 		BufferedImage temp = this.currentImage;
@@ -95,6 +95,7 @@ public class DrawingPanel extends JPanel {
 		super.paint(g);
 		g.drawImage(this.currentImage, 0, 0, getWidth(), getHeight(), 0, 0,
 				getWidth(), getHeight(), null);
+		g.dispose();
 	}
 
 }

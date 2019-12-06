@@ -2,7 +2,7 @@ package engine.game_party;
 
 import engine.DrawingPanel;
 import engine.GameController;
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 import model.global.Constants;
 import model.global.Turn;
 
@@ -21,19 +21,19 @@ public class DrawingPanelParty extends DrawingPanel {
 	private DrawingGride2 gride2;
 	private DrawingScore score;
 
-	public DrawingPanelParty(Painter painter , GameController controller ) {
-		super(painter, controller);
+	public DrawingPanelParty(BattleNavalePainter battleNavalePainter, GameController controller ) {
+		super(battleNavalePainter, controller);
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		score = new DrawingScore(painter, controller);
+		score = new DrawingScore(battleNavalePainter, controller);
 		add(score);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-		this.gride1=new DrawingGride1(painter);
-		this.gride2= new DrawingGride2(painter ,controller);
+		this.gride1=new DrawingGride1(battleNavalePainter);
+		this.gride2= new DrawingGride2(battleNavalePainter,controller);
 		this.gride2.addMouseListener(controller);
 
 		panel.add(this.gride2);

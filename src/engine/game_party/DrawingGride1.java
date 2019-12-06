@@ -13,15 +13,15 @@ public class DrawingGride1 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private Painter painter;
+	private BattleNavalePainter battleNavalePainter;
 	private int width, height;
 
-	public DrawingGride1(Painter painter) {
+	public DrawingGride1(BattleNavalePainter battleNavalePainter) {
 		super();
 		this.width = Constants.CASE_WIDTH * Constants.WIDTH;
 		this.height = Constants.CASE_HEIGHT * Constants.HEIGHT;
 		this.setPreferredSize(new Dimension(this.width, this.height));
-		this.painter=painter;
+		this.battleNavalePainter = battleNavalePainter;
 	}
 
 	public void draw(BufferedImage im) {
@@ -37,7 +37,7 @@ public class DrawingGride1 extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.painter.getBoard1Painter().draw(im);
+		this.battleNavalePainter.getBoard1Panter().draw(im);
 
 		for ( int x = 1; x <= 10; x++ )
 			for ( int y = 1; y <= 10; y ++ ){

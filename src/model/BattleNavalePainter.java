@@ -1,26 +1,35 @@
-package engine.painter;
+package model;
 
+import engine.GamePainter;
+import engine.painter.Board1Painter;
+import engine.painter.Board2Painter;
 import model.BattleNavaleGame;
+import model.global.Position;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public  class Painter {
+public  class BattleNavalePainter implements GamePainter {
 
-    private Board1Painter board1Painter;
+    /**
+     * la taille des cases
+     */
+    protected static final int WIDTH = 1050;
+    protected static final int HEIGHT = 700;
+    private Board1Painter board1Panter;
     private Board2Painter board2Painter;
     private BoardPositioningPainter boardPositioningPainter;
-    private int screenWidth , screenHeight;
 
-    public Painter(BattleNavaleGame battleNavaleGame){
-        this.board1Painter = new Board1Painter(battleNavaleGame);
+    public BattleNavalePainter(BattleNavaleGame battleNavaleGame){
+        this.board1Panter = new Board1Painter(battleNavaleGame);
         this.board2Painter = new Board2Painter(battleNavaleGame);
         this.boardPositioningPainter = new BoardPositioningPainter(battleNavaleGame);
         this.screenWidth = 1050;
         this.screenHeight = 700;
     }
 
-    public Board1Painter getBoard1Painter() {
-        return board1Painter;
+    public Board1Painter getBoard1Panter() {
+        return board1Panter;
     }
 
     public Board2Painter getBoard2Painter() {
@@ -32,11 +41,11 @@ public  class Painter {
     }
 
     public int getScreenWidth() {
-        return screenWidth;
+        return WIDTH;
     }
 
     public int getScreenHeight() {
-        return this.screenHeight;
+        return HEIGHT;
     }
 
     public void draw(BufferedImage nextImage) {

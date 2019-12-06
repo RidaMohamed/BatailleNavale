@@ -11,11 +11,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class editorPainter {
+public class EditorPainter {
 
     private BattleNavaleGame game;
 
-    public editorPainter(BattleNavaleGame game) {
+    public EditorPainter(BattleNavaleGame game) {
         this.game = game;
     }
 

@@ -1,9 +1,11 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import engine.Game;
 import model.century_factory.BoatTimeFactory;
 import model.century_factory.boats.Boat;
 import model.global.Constants;
@@ -15,7 +17,7 @@ import model.player.strategy.MachineAttackRandom;
 
 
 
-public class BattleNavaleGame {
+public class BattleNavaleGame implements Game {
 
 	private HumanPlayer humanPlayer;
 	private MachinePlayer machinePlayer;
@@ -127,6 +129,11 @@ public class BattleNavaleGame {
 
 	public int isFinished() {
 		return isFinished;
+	}
+
+	@Override
+	public void draw(BufferedImage img) throws InterruptedException {
+
 	}
 
 	public void setIsFinished(int isFinished) {

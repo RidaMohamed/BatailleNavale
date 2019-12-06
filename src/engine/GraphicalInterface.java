@@ -2,8 +2,9 @@ package engine;
 
 import engine.game_menu.DrawingPanelSplashScreen;
 import engine.game_party.DrawingPanelParty;
+import engine.menu_bar.Menu;
+import model.BattleNavalePainter;
 import engine.gamepositioning.DrawingPanelPositioning;
-import engine.painter.Painter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,17 +23,17 @@ public class GraphicalInterface  {
 	/**
 	 * la construction de l'interface graphique: JFrame avec panel pour le game
 	 */
-	public GraphicalInterface(Painter painter, GameController controller){
+	public GraphicalInterface(BattleNavalePainter battleNavalePainter, GameController controller){
 		f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// attacher le panel contenant l'afficheur du game
-		this.party = new DrawingPanelParty(painter , controller);
-		this.positioning = new DrawingPanelPositioning(painter , controller);
-		this.splashScreen = new DrawingPanelSplashScreen(painter, controller);
+		this.positioning = new DrawingPanelPositioning(battleNavalePainter , controller);
+		this.party = new DrawingPanelParty(battleNavalePainter, controller);
+		this.splashScreen = new DrawingPanelSplashScreen(battleNavalePainter, controller);
 
         //Affichage plein ecran
-		f.setPreferredSize(new Dimension(painter.getScreenWidth() , painter.getScreenHeight()));
+		f.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight()));
 
      	//f.setUndecorated(true);
 		panel = new JPanel();
@@ -41,7 +42,6 @@ public class GraphicalInterface  {
 		//panel.add(this.scorePanel );
 		this.panel.add(this.splashScreen);
 		f.setContentPane(panel);
-		f.setResizable(false);
 
         menu = new Menu();
         f.setJMenuBar(menu);
@@ -70,6 +70,7 @@ public class GraphicalInterface  {
 		this.positioning.drawGame();
 		this.panel.updateUI();
 	}
+
 	public void paintSplash() {
 		menu.setVisible(false);
 		this.panel.removeAll();
