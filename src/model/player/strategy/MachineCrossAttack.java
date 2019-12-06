@@ -28,7 +28,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
         boolean b;
         Board board;
         int randX=0, randY=0;
-        board = machinePlayer.getGame().getHumanPlayer().getBoard();
+        board = battleNavaleGame.getHumanPlayer().getBoard();
 
         do {
             if(randomIsOut) {

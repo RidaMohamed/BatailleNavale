@@ -30,7 +30,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
             randY = (int) (Math.random()*(Constants.HEIGHT)+1);
 
             //get borad of humain model.player
-            board = machinePLayer.getGame().getHumanPlayer().getBoard();
+            board = battleNavaleGame.getHumanPlayer().getBoard();
             //Verfie is the postions is ok to attack
             b = board.isPosFree(randX , randY);
         }while(!b);
