@@ -1,6 +1,6 @@
 package engine.game_party;
 
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 import model.global.Constants;
 
 import javax.imageio.ImageIO;

@@ -1,6 +1,6 @@
 package engine.gamepositioning;
 
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 import model.global.Constants;
 
 import javax.imageio.ImageIO;
@@ -12,10 +12,10 @@ import java.io.IOException;
 public class DrawingGrid extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    private Painter painter;
+    private BattleNavalePainter painter;
     private int width, height;
 
-    public DrawingGrid(Painter painter) {
+    public DrawingGrid(BattleNavalePainter painter) {
         super();
         this.width = Constants.CASE_WIDTH * Constants.WIDTH;
         this.height = Constants.CASE_HEIGHT * Constants.HEIGHT;

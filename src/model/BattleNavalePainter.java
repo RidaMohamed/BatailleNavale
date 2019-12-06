@@ -3,6 +3,7 @@ package model;
 import engine.GamePainter;
 import engine.painter.Board1Painter;
 import engine.painter.Board2Painter;
+import engine.painter.BoardPositioningPainter;
 import model.BattleNavaleGame;
 import model.global.Position;
 
@@ -24,8 +25,6 @@ public  class BattleNavalePainter implements GamePainter {
         this.board1Panter = new Board1Painter(battleNavaleGame);
         this.board2Painter = new Board2Painter(battleNavaleGame);
         this.boardPositioningPainter = new BoardPositioningPainter(battleNavaleGame);
-        this.screenWidth = 1050;
-        this.screenHeight = 700;
     }
 
     public Board1Painter getBoard1Panter() {

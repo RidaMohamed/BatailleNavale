@@ -2,7 +2,7 @@ package engine.gamepositioning;
 
 import engine.DrawingPanel;
 import engine.GameController;
-import engine.painter.Painter;
+import model.BattleNavalePainter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,7 +14,7 @@ public class DrawingPanelPositioning extends DrawingPanel {
     private static final long serialVersionUID = 1L;
     private DrawingGrid drawingGrid;
 
-    public DrawingPanelPositioning(Painter painter, GameController controller) {
+    public DrawingPanelPositioning(BattleNavalePainter painter, GameController controller) {
         super(painter, controller);
         this.setPreferredSize(new Dimension(this.width, this.height));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
