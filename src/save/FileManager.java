@@ -45,7 +45,8 @@ public class FileManager {
                  //orientation
                 line = buff.readLine();
                 info = line.split(",");
-                 if (info[0].equals(1))
+                 System.out.println(info[0]);
+                 if (info[0].equals("1"))
                      orientation = Orientation.HORIZONTAL;
                  else
                      orientation = Orientation.VERTICAL;
@@ -134,7 +135,7 @@ public class FileManager {
           //  BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter("res/gameSaves.txt");
             out.print(dataH);
-            out.println(dataH);
+            System.out.println(dataH);
             out.print(dataM);
             System.out.println(dataM);
             out.close();

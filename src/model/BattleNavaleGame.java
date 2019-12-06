@@ -74,6 +74,7 @@ public class BattleNavaleGame implements Game {
 			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
+		fileManager.save();
 	}
 
 	/**

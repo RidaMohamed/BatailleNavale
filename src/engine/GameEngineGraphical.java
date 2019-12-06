@@ -60,8 +60,15 @@ public class GameEngineGraphical {
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
 			Thread.sleep(1000);
-			game.setIsFinished(0);
+			game.setIsFinished(-2);
 		}
+
+		while (game.isFinished() == -2) {
+			this.gui.paintMenu();
+			Thread.sleep(1000);
+		}
+
+
 
 
 		// creation de l'interface graphique

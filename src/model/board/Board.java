@@ -76,18 +76,10 @@ public class Board {
         int posY = boat.getPosition().getY();
 
         if (posX <1 || posX > Constants.WIDTH ||posY <1 || posY > Constants.HEIGHT) {
-            System.out.println("1");
-            System.out.println("posX = " + posX + "   posY="+posY + "    Size = "+boat.getSize());
-
             return false;
         }else if (boat.getOrientation() == Orientation.HORIZONTAL && (posX + boat.getSize()) > (Constants.WIDTH +1 )){
-            System.out.println("2");
-            System.out.println("posX = " + posX + "   posY="+posY + "    Size = "+boat.getSize());
             return false;
         }else if(boat.getOrientation() == Orientation.VERTICAL && (posY + boat.getSize()) > (Constants.HEIGHT +1 )) {
-            System.out.println("3");
-            System.out.println("posX = " + posX + "   posY="+posY + "    Size = "+boat.getSize());
-
             return false;
         }
 

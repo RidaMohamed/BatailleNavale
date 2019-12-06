@@ -11,8 +11,9 @@ import model.global.Turn;
 import sun.plugin.liveconnect.OriginNotAllowedException;
 
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
-	public class BattleNavaleController implements GameController {
+public class BattleNavaleController implements GameController {
 
 		private BattleNavaleGame battleNavaleGame;
 		private Boat selected_boat = null;
@@ -24,7 +25,28 @@ import java.awt.event.MouseEvent;
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if (battleNavaleGame.isFinished()==0){
+
+
+			if(battleNavaleGame.isFinished() == -2){
+				if (Constants.rect_oneplayer.contains(e.getPoint())){
+					getBattleNavaleGame().createBoats();
+					getBattleNavaleGame().setIsFinished(0);
+				}else if(Constants.rect_multiplayer.contains(e.getPoint())){
+					System.out.println("Multiplayer");
+				}else if(Constants.rect_load.contains(e.getPoint())){
+					System.out.println("Load");
+					try {
+						getBattleNavaleGame().getFileManager().load();
+					    getBattleNavaleGame().setIsFinished(1);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+
+
+				}else if(Constants.rect_quit.contains(e.getPoint())){
+					System.exit(0);
+				}
+			}else if (battleNavaleGame.isFinished()==0){
 				if(Constants.rect_random.contains(e.getPoint())){
 					battleNavaleGame.moveBoats();
 				}else if(Constants.rect_ok.contains(e.getPoint())){

@@ -1,4 +1,4 @@
-package engine.game_menu;
+package engine.game__splash_screen;
 
 import engine.DrawingPanel;
 import engine.GameController;
