@@ -43,21 +43,29 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
             }else{
                 switch(chosenPos){
                     case 1:
-                        randX=x1.getX();
-                        randY=x1.getY();
-                        break;
+                        if (x1.getX() <= Constants.WIDTH) {
+                            randX = x1.getX();
+                            randY = x1.getY();
+                            break;
+                        }
                     case 2 :
-                        randX=x2.getX();
-                        randY=x2.getY();
-                        break;
+                        if (x2.getY() <= Constants.HEIGHT) {
+                            randX = x2.getX();
+                            randY = x2.getY();
+                            break;
+                        }
                     case 3:
-                        randX=x3.getX();
-                        randY=x3.getY();
-                        break;
+                        if (x3.getX() >= 1) {
+                            randX = x3.getX();
+                            randY = x3.getY();
+                            break;
+                        }
                     case 4 :
-                        randX=x4.getX();
-                        randY=x4.getY();
-                        break;
+                        if (x4.getY() >= 1) {
+                            randX = x4.getX();
+                            randY = x4.getY();
+                            break;
+                        }
                 }
                 b = board.isPosFree(randX, randY);
                 if (!b){

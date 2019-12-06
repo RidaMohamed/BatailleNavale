@@ -59,16 +59,18 @@ public class BattleNavaleGame implements Game {
 
 
 	public BattleNavaleGame() {
-		humanPlayer = new HumanPlayer(this);
-		machinePlayer = new MachinePlayer(this);
-		machinePlayer.setStrategy( new MachineCrossAttack(this));
-		fileManager = new FileManager(this);
-		isFinished = 1;
-		turn = Turn.PlayerTurn;
+		initialize();
 	}
 
 
 	public void initialize(){
+		humanPlayer = new HumanPlayer(this);
+		machinePlayer = new MachinePlayer(this);
+		machinePlayer.setStrategy( new MachineCrossAttack(this));
+		fileManager = new FileManager(this);
+		isFinished = -3;
+		turn = Turn.PlayerTurn;
+
 	}
 
 	/**

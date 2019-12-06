@@ -46,7 +46,7 @@ public class GraphicalInterface  {
 		this.panel.add(this.splashScreen);
 		f.setContentPane(panel);
 
-        menu = new Menu();
+        menu = new Menu(controller);
         f.setJMenuBar(menu);
 
 		f.pack();

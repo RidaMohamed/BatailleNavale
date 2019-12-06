@@ -28,6 +28,7 @@ public class BattleNavaleController implements GameController {
 
 			if(battleNavaleGame.isFinished() == -2){
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
+					getBattleNavaleGame().initialize();
 					getBattleNavaleGame().createBoats();
 					getBattleNavaleGame().setIsFinished(0);
 				}else if(Constants.rect_multiplayer.contains(e.getPoint())){
@@ -35,6 +36,8 @@ public class BattleNavaleController implements GameController {
 				}else if(Constants.rect_load.contains(e.getPoint())){
 					System.out.println("Load");
 					try {
+						getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
+						getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
 						getBattleNavaleGame().getFileManager().load();
 					    getBattleNavaleGame().setIsFinished(1);
 					} catch (IOException e1) {

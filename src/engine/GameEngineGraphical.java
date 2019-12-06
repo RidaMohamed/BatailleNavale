@@ -56,7 +56,7 @@ public class GameEngineGraphical {
 	 * permet de lancer le game
 	 */
 	public void run() throws InterruptedException {
-		game.setIsFinished(-3);
+	  while (true){
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
 			Thread.sleep(1000);
@@ -69,19 +69,19 @@ public class GameEngineGraphical {
 		}
 
 
-
-
 		// creation de l'interface graphique
 		// boucle de game
-		while (this.game.isFinished() >=0 ) {
-			if(this.game.isFinished() == 0)
-				this.gui.paintPositioning(false,"");
+		while (this.game.isFinished() >= 0) {
+			if (this.game.isFinished() == 0)
+				this.gui.paintPositioning(false, "");
 			// affiche le game
 			if (this.game.isFinished() == 1)
-				this.gui.paintParty(false , "");
+				this.gui.paintParty(false, "");
 			// met en attente
 			Thread.sleep(100);
 		}
+
+	}
 	}
 
 }
