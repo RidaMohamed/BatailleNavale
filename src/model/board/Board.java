@@ -74,6 +74,8 @@ public class Board {
     public boolean isPosOk(Boat boat) {
         for (Boat b : boats){
             Rectangle rectangle1 , rectangle2;
+            if(b==boat)
+                continue;
             if (boat.getOrientation() == Orientation.HORIZONTAL) {
                 rectangle1 = new Rectangle((boat.getPosition().getX()-1)* Constants.CASE_WIDTH , (boat.getPosition().getY()-1)* Constants.CASE_HEIGHT , (boat.getSize()+1)* Constants.CASE_WIDTH, Constants.CASE_HEIGHT*3);
             }else
@@ -83,7 +85,7 @@ public class Board {
             }else
                 rectangle2 = new Rectangle((b.getPosition().getX()-1)* Constants.CASE_WIDTH , (b.getPosition().getY()-1)* Constants.CASE_HEIGHT , Constants.CASE_WIDTH*3 , (b.getSize()+1)* Constants.CASE_HEIGHT);
             if (rectangle1.intersects(rectangle2))
-                setBoatPosition(boat);
+                return false;
         }
         return true;
     }

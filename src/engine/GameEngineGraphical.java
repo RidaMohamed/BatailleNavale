@@ -3,6 +3,8 @@ package engine;
 import model.BattleNavalePainter;
 import model.BattleNavaleGame;
 
+import java.io.IOException;
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *

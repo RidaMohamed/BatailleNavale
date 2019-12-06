@@ -20,16 +20,12 @@ import java.awt.event.MouseEvent;
 		public void mouseClicked(MouseEvent e) {
 			if (battleNavaleGame.isFinished()==0){
 				if(Constants.rect_random.contains(e.getPoint())){
-					System.out.println("oui");
-					try {
 						battleNavaleGame.moveBoats();
-					} catch (InterruptedException ex) {
-						ex.printStackTrace();
-					}
 				}
 				if(Constants.rect_ok.contains(e.getPoint())){
 					battleNavaleGame.setIsFinished(1);
 				}
+
 			}
 			if (battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
 				//if we are playing then the action is attacked player2

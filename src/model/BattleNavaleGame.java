@@ -79,11 +79,9 @@ public class BattleNavaleGame implements Game {
 	/**
 	 *
 	 */
-	public void moveBoats() throws InterruptedException {
-		humanPlayer.getBoard().getBoats().clear();
-		Thread.sleep(200);
-		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
-			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+	public void moveBoats() {
+		for(Boat b : humanPlayer.getBoard().getBoats()){
+			humanPlayer.getBoard().setBoatPosition(b);
 		}
 	}
 

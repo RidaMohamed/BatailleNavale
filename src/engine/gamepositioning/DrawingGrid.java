@@ -29,6 +29,7 @@ public class DrawingGrid extends JPanel {
             im.getGraphics().drawImage(image1 ,  325,
                     3 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * Constants.WIDTH ,
                     Constants.CASE_HEIGHT * Constants.HEIGHT, null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
