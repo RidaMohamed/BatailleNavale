@@ -24,6 +24,7 @@ public class DrawingPanelPositioning extends DrawingPanel {
 
         this.drawingGrid = new DrawingGrid(painter);
         this.drawingGrid.addMouseListener(controller);
+        this.drawingGrid.addMouseMotionListener(controller);
 
         panel.add(this.drawingGrid);
         add(panel);

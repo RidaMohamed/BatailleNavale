@@ -3,10 +3,7 @@ package engine;
 
 import model.BattleNavaleGame;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * @author Horatiu Cirstea
@@ -16,7 +13,7 @@ import java.awt.event.MouseListener;
  */
 
 
-public interface GameController extends  MouseListener {
+public interface GameController extends  MouseListener , MouseMotionListener {
 
 	/**
 	 * quand on demande les commandes, le controleur retourne la commande en

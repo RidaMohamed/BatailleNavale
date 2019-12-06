@@ -126,6 +126,19 @@ public class Boat {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+        cases = new ArrayList<>();
+        Position pos = new Position(x , y);
+        cases.add(pos);
+        if (orientation == Orientation.HORIZONTAL){
+            for (int i = 1 ; i<size ; i++){
+                cases.add(new Position(pos.getX()+i , pos.getY()));
+            }
+        }else if (orientation == Orientation.VERTICAL){
+            for (int i = 1 ; i<size ; i++){
+                cases.add(new Position(pos.getX(), pos.getY()+i));
+            }
+        }
+
     }
 
     public int getBoatHealth() {
