@@ -12,6 +12,8 @@ import model.global.Constants;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
+import model.player.strategy.MachineAttackRandom;
+import model.player.strategy.MachineCrossAttack;
 import save.FileManager;
 import model.player.strategy.MachineAttackRandom;
 
@@ -47,12 +49,15 @@ public class BattleNavaleGame implements Game {
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineAttackRandom());
 		fileManager   = new FileManager(this);
+		turn = Turn.PlayerTurn;
 	}
 
 
 	/**
 	 * Simple Constructor
 	 */
+
+
 	public BattleNavaleGame() {
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
@@ -60,8 +65,8 @@ public class BattleNavaleGame implements Game {
 		fileManager = new FileManager(this);
 		isFinished = 1;
 		turn = Turn.PlayerTurn;
-
 	}
+
 
 	public void initialize(){
 	}
