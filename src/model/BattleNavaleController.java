@@ -26,7 +26,6 @@ public class BattleNavaleController implements GameController {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 
-
 			if(battleNavaleGame.isFinished() == -2){
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
 					getBattleNavaleGame().createBoats();

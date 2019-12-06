@@ -7,7 +7,6 @@ import model.century_factory.boats.Galion;
 public class BoatFactoryXXCentury implements BoatTimeFactory {
 
     /**
-     *
      * @param len
      * @return
      */

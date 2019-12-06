@@ -1,5 +1,6 @@
 package model.player.strategy;
 
+import model.BattleNavaleGame;
 import model.board.Board;
 import model.century_factory.boats.Boat;
 import model.global.Position;
@@ -11,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MachineAttackRandom implements StrategyMahcineAttack {
+
+    private BattleNavaleGame battleNavaleGame;
+
+    public MachineAttackRandom(BattleNavaleGame battleNavaleGame) {
+        this.battleNavaleGame = battleNavaleGame;
+    }
 
     @Override
     public void attack(MachinePlayer machinePLayer) {
@@ -28,10 +35,10 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
             b = board.isPosFree(randX , randY);
         }while(!b);
 
-        List<Boat> boats = machinePLayer.getGame().getHumanPlayer().getBoard().getBoats();
+        List<Boat> boats = battleNavaleGame.getHumanPlayer().getBoard().getBoats();
 
         boolean missedShot = true;
-        for ( Boat boat: boats  ) {
+        for (Boat boat: boats) {
             if (boat.isOnCase(randX,randY)){
                 missedShot = false ;
                 boat.boatIsHit(randX,randY);
@@ -44,7 +51,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
                         board.addPosAttacked(positions.get(k), true );
                     }
                     boat.deletePositions();
-                    board.deleteBoat(boat);
+                   // board.deleteBoat(boat);
                 }
             }
         }
@@ -53,6 +60,6 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         if (missedShot)
             board.addPosAttacked(new Position(randX,randY), false);
 
-        machinePLayer.getGame().getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
+        battleNavaleGame.getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
     }
 }
