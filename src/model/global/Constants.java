@@ -10,6 +10,8 @@ public class Constants {
     public static final int CASE_HEIGHT = 40;
     public static final Rectangle2D.Double rect_random = new Rectangle2D.Double(325,530,400,40);
     public static final Rectangle2D.Double rect_ok = new Rectangle2D.Double(800,530,40,40);
+    public static final Rectangle2D.Double rect_xvcentury = new Rectangle2D.Double(275,430,500,50);
+    public static final Rectangle2D.Double rect_xxcentury = new Rectangle2D.Double(275,530,500,50);
     public static final Rectangle2D.Double rect_oneplayer = new Rectangle2D.Double(80,140,140,50);
     public static final Rectangle2D.Double rect_multiplayer = new Rectangle2D.Double(120,240,140,50);
     public static final Rectangle2D.Double rect_load = new Rectangle2D.Double(160,340,140,50);

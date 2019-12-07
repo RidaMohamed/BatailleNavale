@@ -68,7 +68,9 @@ public class GameEngineGraphical {
 			Thread.sleep(1000);
 		}
 
-
+		while (this.game.isFinished() == -1 ) {
+			this.gui.paintCentury();
+		}
 		// creation de l'interface graphique
 		// boucle de game
 		while (this.game.isFinished() >= 0) {

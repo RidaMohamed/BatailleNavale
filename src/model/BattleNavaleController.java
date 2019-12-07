@@ -4,11 +4,12 @@ package model;
 
 import engine.GameController;
 import model.century_factory.boats.Boat;
+import model.century_factory.BoatFactoryXVCentury;
+import model.century_factory.BoatFactoryXXCentury;
 import model.global.Constants;
 import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
-import sun.plugin.liveconnect.OriginNotAllowedException;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -30,10 +31,12 @@ public class BattleNavaleController implements GameController {
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
 					getBattleNavaleGame().initialize();
 					getBattleNavaleGame().createBoats();
-					getBattleNavaleGame().setIsFinished(0);
-				}else if(Constants.rect_multiplayer.contains(e.getPoint())){
+					getBattleNavaleGame().setIsFinished(-1);
+				}
+				else if(Constants.rect_multiplayer.contains(e.getPoint())){
 					System.out.println("Multiplayer");
-				}else if(Constants.rect_load.contains(e.getPoint())){
+				}
+				else if(Constants.rect_load.contains(e.getPoint())){
 					System.out.println("Load");
 					try {
 						getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
@@ -43,12 +46,24 @@ public class BattleNavaleController implements GameController {
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-
-
-				}else if(Constants.rect_quit.contains(e.getPoint())){
+				}
+				else if(Constants.rect_quit.contains(e.getPoint())){
 					System.exit(0);
 				}
-			}else if (battleNavaleGame.isFinished()==0){
+			}
+			else if(battleNavaleGame.isFinished()==-1){
+                System.out.println(51);
+                if(Constants.rect_xxcentury.contains(e.getPoint())) {
+                    System.out.println("oui");
+                    battleNavaleGame.setCentury(new BoatFactoryXXCentury());
+                    battleNavaleGame.setIsFinished(0);
+                }
+                else if(Constants.rect_xvcentury.contains(e.getPoint())) {
+                    battleNavaleGame.setCentury(new BoatFactoryXVCentury());
+                    battleNavaleGame.setIsFinished(0);
+                }
+            }
+			else if (battleNavaleGame.isFinished()==0){
 				if(Constants.rect_random.contains(e.getPoint())){
 					battleNavaleGame.moveBoats();
 				}else if(Constants.rect_ok.contains(e.getPoint())){
@@ -79,7 +94,8 @@ public class BattleNavaleController implements GameController {
 				}
 
 
-			}else if (battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
+			}
+			else if (battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
 				//if we are playing then the action is attacked player2
 				int x = (e.getX() - e.getX() % Constants.CASE_WIDTH )/ Constants.CASE_WIDTH;
 				int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT +  Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT;
