@@ -3,6 +3,7 @@ package model.player;
 import model.board.Board;
 import model.century_factory.boats.Boat;
 import model.BattleNavaleGame;
+import model.global.Constants;
 import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
@@ -14,7 +15,6 @@ public class HumanPlayer extends Player {
 
     private int scoreHits ;
     private int missedShots ;
-
     /**
      * Simple constructor for Humaine player
      * @param game
@@ -59,6 +59,7 @@ public class HumanPlayer extends Player {
                 board.addPosAttacked(new Position(x,y), true );
                 //adding all the hited pos to shoot list of model.board
                 if (boat.isDistruct()){
+                    this.getGame().getMachinePlayer().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
                         board.addPosAttacked(positions.get(k), true );

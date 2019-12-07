@@ -112,6 +112,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                 }
 
                 if (boat.isDistruct()) {
+                    this.battleNavaleGame.getHumanPlayer().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0; k < positions.size(); k++) {
                         board.addPosAttacked(positions.get(k), true);

@@ -16,6 +16,7 @@ public class Board {
 
     private Map<Position , Boolean> shoots;
     private List<Boat> boats;
+    private int stayBoat;
 
     /**
      * Simple Constructor
@@ -23,6 +24,7 @@ public class Board {
     public Board() {
         boats = new ArrayList<>();
         shoots = new HashMap<>();
+        this.stayBoat = 0;
     }
 
     /**
@@ -32,6 +34,7 @@ public class Board {
     public void addBoat(Boat boat){
         setBoatPosition(boat);
         boats.add(boat);
+        this.stayBoat ++;
     }
 
     /**

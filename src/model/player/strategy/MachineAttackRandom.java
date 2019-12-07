@@ -46,6 +46,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
                 board.addPosAttacked(new Position(randX,randY), true);
                 //adding all the boat pos if he is destroyed to the borad shoot list
                 if (boat.isDistruct()){
+                    this.battleNavaleGame.getHumanPlayer().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
                         board.addPosAttacked(positions.get(k), true );

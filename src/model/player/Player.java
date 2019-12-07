@@ -2,15 +2,18 @@ package model.player;
 
 import model.board.Board;
 import model.BattleNavaleGame;
+import model.global.Constants;
 
 public class Player {
 
     protected BattleNavaleGame game;
     protected Board board;
+    protected int pv;
 
     public Player(BattleNavaleGame game) {
         this.game = game;
         this.board = new Board();
+        this.pv = Constants.boat_length_size.length;
     }
 
     /**
@@ -35,5 +38,15 @@ public class Player {
         StringBuilder str = new StringBuilder();
         str.append("/");
         return str;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public void subPv(){
+        this.pv--;
+        if (this.pv == 0)
+            this.getGame().setIsFinished(-2);
     }
 }

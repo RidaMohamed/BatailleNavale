@@ -59,7 +59,7 @@ public class GameEngineGraphical {
 	  while (true){
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			game.setIsFinished(-2);
 		}
 
@@ -82,6 +82,9 @@ public class GameEngineGraphical {
 			// met en attente
 			Thread.sleep(100);
 		}
+
+		this.gui.paintResult();
+		Thread.sleep(3000);
 
 	}
 	}
