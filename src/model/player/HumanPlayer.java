@@ -65,7 +65,7 @@ public class HumanPlayer extends Player {
                         board.addPosAttacked(positions.get(k), true );
                     }
                     boat.deletePositions();
-                    board.deleteBoat(boat);
+                    //board.deleteBoat(boat);
                 }
             }
         }
