@@ -8,6 +8,7 @@ import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class HumanPlayer extends Player {
      * @param x
      * @param y
      */
-    public void attack(int x, int y ){
+    public void attack(int x, int y ) throws RemoteException {
         if (!game.getMachinePlayer().getBoard().isPosFree(x , y))
             return;
 

@@ -13,6 +13,7 @@ import model.global.Turn;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class BattleNavaleController implements GameController {
 
@@ -29,8 +30,16 @@ public class BattleNavaleController implements GameController {
 
 			if(battleNavaleGame.isFinished() == -2){
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
-					getBattleNavaleGame().initialize();
-					getBattleNavaleGame().createBoats();
+					try {
+						getBattleNavaleGame().initialize();
+					} catch (RemoteException ex) {
+						ex.printStackTrace();
+					}
+					try {
+						getBattleNavaleGame().createBoats();
+					} catch (RemoteException ex) {
+						ex.printStackTrace();
+					}
 					getBattleNavaleGame().setIsFinished(-1);
 				}
 				else if(Constants.rect_multiplayer.contains(e.getPoint())){
@@ -103,7 +112,11 @@ public class BattleNavaleController implements GameController {
 				if (!(x >= 1 && x <= Constants.WIDTH) || !(y >= 1 && y <= Constants.HEIGHT))
 					return;
 
-				battleNavaleGame.getHumanPlayer().attack(x , y);
+				try {
+					battleNavaleGame.getHumanPlayer().attack(x , y);
+				} catch (RemoteException ex) {
+					ex.printStackTrace();
+				}
 
 				if (battleNavaleGame.getTurn() == Turn.MachineTurn) {
 					try {
@@ -111,7 +124,11 @@ public class BattleNavaleController implements GameController {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					this.battleNavaleGame.getMachinePlayer().attack();
+					try {
+						this.battleNavaleGame.getMachinePlayer().attack();
+					} catch (RemoteException ex) {
+						ex.printStackTrace();
+					}
 				}
 
 			}

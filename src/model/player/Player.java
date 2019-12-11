@@ -1,16 +1,19 @@
 package model.player;
 
+import engine.Game;
 import model.board.Board;
 import model.BattleNavaleGame;
 import model.global.Constants;
 
-public class Player {
+import java.io.Serializable;
 
-    protected BattleNavaleGame game;
+public class Player implements Serializable {
+
+    protected Game game;
     protected Board board;
     protected int pv;
 
-    public Player(BattleNavaleGame game) {
+    public Player(Game game) {
         this.game = game;
         this.board = new Board();
         this.pv = Constants.boat_length_size.length;
@@ -29,7 +32,7 @@ public class Player {
      * player know the Battle Navale Game class
      * @return
      */
-    public BattleNavaleGame getGame() {
+    public Game getGame() {
         return game;
     }
 
@@ -46,7 +49,7 @@ public class Player {
 
     public void subPv(){
         this.pv--;
-        if (this.pv == 0)
-            this.getGame().setIsFinished(-2);
+        //if (this.pv == 0)
+            //this.getGame().setIsFinished(-2);
     }
 }

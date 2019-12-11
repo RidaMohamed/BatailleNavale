@@ -8,6 +8,7 @@ import model.global.Constants;
 import model.global.Turn;
 import model.player.MachinePlayer;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,10 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         if (missedShot)
             board.addPosAttacked(new Position(randX,randY), false);
 
-        battleNavaleGame.getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
+        try {
+            battleNavaleGame.getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

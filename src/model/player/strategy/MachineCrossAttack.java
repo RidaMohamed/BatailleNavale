@@ -9,6 +9,7 @@ import model.global.Position;
 import model.global.Turn;
 import model.player.MachinePlayer;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
     }
 
     @Override
-    public void attack(MachinePlayer machinePlayer) {
+    public void attack(MachinePlayer machinePlayer) throws RemoteException {
 
         boolean b;
         Board board;

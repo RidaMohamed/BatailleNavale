@@ -1,6 +1,8 @@
 package model.board;
 
 import model.century_factory.boats.Boat;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ import model.global.Orientation;
 import java.awt.*;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
 
     private Map<Position , Boolean> shoots;
     private List<Boat> boats;

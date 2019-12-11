@@ -6,6 +6,7 @@ import model.global.Orientation;
 import model.global.Position;
 import model.player.strategy.StrategyMahcineAttack;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class MachinePlayer extends Player {
@@ -32,7 +33,7 @@ public class MachinePlayer extends Player {
     /**
      * Attack boats of Human player
      */
-    public void attack(){
+    public void attack() throws RemoteException {
         this.strategyMahcineAttack.attack(this);
     }
 

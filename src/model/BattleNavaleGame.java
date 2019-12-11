@@ -4,8 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import engine.Game;
+import model.century_factory.BoatFactoryXVCentury;
 import model.century_factory.BoatTimeFactory;
 import model.century_factory.boats.Boat;
 import model.global.Constants;
@@ -19,7 +22,7 @@ import model.player.strategy.MachineAttackRandom;
 
 
 
-public class BattleNavaleGame implements Game {
+public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
 	private HumanPlayer humanPlayer;
 	private MachinePlayer machinePlayer;
@@ -33,7 +36,7 @@ public class BattleNavaleGame implements Game {
 	 * To load the game
 	 * @param source
 	 */
-	public BattleNavaleGame(String source) {
+	public BattleNavaleGame(String source)throws RemoteException {
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
@@ -58,15 +61,16 @@ public class BattleNavaleGame implements Game {
 	 */
 
 
-	public BattleNavaleGame() {
+	public BattleNavaleGame()throws RemoteException {
 		initialize();
 	}
 
 
-	public void initialize(){
+	public void initialize()throws RemoteException {
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
+		boatTimeFactory = new BoatFactoryXVCentury();
 		fileManager = new FileManager(this);
 		isFinished = -3;
 		turn = Turn.PlayerTurn;
@@ -76,7 +80,7 @@ public class BattleNavaleGame implements Game {
 	/**
 	 *
 	 */
-	public void createBoats(){
+	public void createBoats()throws RemoteException {
 		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
 			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
