@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
 
 public class Main {
 
-    static public void main(String [] args) throws InterruptedException {
+    static public void main(String [] args) throws InterruptedException, RemoteException {
         BattleNavaleGame game = null;
         try {
             game = new BattleNavaleGame();

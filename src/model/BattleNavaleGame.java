@@ -31,6 +31,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	private FileManager fileManager;
 	private int isFinished;
 	private BattleNavaleClient client;
+	private int playerId;
+	private Boolean isMulti;
 
 	/**
 	 * Simple Constructor
@@ -55,6 +57,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		fileManager   = new FileManager(this);
 		turn = Turn.PlayerTurn;
 		client = new BattleNavaleClient();
+		isMulti =false;
 	}
 
 
@@ -71,7 +74,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		turn = Turn.PlayerTurn;
 		isFinished = -3;
 		client = new BattleNavaleClient();
-
+		isMulti = false;
 	}
 
 
@@ -92,24 +95,44 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 			isFinished = -4;
 		} else if (this.player2 == null){
 			this.player2 = new HumanPlayer(this);
-			createBoats();
-			isFinished = 0;
-	     }
+			isFinished = -4;
+		}
+		//if(this.player1 != null && this.player2 != null)
+		//this.createBoats();
 
+
+	}
+
+	public BoatTimeFactory getBoatTimeFactory() {
+		return boatTimeFactory;
 	}
 
 	/**
 	 *
 	 */
 	public void createBoats()throws RemoteException {
+		System.out.println("create boats");
+		System.out.println("player 1 = " + this.getPlayer1());
+		System.out.println("player 2 = " + this.getPlayer2());
+
 		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
-			player1.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
-			if (player2 != null)
-				player2.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
-             else
-			    machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			this.player1.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			if (this.player2 != null)
+				this.player2.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			else
+				this.machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
-		fileManager.save();
+		//fileManager.save();
+	}
+
+	@Override
+	public int getPlayerId() throws RemoteException {
+		return this.playerId;
+	}
+
+	@Override
+	public void setPlayerId(int id) throws RemoteException {
+		this.playerId = id;
 	}
 
 	/**
@@ -158,6 +181,20 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	}
 
 	public HumanPlayer getPlayer1() {
+		if (isMulti && client.getServerGame() != null)
+
+			try {
+			if (playerId == 1) {
+					return client.getServerGame().getPlayer1();
+
+			}
+			else
+				  return client.getServerGame().getPlayer2();
+
+			} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
 		return player1;
 	}
 
@@ -184,5 +221,15 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
 	public void setIsFinished(int isFinished) {
 		this.isFinished = isFinished;
+	}
+
+	@Override
+	public Boolean getMulti() {
+		return isMulti;
+	}
+
+	@Override
+	public void setMulti(Boolean multi) {
+		isMulti = multi;
 	}
 }

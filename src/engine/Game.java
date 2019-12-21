@@ -44,5 +44,14 @@ public interface Game extends Remote {
 
     void join()throws RemoteException;
 
+     void setIsFinished(int isFinished)throws RemoteException;
+
     void createBoats()throws RemoteException;
+
+    int getPlayerId() throws RemoteException;
+    void setPlayerId(int id) throws RemoteException;
+
+    Boolean getMulti() throws RemoteException;
+
+    void setMulti(Boolean multi) throws RemoteException;
 }

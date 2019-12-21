@@ -33,6 +33,7 @@ public class BattleNavaleController implements GameController {
 
 			if(battleNavaleGame.isFinished() == -2){
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
+					this.battleNavaleGame.setMulti(false);
 					try {
 						getBattleNavaleGame().initializeOnePlayer();
 					} catch (RemoteException ex) {
@@ -50,12 +51,21 @@ public class BattleNavaleController implements GameController {
 
 
 					System.out.println("Multiplayer");
-
-					BattleNavaleClient client = new BattleNavaleClient();
-
+					this.battleNavaleGame.setMulti(true);
 
 					try {
-						client.init();
+						this.battleNavaleGame.getClient().init();
+
+						if(this.getBattleNavaleGame().getClient().getServerGame().getPlayer2() == null)
+							this.battleNavaleGame.setPlayerId(1);
+						else{
+							this.battleNavaleGame.setPlayerId(2);
+						}
+
+						this.battleNavaleGame.setIsFinished(this.getBattleNavaleGame().getClient().getServerGame().isFinished());
+
+
+
 					} catch (NamingException ex) {
 						ex.printStackTrace();
 					} catch (RemoteException ex) {

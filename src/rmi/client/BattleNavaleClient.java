@@ -31,14 +31,16 @@ public class BattleNavaleClient {
         String remoteObjectName = "game";
         this.serverGame = (Game) registry.lookup(remoteObjectName);
         this.serverGame.join();
-        System.out.println("player 1 = " + this.serverGame.getPlayer1());
-        System.out.println("player 2 = " + this.serverGame.getPlayer2());
+
+        if (serverGame.getPlayer1() != null && serverGame.getPlayer2() != null) {
+            this.serverGame.createBoats();
+            this.serverGame.setIsFinished(0);
+        }
 
 
+    }
 
-
-
-
-
+    public Game getServerGame() {
+        return serverGame;
     }
 }

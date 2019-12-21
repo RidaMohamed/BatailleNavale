@@ -4,6 +4,7 @@ import model.BattleNavalePainter;
 import model.BattleNavaleGame;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas
@@ -55,7 +56,11 @@ public class GameEngineGraphical {
 	/**
 	 * permet de lancer le game
 	 */
-	public void run() throws InterruptedException {
+	public void run() throws InterruptedException, RemoteException {
+
+		if (this.game.getClient().getServerGame() != null)
+		this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
+
 	  while (true){
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
@@ -72,6 +77,10 @@ public class GameEngineGraphical {
 		  while (game.isFinished() == -4) {
 			  this.gui.paintSplash();
 			  Thread.sleep(100);
+
+			  if (this.game.getClient().getServerGame() != null)
+				  this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
+
 		  }
 
 
