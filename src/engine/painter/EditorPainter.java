@@ -28,7 +28,7 @@ public class EditorPainter {
         try {
             BufferedImage boat1img = null;
 
-            for (Boat boat : game.getHumanPlayer().getBoard().getBoats()) {
+            for (Boat boat : game.getPlayer1().getBoard().getBoats()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (boat.getOrientation() == Orientation.VERTICAL) {
                     switch (boat.getSize()){
@@ -58,9 +58,9 @@ public class EditorPainter {
             BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/point.png"));
             BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/croix.png"));
 
-            for (Position pos : game.getHumanPlayer().getBoard().getShoots().keySet()) {
+            for (Position pos : game.getPlayer1().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
-                if (game.getHumanPlayer().getBoard().getShoots().get(pos) == null)
+                if (game.getPlayer1().getBoard().getShoots().get(pos) == null)
                     im.getGraphics().drawImage(image1 , (pos.getX() )* Constants.CASE_WIDTH ,
                             pos.getY()* Constants.CASE_HEIGHT + Constants.CASE_HEIGHT * 3 , Constants.CASE_WIDTH ,
                             Constants.CASE_HEIGHT, null);

@@ -72,7 +72,7 @@ public class FileManager {
                 b = new Boat(boatSize,boatHealth, initX,initY);
                 b.setOrientation(orientation);
                 b.setCases(list);
-                game.getHumanPlayer().getBoard().addBoatToList(b);
+                game.getPlayer1().getBoard().addBoatToList(b);
             }
             //setting the score and the missedshot
             line = buff.readLine();
@@ -80,8 +80,8 @@ public class FileManager {
             int score = Integer.valueOf(info[1]);
             info = line.split(":");
             int missedShot = Integer.valueOf(info[1]);
-            game.getHumanPlayer().setScoreHits(score);
-            game.getHumanPlayer().setMissedShots(missedShot);
+            game.getPlayer1().setScoreHits(score);
+            game.getPlayer1().setMissedShots(missedShot);
 
             //////////////////////////////////////////////////////////
             list = new ArrayList<>();
@@ -126,7 +126,7 @@ public class FileManager {
      */
     public void save (){
         //Getting the data
-        this.dataH = game.getHumanPlayer().getData().toString();
+        this.dataH = game.getPlayer1().getData().toString();
         this.dataM = game.getMachinePlayer().getData().toString();
 
         //Writing the data on the saveFile

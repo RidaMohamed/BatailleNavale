@@ -68,6 +68,13 @@ public class GameEngineGraphical {
 			Thread.sleep(1000);
 		}
 
+
+		  while (game.isFinished() == -4) {
+			  this.gui.paintSplash();
+			  Thread.sleep(100);
+		  }
+
+
 		while (this.game.isFinished() == -1 ) {
 			this.gui.paintCentury();
 		}

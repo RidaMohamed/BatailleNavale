@@ -30,7 +30,7 @@ public class DrawingPanelResult extends DrawingPanel {
      @Override
     public void drawGame() {
          try {
-             if (this.controller.getBattleNavaleGame().getHumanPlayer().getPv() == 0)
+             if (this.controller.getBattleNavaleGame().getPlayer1().getPv() == 0)
                 im = ImageIO.read(this.getClass().getResourceAsStream("/over.jpg"));
              else
                  im = ImageIO.read(this.getClass().getResourceAsStream("/win.jpg"));

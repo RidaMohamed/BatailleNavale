@@ -1,6 +1,8 @@
 package engine;
 
+import model.century_factory.BoatFactoryXXCentury;
 import model.global.Turn;
+import model.player.HumanPlayer;
 import model.player.Player;
 
 import java.awt.image.BufferedImage;
@@ -29,13 +31,17 @@ public interface Game extends Remote {
 
     void draw(BufferedImage img) throws InterruptedException, RemoteException;
 
-    Player getHumanPlayer() throws RemoteException;
+    HumanPlayer getPlayer1() throws RemoteException;
+    HumanPlayer getPlayer2() throws RemoteException;
 
     Player getMachinePlayer() throws RemoteException;
 
     void setTurn(Turn playerTurn)throws RemoteException;
 
-    void initialize()throws RemoteException;
+    Turn getTurn()throws RemoteException;
+
+    void initializeOnePlayer()throws RemoteException;
+    void join()throws RemoteException;
 
     void createBoats()throws RemoteException;
 }

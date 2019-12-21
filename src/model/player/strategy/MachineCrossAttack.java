@@ -29,7 +29,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
         boolean b;
         Board board;
         int randX=0, randY=0;
-        board = battleNavaleGame.getHumanPlayer().getBoard();
+        board = battleNavaleGame.getPlayer1().getBoard();
 
         do {
             if(randomIsOut) {
@@ -81,8 +81,8 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
         } while (!b);
 
         boolean missedShot = true;
-        List<Boat> boats = battleNavaleGame.getHumanPlayer().getGame().
-                getHumanPlayer().getBoard().getBoats();
+        List<Boat> boats = battleNavaleGame.getPlayer1().getGame().
+                getPlayer1().getBoard().getBoats();
         for (Boat boat : boats) {
             //do {
             if (boat.isOnCase(randX, randY)) {
@@ -113,7 +113,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                 }
 
                 if (boat.isDistruct()) {
-                    this.battleNavaleGame.getHumanPlayer().subPv();
+                    this.battleNavaleGame.getPlayer1().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0; k < positions.size(); k++) {
                         board.addPosAttacked(positions.get(k), true);
@@ -137,7 +137,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
 
         }
 
-        battleNavaleGame.getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
+        battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PlayerTurn);
 
     }
 }

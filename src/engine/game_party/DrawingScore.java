@@ -35,22 +35,22 @@ public class DrawingScore extends JPanel {
 
             BufferedImage water = ImageIO.read(this.getClass().getResourceAsStream("/water-hit.png"));
             im.getGraphics().drawImage(water , 400 , 30 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots())
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getPlayer1().getMissedShots())
                     , 500 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(390 , 20 , 150 , 70);
 
             BufferedImage hit = ImageIO.read(this.getClass().getResourceAsStream("/hit.png"));
             im.getGraphics().drawImage(hit , 600 , 25 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getScoreHits())
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getPlayer1().getScoreHits())
                     , 700 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(590 , 20 , 150 , 70);
 
             BufferedImage sniper = ImageIO.read(this.getClass().getResourceAsStream("/sniper.png"));
             im.getGraphics().drawImage(sniper , 800 , 30 , 50 , 50, null);
-            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getHumanPlayer().getMissedShots()
-                    + controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 900 , 58);
+            im.getGraphics().drawString(String.valueOf(controller.getBattleNavaleGame().getPlayer1().getMissedShots()
+                    + controller.getBattleNavaleGame().getPlayer1().getScoreHits()) , 900 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(790 , 20 , 150 , 70);
 

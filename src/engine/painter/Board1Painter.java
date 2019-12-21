@@ -26,7 +26,7 @@ public class Board1Painter {
     public void draw(BufferedImage im) {
         try {
             BufferedImage boat1img = null;
-            for (Boat boat : game.getHumanPlayer().getBoard().getBoats()) {
+            for (Boat boat : game.getPlayer1().getBoard().getBoats()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (boat.getOrientation() == Orientation.VERTICAL) {
                     switch (boat.getSize()){
@@ -51,9 +51,9 @@ public class Board1Painter {
             BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/nottouched.png"));
             BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/touched.png"));
 
-            for (Position pos : game.getHumanPlayer().getBoard().getShoots().keySet()) {
+            for (Position pos : game.getPlayer1().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
-                if (!game.getHumanPlayer().getBoard().getShoots().get(pos))
+                if (!game.getPlayer1().getBoard().getShoots().get(pos))
                     im.getGraphics().drawImage(image1 , (pos.getX() + 14)* Constants.CASE_WIDTH ,
                             pos.getY()* Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
                             Constants.CASE_HEIGHT, null);

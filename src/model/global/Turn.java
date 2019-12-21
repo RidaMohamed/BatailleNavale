@@ -1,6 +1,8 @@
 package model.global;
 
-public enum Turn {
+import java.io.Serializable;
+
+public enum Turn implements Serializable {
     MachineTurn,
     PlayerTurn
 }

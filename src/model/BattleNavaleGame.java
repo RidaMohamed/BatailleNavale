@@ -15,16 +15,15 @@ import model.global.Constants;
 import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
-import model.player.strategy.MachineAttackRandom;
 import model.player.strategy.MachineCrossAttack;
 import save.FileManager;
-import model.player.strategy.MachineAttackRandom;
 
 
 
 public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
-	private HumanPlayer humanPlayer;
+	private HumanPlayer player1;
+	private HumanPlayer player2;
 	private MachinePlayer machinePlayer;
 	private Turn turn;
 	private BoatTimeFactory boatTimeFactory;
@@ -48,7 +47,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		} catch (IOException e) {
 			System.out.println("Help not available");
 		}
-		humanPlayer   = new HumanPlayer(this);
+		player1  = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		fileManager   = new FileManager(this);
@@ -62,18 +61,35 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
 
 	public BattleNavaleGame()throws RemoteException {
-		initialize();
+		this.player1 = null;
+		this.player1 = null;
+		this.machinePlayer = null;
+		fileManager   = new FileManager(this);
+		turn = Turn.PlayerTurn;
+		isFinished = -3;
 	}
 
 
-	public void initialize()throws RemoteException {
-		humanPlayer = new HumanPlayer(this);
+	public void initializeOnePlayer() throws RemoteException {
+		player1 = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		boatTimeFactory = new BoatFactoryXVCentury();
 		fileManager = new FileManager(this);
-		isFinished = -3;
 		turn = Turn.PlayerTurn;
+
+	}
+
+
+	public void join()throws RemoteException {
+		if (this.player1 == null) {
+			this.player1 = new HumanPlayer(this);
+			isFinished = -4;
+		} else if (this.player2 == null){
+			this.player2 = new HumanPlayer(this);
+			createBoats();
+			isFinished = 0;
+	     }
 
 	}
 
@@ -82,8 +98,11 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	 */
 	public void createBoats()throws RemoteException {
 		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
-			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
-			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			player1.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+			if (player2 != null)
+				player2.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
+             else
+			    machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
 		fileManager.save();
 	}
@@ -92,8 +111,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	 *
 	 */
 	public void moveBoats() {
-		for(Boat b : humanPlayer.getBoard().getBoats()){
-			humanPlayer.getBoard().setBoatPosition(b);
+		for(Boat b : player1.getBoard().getBoats()){
+			player1.getBoard().setBoatPosition(b);
 		}
 	}
 
@@ -109,8 +128,12 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		this.boatTimeFactory = timeFactory;
 	}
 
-	public void setHumanPlayer(HumanPlayer humanPlayer) {
-		this.humanPlayer = humanPlayer;
+	public void setplayer1(HumanPlayer player1) {
+		this.player1 = player1;
+	}
+
+	public void setplayer2(HumanPlayer player2) {
+		this.player2 = player2;
 	}
 
 	public void setMachinePlayer(MachinePlayer machinePlayer) {
@@ -129,8 +152,12 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		return turn;
 	}
 
-	public HumanPlayer getHumanPlayer() {
-		return humanPlayer;
+	public HumanPlayer getPlayer1() {
+		return player1;
+	}
+
+	public HumanPlayer getPlayer2() {
+		return player2;
 	}
 
 	public MachinePlayer getMachinePlayer() {
