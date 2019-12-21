@@ -13,7 +13,6 @@ public class Main {
 
     static public void main(String [] args) throws InterruptedException {
         BattleNavaleGame game = new BattleNavaleGame();
-        game.setCentury(new BoatFactoryXXCentury());
 
         // creation du jeu particulier et de son afficheur
         BattleNavalePainter battleNavalePainter = new BattleNavalePainter(game);

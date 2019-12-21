@@ -42,10 +42,13 @@ public class HumanPlayer extends Player {
      * @param y
      */
     public void attack(int x, int y ){
-        if (!game.getMachinePlayer().getBoard().isPosFree(x , y))
+        //getting hte hole board to attack
+        //getting machine board to teste if the x and y chosen are valide postion
+        //in case it is not we return to choose     x    and    y
+        Board board = game.getMachinePlayer().board;
+        if (!board.isPosFree(x , y))
             return;
 
-        Board board = game.getMachinePlayer().board;
         List<Boat> boats = board.getBoats();
         Boat boat ;
         boolean missedShot = true;
@@ -65,7 +68,6 @@ public class HumanPlayer extends Player {
                         board.addPosAttacked(positions.get(k), true );
                     }
                     boat.deletePositions();
-                    //board.deleteBoat(boat);
                 }
             }
         }

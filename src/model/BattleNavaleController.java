@@ -20,6 +20,10 @@ public class BattleNavaleController implements GameController {
 		private Boat selected_boat = null;
 		private Position selected_boat_init_pos = null;
 
+	/**
+	 * Simple constructor game controller
+	 * @param battleNavaleGame
+	 */
 		public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
 			this.battleNavaleGame = battleNavaleGame;
 		}
@@ -30,14 +34,11 @@ public class BattleNavaleController implements GameController {
 			if(battleNavaleGame.isFinished() == -2){
 				if (Constants.rect_oneplayer.contains(e.getPoint())){
 					getBattleNavaleGame().initialize();
-					getBattleNavaleGame().createBoats();
 					getBattleNavaleGame().setIsFinished(-1);
 				}
 				else if(Constants.rect_multiplayer.contains(e.getPoint())){
-					System.out.println("Multiplayer");
 				}
 				else if(Constants.rect_load.contains(e.getPoint())){
-					System.out.println("Load");
 					try {
 						getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
 						getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
@@ -54,7 +55,6 @@ public class BattleNavaleController implements GameController {
 			else if(battleNavaleGame.isFinished()==-1){
                 System.out.println(51);
                 if(Constants.rect_xxcentury.contains(e.getPoint())) {
-                    System.out.println("oui");
                     battleNavaleGame.setCentury(new BoatFactoryXXCentury());
                     battleNavaleGame.setIsFinished(0);
                 }
@@ -62,7 +62,8 @@ public class BattleNavaleController implements GameController {
                     battleNavaleGame.setCentury(new BoatFactoryXVCentury());
                     battleNavaleGame.setIsFinished(0);
                 }
-            }
+				getBattleNavaleGame().createBoats();
+			}
 			else if (battleNavaleGame.isFinished()==0){
 				if(Constants.rect_random.contains(e.getPoint())){
 					battleNavaleGame.moveBoats();
@@ -82,14 +83,10 @@ public class BattleNavaleController implements GameController {
 
 							if (!battleNavaleGame.getHumanPlayer().getBoard().isPosOk(boat)) {
 								boat.setOrientation(current_orientation);
-								System.out.println("not ok");
-							}else
-								System.out.println("ok");
+							}
 
 							break;
 						}
-
-
 					}
 				}
 
@@ -102,9 +99,8 @@ public class BattleNavaleController implements GameController {
 
 				if (!(x >= 1 && x <= Constants.WIDTH) || !(y >= 1 && y <= Constants.HEIGHT))
 					return;
-
+				//calling attack human after getting the human
 				battleNavaleGame.getHumanPlayer().attack(x , y);
-
 				if (battleNavaleGame.getTurn() == Turn.MachineTurn) {
 					try {
 						Thread.sleep(100);
@@ -113,7 +109,6 @@ public class BattleNavaleController implements GameController {
 					}
 					this.battleNavaleGame.getMachinePlayer().attack();
 				}
-
 			}
 		}
 
@@ -130,7 +125,6 @@ public class BattleNavaleController implements GameController {
 				}
 				selected_boat = null;
 				selected_boat_init_pos = null;
-
 			}
 		}
 
@@ -161,11 +155,7 @@ public class BattleNavaleController implements GameController {
 				}
 			}else {
 				selected_boat.setPostion(x, y);
-
 			}
-
-
-
 		}
 
 		@Override

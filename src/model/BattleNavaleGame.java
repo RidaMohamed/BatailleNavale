@@ -59,7 +59,7 @@ public class BattleNavaleGame implements Game {
 
 
 	public BattleNavaleGame() {
-		initialize();
+		isFinished = -3;
 	}
 
 
@@ -68,7 +68,6 @@ public class BattleNavaleGame implements Game {
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		fileManager = new FileManager(this);
-		isFinished = -3;
 		turn = Turn.PlayerTurn;
 
 	}
@@ -84,7 +83,7 @@ public class BattleNavaleGame implements Game {
 	}
 
 	/**
-	 *
+	 * change boat position using mouse
 	 */
 	public void moveBoats() {
 		for(Boat b : humanPlayer.getBoard().getBoats()){
@@ -98,10 +97,6 @@ public class BattleNavaleGame implements Game {
 
 	public FileManager getFileManager() {
 		return fileManager;
-	}
-
-	public void setFactory(BoatTimeFactory timeFactory){
-		this.boatTimeFactory = timeFactory;
 	}
 
 	public void setHumanPlayer(HumanPlayer humanPlayer) {
