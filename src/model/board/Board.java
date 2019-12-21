@@ -48,6 +48,7 @@ public class Board implements Serializable {
         int Max = 2;
         int x , y;
         int orientation;
+
         do {
             orientation= Min + (int) (Math.random() * ((Max - Min) + 1));
             if (orientation == 1) {

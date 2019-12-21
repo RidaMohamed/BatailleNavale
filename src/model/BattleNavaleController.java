@@ -65,7 +65,6 @@ public class BattleNavaleController implements GameController {
 						this.battleNavaleGame.setIsFinished(this.getBattleNavaleGame().getClient().getServerGame().isFinished());
 
 
-
 					} catch (NamingException ex) {
 						ex.printStackTrace();
 					} catch (RemoteException ex) {
@@ -107,7 +106,17 @@ public class BattleNavaleController implements GameController {
 				if(Constants.rect_random.contains(e.getPoint())){
 					battleNavaleGame.moveBoats();
 				}else if(Constants.rect_ok.contains(e.getPoint())){
-					battleNavaleGame.setIsFinished(1);
+					if (battleNavaleGame.getMulti()) {
+						try {
+							battleNavaleGame.getClient().getServerGame().addReadyPlayer();
+							battleNavaleGame.setIsFinished(5);
+
+						} catch (RemoteException ex) {
+							ex.printStackTrace();
+						}
+					}
+					else
+					    battleNavaleGame.setIsFinished(1);
 				}else {
 					int x = (e.getX() - e.getX() % Constants.CASE_WIDTH) / Constants.CASE_WIDTH - 7;
 					int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT + Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT - 3;
@@ -135,7 +144,7 @@ public class BattleNavaleController implements GameController {
 
 
 			}
-			else if (battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
+			else if (! battleNavaleGame.getMulti() && battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
 				//if we are playing then the action is attacked player2
 				int x = (e.getX() - e.getX() % Constants.CASE_WIDTH )/ Constants.CASE_WIDTH;
 				int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT +  Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT;
@@ -162,6 +171,32 @@ public class BattleNavaleController implements GameController {
 					}
 				}
 
+			}else {
+				try {
+					if (battleNavaleGame.getMulti() && battleNavaleGame.getClient().getServerGame().isFinished() == 1 && ((battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PlayerTurn && battleNavaleGame.getClient().getServerGame().getPlayerId() == 1) || (battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PlayerTurn && battleNavaleGame.getClient().getServerGame().getPlayerId() == 2)) ){
+						//if we are playing then the action is attacked player2
+						System.out.println("Attaque");
+
+						int x = (e.getX() - e.getX() % Constants.CASE_WIDTH )/ Constants.CASE_WIDTH;
+						int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT +  Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT;
+
+						if (!(x >= 1 && x <= Constants.WIDTH) || !(y >= 1 && y <= Constants.HEIGHT))
+							return;
+
+						try {
+							if (battleNavaleGame.getPlayerId() == 1)
+								battleNavaleGame.getClient().getServerGame().getPlayer1().attack(x , y);
+							else
+								 battleNavaleGame.getClient().getServerGame().getPlayer2().attack(x , y);
+						} catch (RemoteException ex) {
+							ex.printStackTrace();
+						}
+
+
+					}
+				} catch (RemoteException ex) {
+					ex.printStackTrace();
+				}
 			}
 		}
 

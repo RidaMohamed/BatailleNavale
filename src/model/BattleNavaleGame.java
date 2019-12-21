@@ -33,6 +33,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	private BattleNavaleClient client;
 	private int playerId;
 	private Boolean isMulti;
+	private int readyPlayers;
 
 	/**
 	 * Simple Constructor
@@ -58,6 +59,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		turn = Turn.PlayerTurn;
 		client = new BattleNavaleClient();
 		isMulti =false;
+		readyPlayers = 0;
 	}
 
 
@@ -139,10 +141,36 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	 *
 	 */
 	public void moveBoats() {
-		for(Boat b : player1.getBoard().getBoats()){
-			player1.getBoard().setBoatPosition(b);
+
+			try {
+				if (isMulti ) {
+				client.getServerGame().moveBoats(playerId);
+			    }
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
+		for(Boat b : getPlayer1().getBoard().getBoats()){
+			getPlayer1().getBoard().setBoatPosition(b);
 		}
 	}
+
+
+	@Override
+	public void moveBoats(int playerId) {
+		if (playerId == 1) {
+			for (Boat b : getPlayer1().getBoard().getBoats()) {
+				player1.getBoard().setBoatPosition(b);
+			}
+		}else{
+			for (Boat b : getPlayer2().getBoard().getBoats()) {
+				player2.getBoard().setBoatPosition(b);
+			}
+		}
+
+	}
+
+
 
 	public void setCentury(BoatTimeFactory timeFactory){
 		this.boatTimeFactory = timeFactory;
@@ -231,5 +259,18 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	@Override
 	public void setMulti(Boolean multi) {
 		isMulti = multi;
+	}
+
+	@Override
+	public void addReadyPlayer(){
+		this.readyPlayers++;
+		if (readyPlayers == 2)
+			setIsFinished(1);
+	}
+
+
+	@Override
+	public int getReadyPlayers() {
+		return readyPlayers;
 	}
 }

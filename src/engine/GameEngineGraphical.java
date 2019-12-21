@@ -84,6 +84,8 @@ public class GameEngineGraphical {
 		  }
 
 
+
+
 		while (this.game.isFinished() == -1 ) {
 			this.gui.paintCentury();
 			Thread.sleep(1000);
@@ -93,6 +95,13 @@ public class GameEngineGraphical {
 		while (this.game.isFinished() >= 0) {
 			if (this.game.isFinished() == 0)
 				this.gui.paintPositioning(false, "");
+
+			if (this.game.isFinished() == 5)
+				this.gui.paintSplash();
+
+			if (game.getClient().getServerGame().isFinished() == 1)
+				game.setIsFinished(1);
+
 			// affiche le game
 			if (this.game.isFinished() == 1)
 				this.gui.paintParty(false, "");

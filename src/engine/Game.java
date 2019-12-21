@@ -36,6 +36,8 @@ public interface Game extends Remote {
 
     Player getMachinePlayer() throws RemoteException;
 
+    void moveBoats(int playerId) throws RemoteException;
+
     void setTurn(Turn playerTurn)throws RemoteException;
 
     Turn getTurn()throws RemoteException;
@@ -54,4 +56,8 @@ public interface Game extends Remote {
     Boolean getMulti() throws RemoteException;
 
     void setMulti(Boolean multi) throws RemoteException;
+
+    void addReadyPlayer() throws RemoteException;
+
+    int getReadyPlayers() throws RemoteException;
 }
