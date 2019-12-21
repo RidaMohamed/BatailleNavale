@@ -34,11 +34,18 @@ public class DrawingPanelCentury extends DrawingPanel {
     @Override
     public void drawGame() {
         try {
-            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/back.jpg"));
+            BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/century.jpg"));
             this.nextImage.getGraphics().drawImage(image1 , 0 , 0 , width , height , null);
+
+            BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/century_selection.png"));
+            this.nextImage.getGraphics().drawImage(image2 ,width/2 - 125 ,50 , 250 , 50, null);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         try {
             BufferedImage xxcent = ImageIO.read(this.getClass().getResourceAsStream("/bouton_xxcentury.png"));
             this.nextImage.getGraphics().drawImage(xxcent , (int) Constants.rect_xxcentury.x, (int) Constants.rect_xxcentury.y, (int)Constants.rect_xxcentury.width,(int) Constants.rect_xxcentury.height , null);
