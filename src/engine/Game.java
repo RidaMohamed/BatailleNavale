@@ -41,6 +41,7 @@ public interface Game extends Remote {
     Turn getTurn()throws RemoteException;
 
     void initializeOnePlayer()throws RemoteException;
+
     void join()throws RemoteException;
 
     void createBoats()throws RemoteException;

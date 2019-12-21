@@ -16,9 +16,10 @@ import java.util.ArrayList;
 
 public class BattleNavaleClient {
 
+    private Game serverGame;
 
 
-    public static void init() throws NamingException, RemoteException, NotBoundException {
+    public void init() throws NamingException, RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry();
         System.out.println("RMI registry bindings");
         String[] e = registry.list();
@@ -28,10 +29,14 @@ public class BattleNavaleClient {
         }
 
         String remoteObjectName = "game";
-        Game battleNavaleGame = (Game) registry.lookup(remoteObjectName);
-        battleNavaleGame.join();
-        System.out.println("player 1 = " + battleNavaleGame.getPlayer1());
-        System.out.println("player 2 = " + battleNavaleGame.getPlayer2());
+        this.serverGame = (Game) registry.lookup(remoteObjectName);
+        this.serverGame.join();
+        System.out.println("player 1 = " + this.serverGame.getPlayer1());
+        System.out.println("player 2 = " + this.serverGame.getPlayer2());
+
+
+
+
 
 
 

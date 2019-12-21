@@ -16,6 +16,7 @@ import model.global.Turn;
 import model.player.HumanPlayer;
 import model.player.MachinePlayer;
 import model.player.strategy.MachineCrossAttack;
+import rmi.client.BattleNavaleClient;
 import save.FileManager;
 
 
@@ -29,6 +30,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	private BoatTimeFactory boatTimeFactory;
 	private FileManager fileManager;
 	private int isFinished;
+	private BattleNavaleClient client;
 
 	/**
 	 * Simple Constructor
@@ -52,6 +54,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		fileManager   = new FileManager(this);
 		turn = Turn.PlayerTurn;
+		client = new BattleNavaleClient();
 	}
 
 
@@ -67,6 +70,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		fileManager   = new FileManager(this);
 		turn = Turn.PlayerTurn;
 		isFinished = -3;
+		client = new BattleNavaleClient();
+
 	}
 
 
@@ -171,6 +176,10 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	@Override
 	public void draw(BufferedImage img) throws InterruptedException {
 
+	}
+
+	public BattleNavaleClient getClient() {
+		return client;
 	}
 
 	public void setIsFinished(int isFinished) {
