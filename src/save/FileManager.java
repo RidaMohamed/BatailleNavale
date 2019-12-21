@@ -8,7 +8,7 @@ import model.global.Position;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileManager {
+public class FileManager implements Serializable {
 
     private String dataH;
     private String dataM;
@@ -42,6 +42,7 @@ public class FileManager {
             //Loading Humaine player data
             boatsNumbers = line.split(",");
              for(int i = 0; i<Integer.valueOf(boatsNumbers[1]);i++){
+                 list = new ArrayList<>();
                  //orientation
                 line = buff.readLine();
                 info = line.split(",");
@@ -57,7 +58,6 @@ public class FileManager {
                 //boatsNumbers1
                 line = buff.readLine();
                 boatsNumbers1 = line.split(",");
-//                 System.out.println( info[0] + " " + info[1] + " " + info[2]);
                 for (int j=0 ; j < Integer.valueOf(boatsNumbers1[1]); j++){
                     line = buff.readLine();
                     info = line.split("/");
@@ -84,11 +84,11 @@ public class FileManager {
             game.getHumanPlayer().setMissedShots(missedShot);
 
             //////////////////////////////////////////////////////////
-            list = new ArrayList<>();
             line = buff.readLine();
             //Loading Machine pLayer data
             boatsNumbers1 = line.split(",");
             for(int i = 0; i<Integer.valueOf(boatsNumbers1[1]);i++){
+                list = new ArrayList<>();
                 line = buff.readLine();
                 info = line.split(",");
                 if (info[0].equals(1))
@@ -116,7 +116,13 @@ public class FileManager {
                 b.setCases(list);
                 game.getMachinePlayer().getBoard().addBoatToList(b);
             }
+
         }
+
+        //
+        buff.close();
+        lecture.close();
+        file.close();
     }
 
     /**
@@ -131,14 +137,19 @@ public class FileManager {
 
         //Writing the data on the saveFile
         try {
-          //  FileWriter fw = new FileWriter("res/gameSaves.txt", true);
-          //  BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter("res/gameSaves.txt");
-            out.print(dataH);
+            FileOutputStream configStream = new FileOutputStream("out/production/BatailleNavale_DP2019/gameSaves.txt");
+            OutputStream f = configStream;
+            OutputStreamWriter write = new OutputStreamWriter(f);
+            BufferedWriter b = new BufferedWriter(write);
+            System.out.println(dataH);
+            b.write(dataH);
             //System.out.println(dataH);
-            out.print(dataM);
+            b.write(dataM);
            // System.out.println(dataM);
-            out.close();
+            b.close();
+            write.close();
+            f.close();
+
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
