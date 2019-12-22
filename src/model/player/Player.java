@@ -8,12 +8,10 @@ public class Player {
 
     protected BattleNavaleGame game;
     protected Board board;
-    protected int pv;
 
     public Player(BattleNavaleGame game) {
         this.game = game;
         this.board = new Board();
-        this.pv = Constants.boat_length_size.length;
     }
 
     /**
@@ -51,17 +49,5 @@ public class Player {
     public void attack(){
     }
 
-    public int getPv() {
-        return pv;
-    }
 
-    /**
-     * methode de decrease the pv of player
-     * which represente the live on game for each player
-     */
-    public void subPv(){
-        this.pv--;
-        if (this.pv == 0)
-            this.getGame().setIsFinished(-2);
-    }
 }

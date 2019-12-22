@@ -13,6 +13,7 @@ public class OnePlayer {
     public OnePlayer(){
         try {
             img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("oneplayer.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

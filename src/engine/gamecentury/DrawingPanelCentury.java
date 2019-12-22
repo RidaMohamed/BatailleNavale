@@ -52,18 +52,21 @@ public class DrawingPanelCentury extends DrawingPanel {
 
         try {
             BufferedImage xxcent = ImageIO.read(this.getClass().getResourceAsStream("/xvcenturybtn.png"));
-            this.nextImage.getGraphics().drawImage(xxcent ,  width/2 - (int) Constants.rect_xxcentury.width/2, (int) Constants.rect_xxcentury.y, (int)Constants.rect_xxcentury.width,(int) Constants.rect_xxcentury.height , null);
+            this.nextImage.getGraphics().drawImage(xxcent ,   (int) Constants.rect_xxcentury.x, (int) Constants.rect_xxcentury.y, (int)Constants.rect_xxcentury.width,(int) Constants.rect_xxcentury.height , null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
             BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/xxcenturybtn.png"));
-            this.nextImage.getGraphics().drawImage(xvcent , width/2 - (int) Constants.rect_xvcentury.width/2, (int) Constants.rect_xvcentury.y, (int)Constants.rect_xvcentury.width,(int) Constants.rect_xvcentury.height , null);
+            this.nextImage.getGraphics().drawImage(xvcent , (int) Constants.rect_xvcentury.x, (int) Constants.rect_xvcentury.y, (int)Constants.rect_xvcentury.width,(int) Constants.rect_xvcentury.height , null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }try {
             BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/retour.png"));
-            this.nextImage.getGraphics().drawImage(xvcent , width/2 - (int) Constants.rect_retour.width/2, (int) Constants.rect_retour.y, (int)Constants.rect_retour.width,(int) Constants.rect_retour.height , null);
+            this.nextImage.getGraphics().drawImage(xvcent ,(int) Constants.rect_retour.x, (int) Constants.rect_retour.y, (int)Constants.rect_retour.width,(int) Constants.rect_retour.height , null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

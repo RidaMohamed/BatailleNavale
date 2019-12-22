@@ -106,6 +106,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                 board.addPosAttacked(new Position(randX, randY), true);
                 boat.boatIsHit(randX, randY);
                 missedShot = false;
+                machinePlayer.setScoreHits(machinePlayer.getScoreHits()+1);
                 chosenPos = 0;
 
                 if(randX+1<=Constants.WIDTH){
@@ -122,7 +123,6 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                 }
 
                 if (boat.isDistruct()) {
-                    this.battleNavaleGame.getHumanPlayer().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0; k < positions.size(); k++) {
                         board.addPosAttacked(positions.get(k), true);

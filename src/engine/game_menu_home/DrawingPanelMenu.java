@@ -48,6 +48,7 @@ public class DrawingPanelMenu extends DrawingPanel {
             logo = ImageIO.read(this.getClass().getResourceAsStream("/logo.png"));
             this.nextImage.getGraphics().drawImage(image1 , 0 , 0 , width - 15 , height - 40 , null);
             this.nextImage.getGraphics().drawImage(logo , 650 , 80 , 250 , 120 , null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

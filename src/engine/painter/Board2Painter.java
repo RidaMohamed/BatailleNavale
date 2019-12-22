@@ -37,6 +37,7 @@ public class Board2Painter  {
                             pos.getY() * Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
                             Constants.CASE_HEIGHT, null);
             }
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

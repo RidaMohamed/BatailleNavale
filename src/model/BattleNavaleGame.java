@@ -27,6 +27,7 @@ public class BattleNavaleGame implements Game {
 	private BoatTimeFactory boatTimeFactory;
 	private FileManager fileManager;
 	private int isFinished;
+    private int boatshealth;
 
 	/**
 	 * Simple Constructor
@@ -81,6 +82,7 @@ public class BattleNavaleGame implements Game {
 			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
+        boatshealth = humanPlayer.getBoard().boatsHealth();
 	}
 
 	/**
@@ -128,12 +130,26 @@ public class BattleNavaleGame implements Game {
 		return machinePlayer;
 	}
 
-	public int isFinished() {
-		return isFinished;
-	}
+    public int isFinished() {
+        if (isOver() != null) {
+            isFinished = 2;
+        }
+        return isFinished;
+    }
 
 	@Override
 	public void draw(BufferedImage img) throws InterruptedException {
 	}
 
+    public String isOver(){
+        String over = null;
+        if(isFinished >0) {
+            if (humanPlayer.getScoreHits() == boatshealth) {
+                over = "win";
+            }else if (machinePlayer.getScoreHits() == boatshealth) {
+                over = "lose";
+            }
+        }
+        return over;
+    }
 }

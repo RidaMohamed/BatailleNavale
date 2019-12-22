@@ -26,6 +26,7 @@ public class WaitingScreenPainter extends JPanel {
             g.drawImage(image ,0 ,0 , battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight(), null);
             image = ImageIO.read(this.getClass().getResourceAsStream("/waiting.png"));
             g.drawImage(image ,50 ,50 , 250 , 50, null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

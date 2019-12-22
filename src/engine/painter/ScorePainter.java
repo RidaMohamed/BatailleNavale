@@ -24,6 +24,7 @@ public class ScorePainter {
         try {
             BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/point.png"));
             //g.drawImage(image , game.getBoat().getX() * 40, game.getBoat().getY() * 40, 40, 40, null);
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

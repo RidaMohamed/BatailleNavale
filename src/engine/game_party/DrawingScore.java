@@ -53,6 +53,7 @@ public class DrawingScore extends JPanel {
                     + controller.getBattleNavaleGame().getHumanPlayer().getScoreHits()) , 900 , 58);
             im.getGraphics().setColor(Color.WHITE);
             im.getGraphics().drawRect(790 , 20 , 150 , 70);
+            ImageIO.setUseCache(false);
 
         } catch (IOException e) {
             e.printStackTrace();

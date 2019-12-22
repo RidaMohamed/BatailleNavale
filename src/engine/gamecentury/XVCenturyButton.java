@@ -13,6 +13,7 @@ public class XVCenturyButton {
     public XVCenturyButton(){
         try {
             ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("xvcenturybtn.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

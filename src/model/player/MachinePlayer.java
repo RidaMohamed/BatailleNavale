@@ -11,6 +11,8 @@ import java.util.List;
 public class MachinePlayer extends Player {
 
     private StrategyMahcineAttack strategyMahcineAttack;
+    private int scoreHits ;
+
 
     /**
      * Simple Constructor
@@ -70,4 +72,11 @@ public class MachinePlayer extends Player {
         return str;
     }
 
+    public int getScoreHits() {
+        return scoreHits;
+    }
+
+    public void setScoreHits(int scoreHits) {
+        this.scoreHits = scoreHits;
+    }
 }

@@ -13,6 +13,7 @@ public class MultiPlayer {
     public MultiPlayer(){
         try {
             img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("multiplayer.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
