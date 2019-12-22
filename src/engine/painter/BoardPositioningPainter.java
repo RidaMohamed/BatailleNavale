@@ -33,7 +33,7 @@ public class BoardPositioningPainter {
         okButton.paint(im.getGraphics());
         try {
             BufferedImage boat1img = null;
-            for (Boat boat : game.getHumanPlayer().getBoard().getBoats()) {
+            for (Boat boat : game.getPlayer1().getBoard().getBoats()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (boat.getOrientation() == Orientation.VERTICAL) {
                     switch (boat.getSize()){

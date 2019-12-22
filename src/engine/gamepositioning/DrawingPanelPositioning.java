@@ -42,6 +42,7 @@ public class DrawingPanelPositioning extends DrawingPanel {
 
     @Override
     public void drawGame(){
+
         try {
             BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/back.jpg"));
             this.nextImage.getGraphics().drawImage(image1 , 0 , 0 , width , height , null);

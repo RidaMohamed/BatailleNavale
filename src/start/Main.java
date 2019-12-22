@@ -8,11 +8,19 @@ import model.century_factory.BoatFactoryXXCentury;
 import model.century_factory.boats.Boat;
 import model.BattleNavaleGame;
 
+import java.rmi.RemoteException;
+
 
 public class Main {
 
-    static public void main(String [] args) throws InterruptedException {
-        BattleNavaleGame game = new BattleNavaleGame();
+    static public void main(String [] args) throws InterruptedException, RemoteException {
+        BattleNavaleGame game = null;
+        try {
+            game = new BattleNavaleGame();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        game.setCentury(new BoatFactoryXXCentury());
 
         // creation du jeu particulier et de son afficheur
         BattleNavalePainter battleNavalePainter = new BattleNavalePainter(game);
@@ -22,9 +30,9 @@ public class Main {
         engine.run();
 
 
-        System.out.println("Human player boats");
+      /*  System.out.println("Human player boats");
 
-        for (Boat boat : game.getHumanPlayer().getBoard().getBoats()){
+        for (Boat boat : game.getPlayer1().getBoard().getBoats()){
             System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() + "  orientation: "+boat.getOrientation() + " size"+boat.getSize());
         }
 
@@ -33,7 +41,7 @@ public class Main {
         for (Boat boat : game.getMachinePlayer().getBoard().getBoats()){
             System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
                     "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
-        }
+        }*/
 
     }
 }

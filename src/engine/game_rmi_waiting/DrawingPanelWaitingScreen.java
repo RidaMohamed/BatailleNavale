@@ -1,26 +1,26 @@
-package engine.result_party;
+package engine.game__splash_screen;
 
 import engine.DrawingPanel;
 import engine.GameController;
-import engine.game__splash_screen.SplashScreenPainter;
 import model.BattleNavalePainter;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-public class DrawingPanelResult extends DrawingPanel {
+public class DrawingPanelSplashScreen extends DrawingPanel {
 
     private static final long serialVersionUID = 1L;
-    private  BufferedImage im;
-    private BattleNavalePainter painter;
+    private SplashScreenPainter grideMenu;
 
-    public DrawingPanelResult(BattleNavalePainter battleNavalePainter, GameController controller) {
+    public DrawingPanelSplashScreen(BattleNavalePainter battleNavalePainter, GameController controller) {
         super(battleNavalePainter, controller);
         this.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth(), battleNavalePainter.getScreenHeight()));
-        this.painter = battleNavalePainter;
+
+        this.grideMenu = new SplashScreenPainter(battleNavalePainter);
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        add(this.grideMenu );
+
         this.currentImage = new BufferedImage(width, height,
                 BufferedImage.TYPE_INT_RGB);
         this.nextImage = new BufferedImage(width, height,
@@ -29,16 +29,7 @@ public class DrawingPanelResult extends DrawingPanel {
 
      @Override
     public void drawGame() {
-         try {
-             if (this.controller.getBattleNavaleGame().getPlayer1().getPv() == 0)
-                im = ImageIO.read(this.getClass().getResourceAsStream("/over.jpg"));
-             else
-                 im = ImageIO.read(this.getClass().getResourceAsStream("/win.jpg"));
-             this.nextImage.getGraphics().drawImage(im ,0 ,0 , this.painter.getScreenWidth() , this.painter.getScreenHeight(), null);
-
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
+         this.grideMenu.draw(this.nextImage);
 
          // inverses les images doublebuffereing
          BufferedImage temp = this.currentImage;

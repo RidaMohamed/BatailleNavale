@@ -1,6 +1,8 @@
 package model.board;
 
 import model.century_factory.boats.Boat;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ import model.global.Orientation;
 import java.awt.*;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
 
     private Map<Position , Boolean> shoots;
     private List<Boat> boats;
@@ -46,6 +48,7 @@ public class Board {
         int Max = 2;
         int x , y;
         int orientation;
+
         do {
             orientation= Min + (int) (Math.random() * ((Max - Min) + 1));
             if (orientation == 1) {
@@ -132,6 +135,7 @@ public class Board {
      * @param isOnBoat
      */
     public void addPosAttacked(Position p, Boolean isOnBoat) {
+        System.out.println("adding position attack");
         this.shoots.put(p, isOnBoat);
     }
 

@@ -8,6 +8,7 @@ import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +42,24 @@ public class HumanPlayer extends Player {
      * @param x
      * @param y
      */
-    public void attack(int x, int y ){
-        //getting hte hole board to attack
-        //getting machine board to teste if the x and y chosen are valide postion
-        //in case it is not we return to choose     x    and    y
-        Board board = game.getMachinePlayer().board;
-        if (!board.isPosFree(x , y))
-            return;
+    public void attack(int x, int y ) throws RemoteException {
+        Board board = null ;
+
+        if (game.getMulti()){
+            if (game.getTurn() == Turn.PLAYER1){
+                if (game.getPlayer2().getBoard().isPosFree(x , y))
+                    board = game.getPlayer2().getBoard();
+                else
+                    return;
+            }else if (game.getTurn() == Turn.PLAYER2){
+                if (game.getPlayer1().getBoard().isPosFree(x , y))
+                    board = game.getPlayer1().getBoard();
+                else
+                    return;
+            }
+        }else{
+            board = game.getMachinePlayer().getBoard();
+        }
 
         List<Boat> boats = board.getBoats();
         Boat boat ;
@@ -68,6 +80,7 @@ public class HumanPlayer extends Player {
                         board.addPosAttacked(positions.get(k), true );
                     }
                     boat.deletePositions();
+                    //board.deleteBoat(boat);
                 }
             }
         }
@@ -80,7 +93,17 @@ public class HumanPlayer extends Player {
             this.scoreHits++;
         }
 
-        game.setTurn(Turn.MachineTurn);
+
+        if (game.getMulti()){
+            if (game.getTurn() == Turn.PLAYER1){
+                game.setTurn(Turn.PLAYER2);
+            }else if (game.getTurn() == Turn.PLAYER2){
+                game.setTurn(Turn.PLAYER1);
+            }
+        }else{
+            game.setTurn(Turn.PLAYER2);
+        }
+
 
     }
 

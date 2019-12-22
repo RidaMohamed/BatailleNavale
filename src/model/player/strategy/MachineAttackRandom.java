@@ -8,6 +8,7 @@ import model.global.Constants;
 import model.global.Turn;
 import model.player.MachinePlayer;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,12 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
             randY = (int) (Math.random()*(Constants.HEIGHT)+1);
 
             //get borad of humain model.player
-            board = battleNavaleGame.getHumanPlayer().getBoard();
+            board = battleNavaleGame.getPlayer1().getBoard();
             //Verfie is the postions is ok to attack
             b = board.isPosFree(randX , randY);
         }while(!b);
 
-        List<Boat> boats = battleNavaleGame.getHumanPlayer().getBoard().getBoats();
+        List<Boat> boats = battleNavaleGame.getPlayer1().getBoard().getBoats();
 
         boolean missedShot = true;
         for (Boat boat: boats) {
@@ -46,7 +47,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
                 board.addPosAttacked(new Position(randX,randY), true);
                 //adding all the boat pos if he is destroyed to the borad shoot list
                 if (boat.isDistruct()){
-                    this.battleNavaleGame.getHumanPlayer().subPv();
+                    this.battleNavaleGame.getPlayer1().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
                         board.addPosAttacked(positions.get(k), true );
@@ -61,6 +62,10 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         if (missedShot)
             board.addPosAttacked(new Position(randX,randY), false);
 
-        battleNavaleGame.getHumanPlayer().getGame().setTurn(Turn.PlayerTurn);
+        try {
+            battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PLAYER1);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

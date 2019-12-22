@@ -11,6 +11,7 @@ import engine.gamepositioning.DrawingPanelPositioning;
 
 import javax.swing.*;
 import java.awt.*;
+import java.rmi.RemoteException;
 
 public class GraphicalInterface  {
 
@@ -72,6 +73,8 @@ public class GraphicalInterface  {
 	}
 
 	public void paintPositioning(boolean over,String s) {
+
+
 		menu.setVisible(true);
 		this.panel.removeAll();
 		this.panel.repaint();

@@ -3,9 +3,10 @@ package model.century_factory.boats;
 import model.global.Orientation;
 import model.global.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Boat {
+public class Boat implements Serializable {
 
     private int boatHealth;
     private int x;

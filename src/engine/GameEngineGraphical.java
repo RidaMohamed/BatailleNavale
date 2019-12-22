@@ -4,6 +4,7 @@ import model.BattleNavalePainter;
 import model.BattleNavaleGame;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas
@@ -55,7 +56,11 @@ public class GameEngineGraphical {
 	/**
 	 * permet de lancer le game
 	 */
-	public void run() throws InterruptedException {
+	public void run() throws InterruptedException, RemoteException {
+
+		if (this.game.getClient().getServerGame() != null)
+		this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
+
 	  while (true){
 		if (game.isFinished() == -3) {
 			this.gui.paintSplash();
@@ -68,14 +73,35 @@ public class GameEngineGraphical {
 			Thread.sleep(1000);
 		}
 
+
+		  while (game.isFinished() == -4) {
+			  this.gui.paintSplash();
+			  Thread.sleep(100);
+
+			  if (this.game.getClient().getServerGame() != null)
+				  this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
+
+		  }
+
+
+
+
 		while (this.game.isFinished() == -1 ) {
 			this.gui.paintCentury();
+			Thread.sleep(1000);
 		}
 		// creation de l'interface graphique
 		// boucle de game
 		while (this.game.isFinished() >= 0) {
 			if (this.game.isFinished() == 0)
 				this.gui.paintPositioning(false, "");
+
+			if (this.game.isFinished() == 5)
+				this.gui.paintSplash();
+
+			if (game.getMulti() && game.getClient().getServerGame().isFinished() == 1)
+				game.setIsFinished(1);
+
 			// affiche le game
 			if (this.game.isFinished() == 1)
 				this.gui.paintParty(false, "");
