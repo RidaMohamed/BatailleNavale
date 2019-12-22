@@ -70,12 +70,14 @@ public class BattleNavaleController implements GameController {
 			if(Constants.rect_xxcentury.contains(e.getPoint())) {
 				battleNavaleGame.setCentury(new BoatFactoryXXCentury());
 				battleNavaleGame.setIsFinished(0);
+				getBattleNavaleGame().createBoats();
 			}
 			else if(Constants.rect_xvcentury.contains(e.getPoint())) {
 				battleNavaleGame.setCentury(new BoatFactoryXVCentury());
 				battleNavaleGame.setIsFinished(0);
+				getBattleNavaleGame().createBoats();
 			}
-			getBattleNavaleGame().createBoats();
+
 		}
 		else if (battleNavaleGame.isFinished()==0){
 			if(Constants.rect_random.contains(e.getPoint())){
