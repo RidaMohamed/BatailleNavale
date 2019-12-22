@@ -1,6 +1,7 @@
 package engine;
 
 import engine.game__splash_screen.DrawingPanelSplashScreen;
+import engine.game_menu_home.DrawingInstructions;
 import engine.game_menu_home.DrawingPanelMenu;
 import engine.game_party.DrawingPanelParty;
 import engine.gamecentury.DrawingPanelCentury;
@@ -23,6 +24,7 @@ public class GraphicalInterface  {
 	private DrawingPanelMenu menuHome;
 	private DrawingPanelResult result;
 	private DrawingPanelCentury century;
+	private DrawingInstructions instructions;
 	private JPanel panel;
     private JFrame f;
     private Menu menu;
@@ -40,6 +42,7 @@ public class GraphicalInterface  {
 		this.menuHome = new DrawingPanelMenu(battleNavalePainter, controller);
 		this.century = new DrawingPanelCentury(battleNavalePainter,controller);
 		this.result = new DrawingPanelResult(battleNavalePainter, controller);
+		this.instructions=new DrawingInstructions(battleNavalePainter, controller);
 
         //Affichage plein ecran
 		f.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight()));
@@ -95,6 +98,14 @@ public class GraphicalInterface  {
 		this.panel.repaint();
 		this.panel.add(this.century);
 		this.century.drawGame();
+		this.panel.updateUI();
+	}
+	public void paintInstructions() {
+		menu.setVisible(false);
+		this.panel.removeAll();
+		this.panel.repaint();
+		this.panel.add(this.instructions);
+		this.instructions.drawGame();
 		this.panel.updateUI();
 	}
 

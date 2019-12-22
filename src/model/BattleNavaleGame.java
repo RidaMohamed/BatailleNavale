@@ -71,6 +71,9 @@ public class BattleNavaleGame implements Game {
 		turn = Turn.PlayerTurn;
 
 	}
+	public void inst(){
+
+	}
 
 	/**
 	 *
