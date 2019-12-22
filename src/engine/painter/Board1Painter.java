@@ -5,6 +5,7 @@ import model.century_factory.boats.Boat;
 import model.global.Constants;
 import model.global.Orientation;
 import model.global.Position;
+import model.player.HumanPlayer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -52,9 +53,10 @@ public class Board1Painter {
             BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/touched.png"));
 
             System.out.println(game.getPlayer1().getBoard().getShoots().size());
-            for (Position pos : game.getPlayer1().getBoard().getShoots().keySet()) {
+            HumanPlayer player = game.getPlayer1();
+            for (Position pos : player.getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
-                if (!game.getPlayer1().getBoard().getShoots().get(pos))
+                if (!player.getBoard().getShoots().get(pos))
                     im.getGraphics().drawImage(image1 , (pos.getX() + 14)* Constants.CASE_WIDTH ,
                             pos.getY()* Constants.CASE_HEIGHT + 2* Constants.CASE_HEIGHT , Constants.CASE_WIDTH ,
                             Constants.CASE_HEIGHT, null);

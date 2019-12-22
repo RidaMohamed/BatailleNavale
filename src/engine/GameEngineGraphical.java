@@ -75,7 +75,7 @@ public class GameEngineGraphical {
 
 
 		  while (game.isFinished() == -4) {
-			  this.gui.paintSplash();
+			  this.gui.paintWaiting(1);
 			  Thread.sleep(100);
 
 			  if (this.game.getClient().getServerGame() != null)
@@ -97,7 +97,7 @@ public class GameEngineGraphical {
 				this.gui.paintPositioning(false, "");
 
 			if (this.game.isFinished() == 5)
-				this.gui.paintSplash();
+				this.gui.paintWaiting(2);
 
 			if (game.getMulti() && game.getClient().getServerGame().isFinished() == 1)
 				game.setIsFinished(1);

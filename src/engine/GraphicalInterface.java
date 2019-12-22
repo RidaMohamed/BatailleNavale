@@ -3,6 +3,7 @@ package engine;
 import engine.game__splash_screen.DrawingPanelSplashScreen;
 import engine.game_menu_home.DrawingPanelMenu;
 import engine.game_party.DrawingPanelParty;
+import engine.game_rmi_waiting.DrawingPanelWaitingScreen;
 import engine.gamecentury.DrawingPanelCentury;
 import engine.menu_bar.Menu;
 import engine.result_party.DrawingPanelResult;
@@ -24,9 +25,10 @@ public class GraphicalInterface  {
 	private DrawingPanelMenu menuHome;
 	private DrawingPanelResult result;
 	private DrawingPanelCentury century;
+	private DrawingPanelWaitingScreen waiting;
 	private JPanel panel;
-    private JFrame f;
-    private Menu menu;
+	private JFrame f;
+	private Menu menu;
 	/**
 	 * la construction de l'interface graphique: JFrame avec panel pour le game
 	 */
@@ -41,11 +43,11 @@ public class GraphicalInterface  {
 		this.menuHome = new DrawingPanelMenu(battleNavalePainter, controller);
 		this.century = new DrawingPanelCentury(battleNavalePainter,controller);
 		this.result = new DrawingPanelResult(battleNavalePainter, controller);
-
-        //Affichage plein ecran
+		this.waiting = new DrawingPanelWaitingScreen(battleNavalePainter, controller);
+		//Affichage plein ecran
 		f.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight()));
 
-     	//f.setUndecorated(true);
+		//f.setUndecorated(true);
 		panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -53,8 +55,8 @@ public class GraphicalInterface  {
 		this.panel.add(this.splashScreen);
 		f.setContentPane(panel);
 
-        menu = new Menu(controller);
-        f.setJMenuBar(menu);
+		menu = new Menu(controller);
+		f.setJMenuBar(menu);
 
 		f.pack();
 		f.setVisible(true);
@@ -91,6 +93,20 @@ public class GraphicalInterface  {
 		this.splashScreen.drawGame();
 		this.panel.updateUI();
 	}
+
+
+	public void paintWaiting(int interface_number) {
+		menu.setVisible(false);
+		this.panel.removeAll();
+		this.panel.repaint();
+		this.panel.add(this.waiting);
+		if (interface_number == 1)
+			this.waiting.drawWaiting();
+		else
+			this.waiting.drawReady();
+		this.panel.updateUI();
+	}
+
 
 	public void paintCentury() {
 		menu.setVisible(false);
