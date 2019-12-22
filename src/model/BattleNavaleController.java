@@ -53,6 +53,8 @@ public class BattleNavaleController implements GameController {
 
 				try {
 					this.battleNavaleGame.getClient().init();
+					if (battleNavaleGame.getClient().getServerGame() == null)
+						this.battleNavaleGame.setMulti(false);
 
 					if (this.getBattleNavaleGame().getClient().getServerGame().getPlayer2() == null)
 						this.battleNavaleGame.setPlayerId(1);
@@ -73,7 +75,10 @@ public class BattleNavaleController implements GameController {
 					e1.printStackTrace();
 				}
 
-			}else if (Constants.rect_load.contains(e.getPoint())) {
+			}else if(Constants.rect_instructions.contains(e.getPoint())){
+				getBattleNavaleGame().setIsFinished(-5);
+			}
+			else if (Constants.rect_load.contains(e.getPoint())) {
 				try {
 					if (getBattleNavaleGame().getPlayer1() != null)
 					   getBattleNavaleGame().getPlayer1().getBoard().getBoats().clear();
@@ -95,11 +100,18 @@ public class BattleNavaleController implements GameController {
 			if (Constants.rect_xxcentury.contains(e.getPoint())) {
 				battleNavaleGame.setCentury(new BoatFactoryXXCentury());
 				battleNavaleGame.setIsFinished(0);
+				getBattleNavaleGame().createBoats();
+
 			} else if (Constants.rect_xvcentury.contains(e.getPoint())) {
 				battleNavaleGame.setCentury(new BoatFactoryXVCentury());
 				battleNavaleGame.setIsFinished(0);
+				getBattleNavaleGame().createBoats();
+
 			}
-			getBattleNavaleGame().createBoats();
+			else if(Constants.rect_retour.contains(e.getPoint())) {
+				battleNavaleGame.setIsFinished(-2);
+			}
+
 		} else if (battleNavaleGame.isFinished() == 0) {
 			if (Constants.rect_random.contains(e.getPoint())) {
 				battleNavaleGame.moveBoats();
@@ -168,7 +180,6 @@ public class BattleNavaleController implements GameController {
 			try {
 				if (battleNavaleGame.getMulti() && battleNavaleGame.getClient().getServerGame().isFinished() == 1 && ((battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER1 && battleNavaleGame.getPlayerId() == 1) || (battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER2 && battleNavaleGame.getPlayerId() == 2))) {
 					//if we are playing then the action is attacked player2
-					System.out.println("Attaque");
 
 					int x = (e.getX() - e.getX() % Constants.CASE_WIDTH) / Constants.CASE_WIDTH;
 					int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT + Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT;

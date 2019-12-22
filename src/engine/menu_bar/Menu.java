@@ -85,7 +85,7 @@ public class Menu extends JMenuBar {
     }
 
 
-    public void disapbleStateItem(){
+    public void disableStateItem(){
         this.save.setEnabled(false);
         this.strategy.setEnabled(false);
     }

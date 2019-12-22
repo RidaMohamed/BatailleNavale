@@ -17,13 +17,14 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class BattleNavaleClient {
 
     private Game serverGame;
 
 
-    public void init() throws NamingException, RemoteException, NotBoundException, MalformedURLException {
+    public void init() throws NamingException, RemoteException, NotBoundException, MalformedURLException , java.rmi.ConnectException{
 
         try {
 
@@ -44,11 +45,9 @@ public class BattleNavaleClient {
                 this.serverGame.createBoats();
                 this.serverGame.setIsFinished(0);
             }
-        }catch (java.rmi.ConnectException e){
-            System.out.println("serveur offline");
+        }catch (Exception e) {
             JOptionPane jop3 = new JOptionPane();
             jop3.showMessageDialog(null, "server offline!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
 
     }

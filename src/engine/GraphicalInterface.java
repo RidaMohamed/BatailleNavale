@@ -71,8 +71,12 @@ public class GraphicalInterface  {
 
 	public void paintParty(boolean over,String s) {
 		menu.setVisible(true);
-		if (controller.getBattleNavaleGame().getMulti())
-			menu.disapbleStateItem();
+		try {
+			if (controller.getBattleNavaleGame().getClient().getServerGame().getMulti())
+				menu.disableStateItem();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		this.menu.activateStateItem();
 		this.panel.removeAll();
 		this.panel.repaint();
@@ -83,7 +87,7 @@ public class GraphicalInterface  {
 
 	public void paintPositioning(boolean over,String s) {
 		menu.setVisible(true);
-		this.menu.disapbleStateItem();
+		this.menu.disableStateItem();
 		this.panel.removeAll();
 		this.panel.repaint();
 		this.panel.add(this.positioning);
