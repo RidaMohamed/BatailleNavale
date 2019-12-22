@@ -58,7 +58,6 @@ public class FileManager implements Serializable {
                     //orientation
                     line = buff.readLine();
                     info = line.split(",");
-                    //System.out.println(info[0]);
                     if (info[0].equals("1"))
                         orientation = Orientation.HORIZONTAL;
                     else

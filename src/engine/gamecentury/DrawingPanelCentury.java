@@ -2,6 +2,7 @@ package engine.gamecentury;
 
 import engine.DrawingPanel;
 import engine.GameController;
+import engine.game_menu_home.Retour;
 import model.BattleNavalePainter;
 import model.global.Constants;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class DrawingPanelCentury extends DrawingPanel {
     private XXCenturyButton xxCenturyButton;
     private XVCenturyButton xvCenturyButton;
+    private Retour retourbutton;
     /**
      * constructeur Il construit les images pour doublebuffering ainsi que le
      * Panel associe. Les images stockent le battleNavalePainter et on demande au panel la
@@ -25,6 +27,7 @@ public class DrawingPanelCentury extends DrawingPanel {
         super(Painter, controller);
         this.xvCenturyButton = new XVCenturyButton();
         this.xxCenturyButton = new XXCenturyButton();
+        this.retourbutton = new Retour();
         this.addMouseListener(controller);
     }
 
@@ -40,6 +43,7 @@ public class DrawingPanelCentury extends DrawingPanel {
             BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/century_selection.png"));
             this.nextImage.getGraphics().drawImage(image2 ,width/2 - 125 ,50 , 250 , 50, null);
 
+            ImageIO.setUseCache(false);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,19 +51,19 @@ public class DrawingPanelCentury extends DrawingPanel {
 
 
         try {
-            BufferedImage xxcent = ImageIO.read(this.getClass().getResourceAsStream("/bouton_xxcentury.png"));
-            this.nextImage.getGraphics().drawImage(xxcent , (int) Constants.rect_xxcentury.x, (int) Constants.rect_xxcentury.y, (int)Constants.rect_xxcentury.width,(int) Constants.rect_xxcentury.height , null);
+            BufferedImage xxcent = ImageIO.read(this.getClass().getResourceAsStream("/xvcenturybtn.png"));
+            this.nextImage.getGraphics().drawImage(xxcent ,  width/2 - (int) Constants.rect_xxcentury.width/2, (int) Constants.rect_xxcentury.y, (int)Constants.rect_xxcentury.width,(int) Constants.rect_xxcentury.height , null);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/bouton_xvcentury.png"));
-            this.nextImage.getGraphics().drawImage(xvcent , (int) Constants.rect_xvcentury.x, (int) Constants.rect_xvcentury.y, (int)Constants.rect_xvcentury.width,(int) Constants.rect_xvcentury.height , null);
+            BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/xxcenturybtn.png"));
+            this.nextImage.getGraphics().drawImage(xvcent , width/2 - (int) Constants.rect_xvcentury.width/2, (int) Constants.rect_xvcentury.y, (int)Constants.rect_xvcentury.width,(int) Constants.rect_xvcentury.height , null);
         } catch (IOException e) {
             e.printStackTrace();
         }try {
             BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/retour.png"));
-            this.nextImage.getGraphics().drawImage(xvcent , (int) Constants.rect_retour.x, (int) Constants.rect_retour.y, (int)Constants.rect_retour.width,(int) Constants.rect_retour.height , null);
+            this.nextImage.getGraphics().drawImage(xvcent , width/2 - (int) Constants.rect_retour.width/2, (int) Constants.rect_retour.y, (int)Constants.rect_retour.width,(int) Constants.rect_retour.height , null);
         } catch (IOException e) {
             e.printStackTrace();
         }

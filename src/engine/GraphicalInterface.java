@@ -1,10 +1,9 @@
 package engine;
 
-import engine.game__splash_screen.DrawingPanelSplashScreen;
 import engine.game_menu_home.DrawingInstructions;
 import engine.game_menu_home.DrawingPanelMenu;
 import engine.game_party.DrawingPanelParty;
-import engine.game_rmi_waiting.DrawingPanelWaitingScreen;
+import engine.game_splash_screen.DrawingPanelSplashScreen;
 import engine.gamecentury.DrawingPanelCentury;
 import engine.menu_bar.Menu;
 import engine.result_party.DrawingPanelResult;
@@ -22,7 +21,6 @@ public class GraphicalInterface  {
 	private DrawingPanelParty party;
 	private DrawingPanelPositioning positioning;
 	private DrawingPanelSplashScreen splashScreen;
-	private DrawingPanelWaitingScreen waitingScreen;
 	private DrawingPanelMenu menuHome;
 	private DrawingPanelResult result;
 	private DrawingPanelCentury century;
@@ -43,7 +41,7 @@ public class GraphicalInterface  {
 		this.splashScreen = new DrawingPanelSplashScreen(battleNavalePainter, controller);
 		this.menuHome = new DrawingPanelMenu(battleNavalePainter, controller);
 		this.century = new DrawingPanelCentury(battleNavalePainter,controller);
-		this.result = new DrawingPanelResult(battleNavalePainter, controller);
+		//this.result = new DrawingPanelResult(battleNavalePainter, controller);
 		this.instructions=new DrawingInstructions(battleNavalePainter, controller);
 
         //Affichage plein ecran
@@ -94,15 +92,6 @@ public class GraphicalInterface  {
 		this.panel.updateUI();
 	}
 
-	public void paintWaiting() {
-		menu.setVisible(false);
-		this.panel.removeAll();
-		this.panel.repaint();
-		this.panel.add(this.splashScreen);
-		this.waitingScreen.drawGame();
-		this.panel.updateUI();
-	}
-
 	public void paintCentury() {
 		menu.setVisible(false);
 		this.panel.removeAll();
@@ -130,13 +119,13 @@ public class GraphicalInterface  {
 	}
 
 
-	public void paintResult() {
+	/*public void paintResult() {
 		menu.setVisible(false);
 		this.panel.removeAll();
 		this.panel.repaint();
 		this.panel.add(this.result);
 		this.result.drawGame();
 		this.panel.updateUI();
-	}
+	}*/
 
 }

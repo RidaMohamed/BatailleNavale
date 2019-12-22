@@ -38,9 +38,7 @@ public class BattleNavaleGame implements Game {
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
 			String ligne;
-			while ((ligne = helpReader.readLine()) != null) {
-				System.out.println(ligne);
-			}
+
 			helpReader.close();
 		} catch (IOException e) {
 			System.out.println("Help not available");

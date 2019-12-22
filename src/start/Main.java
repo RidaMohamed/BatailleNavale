@@ -21,19 +21,5 @@ public class Main {
         GameEngineGraphical engine = new GameEngineGraphical(game, battleNavalePainter, controller);
         engine.run();
 
-
-        System.out.println("Human player boats");
-
-        for (Boat boat : game.getHumanPlayer().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() + "  orientation: "+boat.getOrientation() + " size"+boat.getSize());
-        }
-
-        System.out.println("Machine model.player boats");
-
-        for (Boat boat : game.getMachinePlayer().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
-                    "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
-        }
-
     }
 }

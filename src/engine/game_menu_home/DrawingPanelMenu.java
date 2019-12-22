@@ -44,9 +44,7 @@ public class DrawingPanelMenu extends DrawingPanel {
     @Override
     public void drawGame(){
         try {
-            System.out.println("inst");
             BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/background_menu.jpg"));
-            System.out.println("inst1");
             logo = ImageIO.read(this.getClass().getResourceAsStream("/logo.png"));
             this.nextImage.getGraphics().drawImage(image1 , 0 , 0 , width - 15 , height - 40 , null);
             this.nextImage.getGraphics().drawImage(logo , 650 , 80 , 250 , 120 , null);

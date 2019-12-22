@@ -86,7 +86,7 @@ public class GameEngineGraphical {
 			Thread.sleep(100);
 		}
 
-		this.gui.paintResult();
+		//this.gui.paintResult();
 		Thread.sleep(3000);
 
 	}
