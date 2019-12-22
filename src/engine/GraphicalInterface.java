@@ -66,6 +66,7 @@ public class GraphicalInterface  {
 
 	public void paintParty(boolean over,String s) {
 		menu.setVisible(true);
+		menu.activateStateItem();
 		this.panel.removeAll();
 		this.panel.repaint();
 		this.panel.add(this.party);
@@ -75,6 +76,7 @@ public class GraphicalInterface  {
 
 	public void paintPositioning(boolean over,String s) {
 		menu.setVisible(true);
+		menu.disableStateItem();
 		this.panel.removeAll();
 		this.panel.repaint();
 		this.panel.add(this.positioning);
