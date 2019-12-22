@@ -40,7 +40,6 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                 randX = (int) (Math.random()*(Constants.WIDTH )+1);
                 randY = (int) (Math.random()*(Constants.HEIGHT)+1);
                 b = board.isPosFree(randX, randY);
-                System.out.println(randomIsOut);
             }else{
                 switch(chosenPos){
                     case 1:

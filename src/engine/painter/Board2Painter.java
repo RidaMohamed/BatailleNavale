@@ -53,7 +53,6 @@ public class Board2Painter  {
                 HumanPlayer player = game.getPlayer2();
                 for (Position pos : player.getBoard().getShoots().keySet()) {
                     im.getGraphics().setColor(Color.decode("#3498db"));
-                    System.out.println("hhhh "+ game.getPlayer2().getBoard().getShoots().size());
                     if (!player.getBoard().getShoots().get(pos))
                         im.getGraphics().drawImage(image1, pos.getX() * Constants.CASE_WIDTH,
                                 pos.getY() * Constants.CASE_HEIGHT + 2 * Constants.CASE_HEIGHT, Constants.CASE_WIDTH,

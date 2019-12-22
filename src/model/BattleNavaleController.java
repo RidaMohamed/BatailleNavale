@@ -49,7 +49,6 @@ public class BattleNavaleController implements GameController {
 					getBattleNavaleGame().setIsFinished(-1);
 				} else if (Constants.rect_multiplayer.contains(e.getPoint())) {
 
-					System.out.println("Multiplayer");
 					this.battleNavaleGame.setMulti(true);
 
 					try {
@@ -76,7 +75,6 @@ public class BattleNavaleController implements GameController {
 
 
 				} else if (Constants.rect_load.contains(e.getPoint())) {
-					System.out.println("Load");
 					try {
 						getBattleNavaleGame().getPlayer1().getBoard().getBoats().clear();
 						getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
@@ -88,22 +86,22 @@ public class BattleNavaleController implements GameController {
 				} else if (Constants.rect_quit.contains(e.getPoint())) {
 					System.exit(0);
 				} else if (Constants.rect_retour.contains(e.getPoint())) {
-				     System.out.println("retour");
 				     getBattleNavaleGame().setIsFinished(-2);
 			    }
 			}else if (battleNavaleGame.isFinished() == -1) {
 					if (Constants.rect_xxcentury.contains(e.getPoint())) {
-						System.out.println("oui");
 						battleNavaleGame.setCentury(new BoatFactoryXXCentury());
+						battleNavaleGame.createBoats();
 						battleNavaleGame.setIsFinished(0);
+
 					} else if (Constants.rect_xvcentury.contains(e.getPoint())) {
 						battleNavaleGame.setCentury(new BoatFactoryXVCentury());
+						battleNavaleGame.createBoats();
 						battleNavaleGame.setIsFinished(0);
 					}
 
-					battleNavaleGame.createBoats();
 
-				} else if (battleNavaleGame.isFinished() == 0) {
+			} else if (battleNavaleGame.isFinished() == 0) {
 					if (Constants.rect_random.contains(e.getPoint())) {
 						battleNavaleGame.moveBoats();
 					} else if (Constants.rect_ok.contains(e.getPoint())) {
@@ -131,9 +129,7 @@ public class BattleNavaleController implements GameController {
 
 								if (!battleNavaleGame.getPlayer1().getBoard().isPosOk(boat)) {
 									boat.setOrientation(current_orientation);
-									System.out.println("not ok");
-								} else
-									System.out.println("ok");
+								}
 
 								break;
 							}
@@ -170,11 +166,6 @@ public class BattleNavaleController implements GameController {
 
 				} else {
 					try {
-						System.out.println("attack ");
-						System.out.println("playerId = " + battleNavaleGame.getPlayerId());
-						System.out.println("Turn server  = " + battleNavaleGame.getClient().getServerGame().getTurn());
-						System.out.println(battleNavaleGame.getClient().getServerGame().isFinished());
-
 						if (battleNavaleGame.getMulti() && battleNavaleGame.getClient().getServerGame().isFinished() == 1 && ((battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER1 && battleNavaleGame.getPlayerId() == 1) || (battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER2 && battleNavaleGame.getPlayerId() == 2))) {
 							//if we are playing then the action is attacked player2
 							System.out.println("Attaque");

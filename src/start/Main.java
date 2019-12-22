@@ -30,18 +30,5 @@ public class Main {
         engine.run();
 
 
-      /*  System.out.println("Human player boats");
-
-        for (Boat boat : game.getPlayer1().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() + "  orientation: "+boat.getOrientation() + " size"+boat.getSize());
-        }
-
-        System.out.println("Machine model.player boats");
-
-        for (Boat boat : game.getMachinePlayer().getBoard().getBoats()){
-            System.out.println("pos : "+boat.getPosition().getX() + "  " + boat.getPosition().getY() +
-                    "  orientation: "+boat.getOrientation() + " size "+boat.getSize());
-        }*/
-
     }
 }

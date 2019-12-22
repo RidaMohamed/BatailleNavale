@@ -285,7 +285,6 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
 	@Override
 	public void attack_multi(int playerId, int x, int y) throws RemoteException {
-		System.out.println("attacking");
 		if (playerId == 1)
 			player1.attack(x , y);
 		else
