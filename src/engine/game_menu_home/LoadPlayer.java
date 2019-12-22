@@ -12,7 +12,7 @@ public class LoadPlayer {
 
     public LoadPlayer(){
         try {
-            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("load.png"));
+            img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("loadparty.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

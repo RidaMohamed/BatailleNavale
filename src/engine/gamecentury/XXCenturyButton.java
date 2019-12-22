@@ -12,7 +12,7 @@ public class XXCenturyButton {
 
     public XXCenturyButton(){
         try {
-            ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("pos.png"));
+            ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("xxcenturybtn.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

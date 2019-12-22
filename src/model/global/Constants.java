@@ -17,7 +17,7 @@ public class Constants {
     public static final Rectangle2D.Double rect_load = new Rectangle2D.Double(160,340,140,50);
     public static final Rectangle2D.Double rect_quit = new Rectangle2D.Double(240,540,140,50);
     public static final Rectangle2D.Double rect_instructions = new Rectangle2D.Double(200,440,140,50);
-    public static final Rectangle2D.Double rect_xvcentury = new Rectangle2D.Double(275,330,200,50);
-    public static final Rectangle2D.Double rect_xxcentury = new Rectangle2D.Double(275,430,200,50);
-    public static final Rectangle2D.Double rect_retour = new Rectangle2D.Double(275,530,200,50);
+    public static final Rectangle2D.Double rect_xvcentury = new Rectangle2D.Double(295,330,200,50);
+    public static final Rectangle2D.Double rect_xxcentury = new Rectangle2D.Double(295,430,200,50);
+    public static final Rectangle2D.Double rect_retour = new Rectangle2D.Double(295,530,200,50);
 }
