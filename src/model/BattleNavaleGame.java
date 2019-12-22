@@ -69,6 +69,9 @@ public class BattleNavaleGame implements Game {
 		fileManager = new FileManager(this);
 		turn = Turn.PlayerTurn;
 	}
+	public void inst(){
+
+	}
 
 	/**
 	 * This methode call the boatTimeFactory to create

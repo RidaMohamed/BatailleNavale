@@ -16,6 +16,7 @@ public class DrawingMenu extends JPanel {
     private MultiPlayer MultiPlayerButton;
     private LoadPlayer LoadButton;
     private QuitGame QuitButton;
+    private Instruction InstructionsButton;
 
     public DrawingMenu(BattleNavalePainter painter) {
         super();
@@ -27,6 +28,7 @@ public class DrawingMenu extends JPanel {
         MultiPlayerButton = new MultiPlayer();
         LoadButton = new LoadPlayer();
         QuitButton = new QuitGame();
+        InstructionsButton = new Instruction();
     }
 
     public void draw(BufferedImage im){
@@ -34,6 +36,7 @@ public class DrawingMenu extends JPanel {
         MultiPlayerButton.paint(im.getGraphics());
         LoadButton.paint(im.getGraphics());
         QuitButton.paint(im.getGraphics());
+        InstructionsButton.paint(im.getGraphics());
 
     }
 

@@ -3,6 +3,8 @@ package model;
 
 
 import engine.GameController;
+import engine.game_menu_home.DrawingInstructions;
+import engine.game_menu_home.DrawingPanelMenu;
 import model.century_factory.boats.Boat;
 import model.century_factory.BoatFactoryXVCentury;
 import model.century_factory.BoatFactoryXXCentury;
@@ -11,39 +13,52 @@ import model.global.Orientation;
 import model.global.Position;
 import model.global.Turn;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class BattleNavaleController implements GameController {
-	private BattleNavaleGame battleNavaleGame;
-	private Boat selected_boat = null;
-	private Position selected_boat_init_pos = null;
+		private BattleNavaleGame battleNavaleGame;
+		private Boat selected_boat = null;
+		private Position selected_boat_init_pos = null;
+		private BufferedImage img;
+		//private DrawingInstructions;
 
 	/**
 	 * Simple constructor game controller
 	 * @param battleNavaleGame
 	 */
-	public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
+		public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
 			this.battleNavaleGame = battleNavaleGame;
 		}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 
-		if(battleNavaleGame.isFinished() == -2){
-			if (Constants.rect_oneplayer.contains(e.getPoint())){
-				getBattleNavaleGame().initialize();
-				getBattleNavaleGame().setIsFinished(-1);
-			}
-			else if(Constants.rect_multiplayer.contains(e.getPoint())){
-			}
-			else if(Constants.rect_load.contains(e.getPoint())){
-				try {
-					getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
-					getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
-					getBattleNavaleGame().getFileManager().load();
-					getBattleNavaleGame().setIsFinished(1);
-				} catch (IOException e1) {
+			if(battleNavaleGame.isFinished() == -2){
+				if (Constants.rect_oneplayer.contains(e.getPoint())){
+					getBattleNavaleGame().initialize();
+					getBattleNavaleGame().setIsFinished(-1);
+				}
+				else if(Constants.rect_multiplayer.contains(e.getPoint())){
+				}else if(Constants.rect_retour.contains(e.getPoint())){
+					System.out.println("retour");
+					getBattleNavaleGame().setIsFinished(-2);
+				}
+				else if(Constants.rect_instructions.contains(e.getPoint())){
+					//getBattleNavaleGame().initialize();
+					getBattleNavaleGame().setIsFinished(-5);
+				}
+
+				else if(Constants.rect_load.contains(e.getPoint())){
+					try {
+						getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
+						getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
+						getBattleNavaleGame().getFileManager().load();
+					    getBattleNavaleGame().setIsFinished(1);
+					} catch (IOException e1) {
 						e1.printStackTrace();
 				}
 			}
