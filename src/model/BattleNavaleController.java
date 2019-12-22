@@ -15,6 +15,7 @@ import rmi.client.BattleNavaleClient;
 import javax.naming.NamingException;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
@@ -71,10 +72,12 @@ public class BattleNavaleController implements GameController {
 						ex.printStackTrace();
 					} catch (NotBoundException ex) {
 						ex.printStackTrace();
-					}
+					} catch (MalformedURLException e1) {
+                        e1.printStackTrace();
+                    }
 
 
-				}
+                }
 				else if(Constants.rect_load.contains(e.getPoint())){
 					System.out.println("Load");
 					try {
@@ -144,7 +147,7 @@ public class BattleNavaleController implements GameController {
 
 
 			}
-			else if (! battleNavaleGame.getMulti() && battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PlayerTurn){
+			else if (! battleNavaleGame.getMulti() && battleNavaleGame.isFinished() == 1 && battleNavaleGame.getTurn() == Turn.PLAYER1){
 				//if we are playing then the action is attacked player2
 				int x = (e.getX() - e.getX() % Constants.CASE_WIDTH )/ Constants.CASE_WIDTH;
 				int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT +  Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT;
@@ -158,7 +161,7 @@ public class BattleNavaleController implements GameController {
 					ex.printStackTrace();
 				}
 
-				if (battleNavaleGame.getTurn() == Turn.MachineTurn) {
+				if (battleNavaleGame.getTurn() == Turn.PLAYER2) {
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e1) {
@@ -173,7 +176,12 @@ public class BattleNavaleController implements GameController {
 
 			}else {
 				try {
-					if (battleNavaleGame.getMulti() && battleNavaleGame.getClient().getServerGame().isFinished() == 1 && ((battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PlayerTurn && battleNavaleGame.getClient().getServerGame().getPlayerId() == 1) || (battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PlayerTurn && battleNavaleGame.getClient().getServerGame().getPlayerId() == 2)) ){
+					System.out.println("attack ");
+					System.out.println("playerId = "+ battleNavaleGame.getPlayerId());
+					System.out.println("Turn server  = "+ battleNavaleGame.getClient().getServerGame().getTurn());
+					System.out.println(battleNavaleGame.getClient().getServerGame().isFinished());
+
+					if (battleNavaleGame.getMulti() && battleNavaleGame.getClient().getServerGame().isFinished() == 1 && ((battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER1 && battleNavaleGame.getPlayerId() == 1) || (battleNavaleGame.getClient().getServerGame().getTurn() == Turn.PLAYER2 && battleNavaleGame.getPlayerId() == 2)) ){
 						//if we are playing then the action is attacked player2
 						System.out.println("Attaque");
 
@@ -185,9 +193,9 @@ public class BattleNavaleController implements GameController {
 
 						try {
 							if (battleNavaleGame.getPlayerId() == 1)
-								battleNavaleGame.getClient().getServerGame().getPlayer1().attack(x , y);
+								battleNavaleGame.getClient().getServerGame().attack_multi(battleNavaleGame.getPlayerId() , x , y);
 							else
-								 battleNavaleGame.getClient().getServerGame().getPlayer2().attack(x , y);
+								 battleNavaleGame.getClient().getServerGame().attack_multi(battleNavaleGame.getPlayerId(), x , y);
 						} catch (RemoteException ex) {
 							ex.printStackTrace();
 						}

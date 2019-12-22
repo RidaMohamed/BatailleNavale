@@ -60,4 +60,6 @@ public interface Game extends Remote {
     void addReadyPlayer() throws RemoteException;
 
     int getReadyPlayers() throws RemoteException;
+
+    void attack_multi(int playerId, int x, int y) throws RemoteException;
 }

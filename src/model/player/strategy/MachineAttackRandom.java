@@ -63,7 +63,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
             board.addPosAttacked(new Position(randX,randY), false);
 
         try {
-            battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PlayerTurn);
+            battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PLAYER1);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

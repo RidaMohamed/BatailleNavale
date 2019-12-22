@@ -43,10 +43,24 @@ public class HumanPlayer extends Player {
      * @param y
      */
     public void attack(int x, int y ) throws RemoteException {
-        if (!game.getMachinePlayer().getBoard().isPosFree(x , y))
-            return;
+        Board board = null ;
 
-        Board board = game.getMachinePlayer().board;
+        if (game.getMulti()){
+            if (game.getTurn() == Turn.PLAYER1){
+                if (game.getPlayer2().getBoard().isPosFree(x , y))
+                    board = game.getPlayer2().getBoard();
+                else
+                    return;
+            }else if (game.getTurn() == Turn.PLAYER2){
+                if (game.getPlayer1().getBoard().isPosFree(x , y))
+                    board = game.getPlayer1().getBoard();
+                else
+                    return;
+            }
+        }else{
+            board = game.getMachinePlayer().getBoard();
+        }
+
         List<Boat> boats = board.getBoats();
         Boat boat ;
         boolean missedShot = true;
@@ -79,7 +93,17 @@ public class HumanPlayer extends Player {
             this.scoreHits++;
         }
 
-        game.setTurn(Turn.MachineTurn);
+
+        if (game.getMulti()){
+            if (game.getTurn() == Turn.PLAYER1){
+                game.setTurn(Turn.PLAYER2);
+            }else if (game.getTurn() == Turn.PLAYER2){
+                game.setTurn(Turn.PLAYER1);
+            }
+        }else{
+            game.setTurn(Turn.PLAYER2);
+        }
+
 
     }
 

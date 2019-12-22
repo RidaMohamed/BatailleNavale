@@ -8,6 +8,8 @@ import model.global.Turn;
 import model.player.Player;
 
 import javax.naming.NamingException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,7 +21,7 @@ public class BattleNavaleClient {
     private Game serverGame;
 
 
-    public void init() throws NamingException, RemoteException, NotBoundException {
+    public void init() throws NamingException, RemoteException, NotBoundException, MalformedURLException {
         Registry registry = LocateRegistry.getRegistry();
         System.out.println("RMI registry bindings");
         String[] e = registry.list();
@@ -29,7 +31,7 @@ public class BattleNavaleClient {
         }
 
         String remoteObjectName = "game";
-        this.serverGame = (Game) registry.lookup(remoteObjectName);
+        this.serverGame = (Game) Naming.lookup(remoteObjectName);
         this.serverGame.join();
 
         if (serverGame.getPlayer1() != null && serverGame.getPlayer2() != null) {

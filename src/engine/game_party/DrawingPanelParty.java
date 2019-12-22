@@ -65,7 +65,7 @@ public class DrawingPanelParty extends DrawingPanel {
 
 		try {
 			BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/left_direction.png"));
-			if (controller.getBattleNavaleGame().getTurn() == Turn.PlayerTurn)
+			if (controller.getBattleNavaleGame().getTurn() == Turn.PLAYER1)
 				image2 = mirror(image2);
 			this.nextImage.getGraphics().drawImage(image2 , 2* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
 					7 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * 2 , Constants.CASE_HEIGHT * 2, null);

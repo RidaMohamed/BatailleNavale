@@ -51,6 +51,7 @@ public class Board1Painter {
             BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/nottouched.png"));
             BufferedImage image2= ImageIO.read(this.getClass().getResourceAsStream("/touched.png"));
 
+            System.out.println(game.getPlayer1().getBoard().getShoots().size());
             for (Position pos : game.getPlayer1().getBoard().getShoots().keySet()) {
                 im.getGraphics().setColor(Color.decode("#3498db"));
                 if (!game.getPlayer1().getBoard().getShoots().get(pos))

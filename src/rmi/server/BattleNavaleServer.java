@@ -13,6 +13,7 @@ public class BattleNavaleServer {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException{
         System.out.println("Constructing server implementation...");
         BattleNavaleGame battleNavaleGame = new BattleNavaleGame();
+        battleNavaleGame.setMulti(true);
         battleNavaleGame.setFactory(new BoatFactoryXVCentury());
         System.out.println("Binding server implementation to registry...");
         Registry registry = LocateRegistry.getRegistry();

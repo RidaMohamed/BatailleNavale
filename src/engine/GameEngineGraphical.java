@@ -99,7 +99,7 @@ public class GameEngineGraphical {
 			if (this.game.isFinished() == 5)
 				this.gui.paintSplash();
 
-			if (game.getClient().getServerGame().isFinished() == 1)
+			if (game.getMulti() && game.getClient().getServerGame().isFinished() == 1)
 				game.setIsFinished(1);
 
 			// affiche le game

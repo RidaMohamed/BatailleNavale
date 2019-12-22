@@ -137,7 +137,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
 
         }
 
-        battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PlayerTurn);
+        battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PLAYER1);
 
     }
 }

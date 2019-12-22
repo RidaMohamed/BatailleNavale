@@ -135,6 +135,7 @@ public class Board implements Serializable {
      * @param isOnBoat
      */
     public void addPosAttacked(Position p, Boolean isOnBoat) {
+        System.out.println("adding position attack");
         this.shoots.put(p, isOnBoat);
     }
 

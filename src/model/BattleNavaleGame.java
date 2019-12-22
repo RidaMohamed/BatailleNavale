@@ -56,7 +56,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		fileManager   = new FileManager(this);
-		turn = Turn.PlayerTurn;
+		turn = Turn.PLAYER1;
 		client = new BattleNavaleClient();
 		isMulti =false;
 		readyPlayers = 0;
@@ -73,7 +73,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		this.player1 = null;
 		this.machinePlayer = null;
 		fileManager   = new FileManager(this);
-		turn = Turn.PlayerTurn;
+		turn = Turn.PLAYER1;
 		isFinished = -3;
 		client = new BattleNavaleClient();
 		isMulti = false;
@@ -86,7 +86,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		boatTimeFactory = new BoatFactoryXVCentury();
 		fileManager = new FileManager(this);
-		turn = Turn.PlayerTurn;
+		turn = Turn.PLAYER1;
 
 	}
 
@@ -226,9 +226,25 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		return player1;
 	}
 
+
 	public HumanPlayer getPlayer2() {
+		if (isMulti && client.getServerGame() != null)
+
+			try {
+				if (playerId == 1) {
+					return client.getServerGame().getPlayer2();
+
+				}
+				else
+					return client.getServerGame().getPlayer1();
+
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+
 		return player2;
 	}
+
 
 	public MachinePlayer getMachinePlayer() {
 		return machinePlayer;
@@ -272,5 +288,14 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	@Override
 	public int getReadyPlayers() {
 		return readyPlayers;
+	}
+
+	@Override
+	public void attack_multi(int playerId, int x, int y) throws RemoteException {
+		System.out.println("attacking");
+		if (playerId == 1)
+			player1.attack(x , y);
+		else
+			player2.attack(x , y );
 	}
 }
