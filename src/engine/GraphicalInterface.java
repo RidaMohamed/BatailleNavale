@@ -63,7 +63,7 @@ public class GraphicalInterface  {
 
 		menu = new Menu(controller);
 		f.setJMenuBar(menu);
-
+        f.setResizable(false);
 		f.pack();
 		f.setVisible(true);
 		f.getContentPane().setFocusable(true);

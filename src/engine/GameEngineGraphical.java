@@ -59,7 +59,7 @@ public class GameEngineGraphical {
 	public void run() throws InterruptedException, RemoteException {
 
 		if (this.game.getClient().getServerGame() != null)
-		this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
+		    this.game.setIsFinished(this.game.getClient().getServerGame().isFinished());
 
 	  while (true){
 		if (game.isFinished() == -3) {
