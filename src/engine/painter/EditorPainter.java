@@ -68,7 +68,7 @@ public class EditorPainter {
                     im.getGraphics().drawImage(image2 , (pos.getX())* Constants.CASE_WIDTH ,
                             pos.getY()* Constants.CASE_HEIGHT , Constants.CASE_WIDTH , Constants.CASE_HEIGHT, null);
             }
-
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

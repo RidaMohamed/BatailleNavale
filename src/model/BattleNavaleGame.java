@@ -34,6 +34,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	private int playerId;
 	private Boolean isMulti;
 	private int readyPlayers;
+	private int boatshealth;
 
 	/**
 	 * Simple Constructor
@@ -45,9 +46,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
 			String ligne;
-			while ((ligne = helpReader.readLine()) != null) {
-				System.out.println(ligne);
-			}
+
 			helpReader.close();
 		} catch (IOException e) {
 			System.out.println("Help not available");
@@ -120,6 +119,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 			else
 				this.machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
+		boatshealth = this.player1.getBoard().boatsHealth();
+		System.out.println("boats health = "  + boatshealth);
 	}
 
 	@Override
@@ -137,13 +138,13 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	 */
 	public void moveBoats() {
 
-			try {
-				if (isMulti ) {
+		try {
+			if (isMulti ) {
 				client.getServerGame().moveBoats(playerId);
-			    }
-			} catch (RemoteException e) {
-				e.printStackTrace();
 			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 		for(Boat b : getPlayer1().getBoard().getBoats()){
 			getPlayer1().getBoard().setBoatPosition(b);
@@ -206,16 +207,16 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		if (isMulti && client.getServerGame() != null)
 
 			try {
-			if (playerId == 1) {
+				if (playerId == 1) {
 					return client.getServerGame().getPlayer1();
 
-			}
-			else
-				  return client.getServerGame().getPlayer2();
+				}
+				else
+					return client.getServerGame().getPlayer2();
 
 			} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+				e.printStackTrace();
+			}
 
 		return player1;
 	}
@@ -245,6 +246,9 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	}
 
 	public int isFinished() {
+		if (isOver() != null) {
+			isFinished = 2;
+		}
 		return isFinished;
 	}
 
@@ -252,6 +256,29 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	public void draw(BufferedImage img) throws InterruptedException {
 	}
 
+	public String isOver(){
+		String over = null;
+		if(isFinished >0) {
+			if(isMulti){
+				try {
+				if (getPlayer1().getScoreHits() == client.getServerGame().getBoatshealth()) {
+					over = "win";
+				}else if (getPlayer2().getScoreHits() == client.getServerGame().getBoatshealth()) {
+						over = "lose";
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}	else{
+				if (getPlayer1().getScoreHits() == boatshealth) {
+					over = "win";
+				}else if (machinePlayer.getScoreHits() == boatshealth) {
+					over = "lose";
+				}
+			}
+		}
+		return over;
+	}
 	public BattleNavaleClient getClient() {
 		return client;
 	}
@@ -289,5 +316,9 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 			player1.attack(x , y);
 		else
 			player2.attack(x , y );
+	}
+
+	public int getBoatshealth() {
+		return boatshealth;
 	}
 }

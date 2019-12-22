@@ -36,6 +36,7 @@ public class DrawingGride2 extends JPanel {
 			BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/sea.jpeg"));
 			im.getGraphics().drawImage(image1 , Constants.CASE_WIDTH , 3 * Constants.CASE_HEIGHT  ,
 					Constants.CASE_WIDTH * Constants.WIDTH , Constants.CASE_HEIGHT * Constants.HEIGHT, null);
+			ImageIO.setUseCache(false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

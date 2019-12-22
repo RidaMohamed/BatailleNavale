@@ -13,6 +13,7 @@ public class OkButton {
     public OkButton(){
         try {
             ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("ok.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

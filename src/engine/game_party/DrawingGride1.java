@@ -34,6 +34,7 @@ public class DrawingGride1 extends JPanel {
 			im.getGraphics().drawImage(image1 , 5* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
 					3 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * Constants.WIDTH ,
 					Constants.CASE_HEIGHT * Constants.HEIGHT, null);
+			ImageIO.setUseCache(false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

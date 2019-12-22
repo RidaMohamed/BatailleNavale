@@ -14,44 +14,44 @@ import java.rmi.RemoteException;
  */
 public class GameEngineGraphical {
 
-	/**
-	 * le game a executer
-	 */
-	private BattleNavaleGame game;
+    /**
+     * le game a executer
+     */
+    private BattleNavaleGame game;
 
-	/**
-	 * l'afficheur a utiliser pour le rendu
-	 */
-	private BattleNavalePainter gameBattleNavalePainter;
+    /**
+     * l'afficheur a utiliser pour le rendu
+     */
+    private BattleNavalePainter gameBattleNavalePainter;
 
-	/**
-	 * le controlleur a utiliser pour recuperer les commandes
-	 */
-	private GameController gameController;
+    /**
+     * le controlleur a utiliser pour recuperer les commandes
+     */
+    private GameController gameController;
 
-	/**
-	 * l'interface graphique
-	 */
-	private GraphicalInterface gui;
+    /**
+     * l'interface graphique
+     */
+    private GraphicalInterface gui;
 
-	/**
-	 * construit un moteur
-	 *
-	 * @param game
-	 *            game a lancer
-	 * @param gameBattleNavalePainter
-	 *            afficheur a utiliser
-	 * @param gameController
-	 *            controlleur a utiliser
-	 *
-	 */
-	public GameEngineGraphical(BattleNavaleGame game, BattleNavalePainter gameBattleNavalePainter, GameController gameController) {
-		// creation du game
-		this.game = game;
-		this.gameBattleNavalePainter = gameBattleNavalePainter;
-		this.gameController = gameController;
-		this.gui = new GraphicalInterface((BattleNavalePainter) this.gameBattleNavalePainter,this.gameController);
-	}
+    /**
+     * construit un moteur
+     *
+     * @param game
+     *            game a lancer
+     * @param gameBattleNavalePainter
+     *            afficheur a utiliser
+     * @param gameController
+     *            controlleur a utiliser
+     *
+     */
+    public GameEngineGraphical(BattleNavaleGame game, BattleNavalePainter gameBattleNavalePainter, GameController gameController) {
+        // creation du game
+        this.game = game;
+        this.gameBattleNavalePainter = gameBattleNavalePainter;
+        this.gameController = gameController;
+        this.gui = new GraphicalInterface((BattleNavalePainter) this.gameBattleNavalePainter,this.gameController);
+    }
 
 	/**
 	 * permet de lancer le game
@@ -68,10 +68,10 @@ public class GameEngineGraphical {
 			game.setIsFinished(-2);
 		}
 
-		while (game.isFinished() == -2) {
-			this.gui.paintMenu();
-			Thread.sleep(1000);
-		}
+            while (game.isFinished() == -2) {
+                this.gui.paintMenu();
+                Thread.sleep(1000);
+            }
 
 
 		  while (game.isFinished() == -4) {
@@ -92,6 +92,7 @@ public class GameEngineGraphical {
 		}
 		while(this.game.isFinished()== -5){
 			this.gui.paintInstructions();
+			Thread.sleep(1000);
 		}
 		// creation de l'interface graphique
 		// boucle de game
@@ -109,11 +110,18 @@ public class GameEngineGraphical {
 			if (this.game.isFinished() == 1)
 				this.gui.paintParty(false, "");
 			// met en attente
-			Thread.sleep(100);
+
+            if (this.game.isFinished() == 2) {
+                if (game.isOver() != null) {
+                    this.gui.paintParty(true, game.isOver());
+                }
+                Thread.sleep(3000);
+                game.setIsFinished(-2);
+            }
+
+            Thread.sleep(100);
 		}
 
-		this.gui.paintResult();
-		Thread.sleep(3000);
 
 	}
 	}

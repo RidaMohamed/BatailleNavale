@@ -8,7 +8,7 @@ import engine.game_rmi_waiting.DrawingPanelWaitingScreen;
 import engine.game_splash_screen.DrawingPanelSplashScreen;
 import engine.gamecentury.DrawingPanelCentury;
 import engine.menu_bar.Menu;
-import engine.result_party.DrawingPanelResult;
+import model.BattleNavaleController;
 import model.BattleNavalePainter;
 import engine.gamepositioning.DrawingPanelPositioning;
 
@@ -25,11 +25,11 @@ public class GraphicalInterface  {
 	private DrawingPanelPositioning positioning;
 	private DrawingPanelSplashScreen splashScreen;
 	private DrawingPanelMenu menuHome;
-	private DrawingPanelResult result;
 	private DrawingPanelCentury century;
 	private DrawingPanelWaitingScreen waiting;
 	private DrawingInstructions instructions;
 	private JPanel panel;
+	private GameController controller;
 	private JFrame f;
 	private Menu menu;
 	/**
@@ -38,6 +38,7 @@ public class GraphicalInterface  {
 	public GraphicalInterface(BattleNavalePainter battleNavalePainter, GameController controller){
 		f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.controller = controller;
 
 		// attacher le panel contenant l'afficheur du game
 		this.positioning = new DrawingPanelPositioning(battleNavalePainter , controller);
@@ -45,15 +46,12 @@ public class GraphicalInterface  {
 		this.splashScreen = new DrawingPanelSplashScreen(battleNavalePainter, controller);
 		this.menuHome = new DrawingPanelMenu(battleNavalePainter, controller);
 		this.century = new DrawingPanelCentury(battleNavalePainter,controller);
-		this.result = new DrawingPanelResult(battleNavalePainter, controller);
 		this.waiting = new DrawingPanelWaitingScreen(battleNavalePainter, controller);
-		//Affichage plein ecran
 		this.instructions=new DrawingInstructions(battleNavalePainter, controller);
 
         //Affichage plein ecran
 		f.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth() , battleNavalePainter.getScreenHeight()));
 
-		//f.setUndecorated(true);
 		panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -73,11 +71,13 @@ public class GraphicalInterface  {
 
 	public void paintParty(boolean over,String s) {
 		menu.setVisible(true);
+		if (controller.getBattleNavaleGame().getMulti())
+			menu.disapbleStateItem();
 		this.menu.activateStateItem();
 		this.panel.removeAll();
 		this.panel.repaint();
 		this.panel.add(this.party);
-		this.party.drawGame();
+		this.party.drawGame(over,s);
 		this.panel.updateUI();
 	}
 
@@ -137,16 +137,6 @@ public class GraphicalInterface  {
 		this.panel.repaint();
 		this.panel.add(this.menuHome);
 		this.menuHome.drawGame();
-		this.panel.updateUI();
-	}
-
-
-	public void paintResult() {
-		menu.setVisible(false);
-		this.panel.removeAll();
-		this.panel.repaint();
-		this.panel.add(this.result);
-		this.result.drawGame();
 		this.panel.updateUI();
 	}
 

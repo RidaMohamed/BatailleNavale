@@ -12,12 +12,10 @@ public class Player implements Serializable {
 
     protected Game game;
     protected Board board;
-    protected int pv;
 
     public Player(Game game) {
         this.game = game;
         this.board = new Board();
-        this.pv = Constants.boat_length_size.length;
     }
 
     /**
@@ -55,17 +53,5 @@ public class Player implements Serializable {
     public void attack() throws RemoteException {
     }
 
-    public int getPv() {
-        return pv;
-    }
 
-    /**
-     * methode de decrease the pv of player
-     * which represente the live on game for each player
-     */
-    public void subPv(){
-        this.pv--;
-        //if (this.pv == 0)
-            //this.getGame().setIsFinished(-2);
-    }
 }

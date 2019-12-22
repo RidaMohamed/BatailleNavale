@@ -13,6 +13,7 @@ public class Instruction {
     public Instruction(){
         try {
             img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("instructions.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

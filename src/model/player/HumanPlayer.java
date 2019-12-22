@@ -50,6 +50,10 @@ public class HumanPlayer extends Player {
             board = game.getMachinePlayer().getBoard();
         }
 
+
+        if (!board.isPosFree(x , y))
+            return;
+
         List<Boat> boats = board.getBoats();
         Boat boat ;
         boolean missedShot = true;
@@ -63,7 +67,6 @@ public class HumanPlayer extends Player {
                 board.addPosAttacked(new Position(x,y), true );
                 //adding all the hited pos to shoot list of model.board
                 if (boat.isDistruct()){
-                    this.getGame().getMachinePlayer().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
                         board.addPosAttacked(positions.get(k), true );

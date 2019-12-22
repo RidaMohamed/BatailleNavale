@@ -17,7 +17,7 @@ public class DrawingInstructions extends DrawingPanel {
         super(battleNavalePainter, controller);
         this.setPreferredSize(new Dimension(battleNavalePainter.getScreenWidth(), battleNavalePainter.getScreenHeight()));
 
-        this.intrsuctions = new InstructionsPainter(battleNavalePainter);
+        this.intrsuctions = new InstructionsPainter(battleNavalePainter,controller);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add(this.intrsuctions );
 

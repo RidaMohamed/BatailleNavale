@@ -62,4 +62,6 @@ public interface Game extends Remote {
     int getReadyPlayers() throws RemoteException;
 
     void attack_multi(int playerId, int x, int y) throws RemoteException;
+
+    int getBoatshealth() throws RemoteException;
 }

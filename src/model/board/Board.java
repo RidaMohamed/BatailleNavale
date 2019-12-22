@@ -155,4 +155,12 @@ public class Board implements Serializable {
     public Map<Position, Boolean> getShoots() {
         return this.shoots;
     }
+
+    public int boatsHealth(){
+        int s= 0;
+        for(Boat boat : boats){
+            s = s +boat.getBoatHealth();
+        }
+        return s;
+    }
 }

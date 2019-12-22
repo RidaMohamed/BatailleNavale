@@ -13,6 +13,7 @@ public class RandomButton {
     public RandomButton(){
         try {
             random = ImageIO.read(getClass().getClassLoader().getResourceAsStream("pos.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

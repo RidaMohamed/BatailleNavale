@@ -13,6 +13,7 @@ public class QuitGame {
     public QuitGame(){
         try {
             img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("quit.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

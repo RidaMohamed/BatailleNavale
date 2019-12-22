@@ -21,7 +21,7 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
     }
 
     @Override
-    public void attack(MachinePlayer machinePLayer) {
+    public void attack(MachinePlayer machinePLayer) throws RemoteException {
         boolean b;
         Board board;
         int randX, randY;
@@ -42,12 +42,12 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         for (Boat boat: boats) {
             if (boat.isOnCase(randX,randY)){
                 missedShot = false ;
+                machinePLayer.setScoreHits(machinePLayer.getScoreHits()+1);
                 boat.boatIsHit(randX,randY);
                 //adding the hited pos to the borad shoot list
                 board.addPosAttacked(new Position(randX,randY), true);
                 //adding all the boat pos if he is destroyed to the borad shoot list
                 if (boat.isDistruct()){
-                    this.battleNavaleGame.getPlayer1().subPv();
                     ArrayList<Position> positions = boat.getCases();
                     for (int k = 0 ; k < positions.size() ; k++){
                         board.addPosAttacked(positions.get(k), true );
@@ -62,10 +62,6 @@ public class MachineAttackRandom implements StrategyMahcineAttack {
         if (missedShot)
             board.addPosAttacked(new Position(randX,randY), false);
 
-        try {
-            battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PLAYER1);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        battleNavaleGame.getPlayer1().getGame().setTurn(Turn.PLAYER1);
     }
 }

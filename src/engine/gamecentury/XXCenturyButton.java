@@ -12,7 +12,8 @@ public class XXCenturyButton {
 
     public XXCenturyButton(){
         try {
-            ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("pos.png"));
+            ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("xxcenturybtn.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

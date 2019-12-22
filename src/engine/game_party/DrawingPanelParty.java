@@ -51,30 +51,66 @@ public class DrawingPanelParty extends DrawingPanel {
 		super.paintComponent(g);
 	}
 
-	@Override
-	public void drawGame() {
-		try {
-			BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/back.jpg"));
-			this.nextImage.getGraphics().drawImage(image1 , 0 , 0 , width , height , null);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void drawGame(boolean over,String s) {
+		if(!over ) {
+			try {
+				BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/back.jpg"));
+				this.nextImage.getGraphics().drawImage(image1, 0, 0, width, height, null);
+				ImageIO.setUseCache(false);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			this.score.drawGame(this.nextImage);
+			this.gride2.draw(this.nextImage);
+
+			if(controller.getBattleNavaleGame().getMulti()){
+				try {
+					BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/left_direction.png"));
+					if ((controller.getBattleNavaleGame().getClient().getServerGame().getTurn() == Turn.PLAYER1 && controller.getBattleNavaleGame().getPlayerId() == 1)
+							|| (controller.getBattleNavaleGame().getClient().getServerGame().getTurn() == Turn.PLAYER2 && controller.getBattleNavaleGame().getPlayerId() == 2))
+						image2 = mirror(image2);
+					this.nextImage.getGraphics().drawImage(image2 , 2* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+							7 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * 2 , Constants.CASE_HEIGHT * 2, null);
+					ImageIO.setUseCache(false);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/left_direction.png"));
+					if (controller.getBattleNavaleGame().getTurn() == Turn.PLAYER1)
+						image2 = mirror(image2);
+					this.nextImage.getGraphics().drawImage(image2 , 2* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
+							7 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * 2 , Constants.CASE_HEIGHT * 2, null);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			this.gride1.draw(this.nextImage);
 		}
-
-		this.score.drawGame(this.nextImage);
-		this.gride2.draw(this.nextImage);
-
-		try {
-			BufferedImage image2 = ImageIO.read(this.getClass().getResourceAsStream("/left_direction.png"));
-			if ((controller.getBattleNavaleGame().getClient().getServerGame().getTurn() == Turn.PLAYER1 && controller.getBattleNavaleGame().getPlayerId() == 1)
-			     || (controller.getBattleNavaleGame().getClient().getServerGame().getTurn() == Turn.PLAYER2 && controller.getBattleNavaleGame().getPlayerId() == 2))
-				image2 = mirror(image2);
-			this.nextImage.getGraphics().drawImage(image2 , 2* Constants.CASE_WIDTH + Constants.CASE_WIDTH * Constants.WIDTH,
-					7 * Constants.CASE_HEIGHT , Constants.CASE_WIDTH * 2 , Constants.CASE_HEIGHT * 2, null);
-		} catch (IOException e) {
-			e.printStackTrace();
+		else{
+			if(s.equals("lose")){
+				System.out.println("lose" + "");
+				try {
+					BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/over.png"));
+					this.nextImage.getGraphics().drawImage(image1, 0, 0, width, height, null);
+					ImageIO.setUseCache(false);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			else if(s.equals("win")){
+				try {
+					BufferedImage image1 = ImageIO.read(this.getClass().getResourceAsStream("/win.png"));
+					this.nextImage.getGraphics().drawImage(image1, 0, 0, width, height, null);
+					ImageIO.setUseCache(false);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-
-		this.gride1.draw(this.nextImage);
 
 		// inverses les images doublebuffereing
 		BufferedImage temp = this.currentImage;

@@ -13,6 +13,7 @@ public class Retour {
     public Retour(){
         try {
             ok = ImageIO.read(getClass().getClassLoader().getResourceAsStream("retour.png"));
+            ImageIO.setUseCache(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
