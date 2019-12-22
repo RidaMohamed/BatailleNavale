@@ -52,30 +52,30 @@ public class BattleNavaleGame implements Game {
 		turn = Turn.PlayerTurn;
 	}
 
-
 	/**
 	 * Simple Constructor
 	 */
-
-
 	public BattleNavaleGame() {
 		isFinished = -3;
 	}
 
-
+	/**
+	 * Initialize the game
+	 */
 	public void initialize(){
 		humanPlayer = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		fileManager = new FileManager(this);
 		turn = Turn.PlayerTurn;
-
 	}
 
 	/**
-	 *
+	 * This methode call the boatTimeFactory to create
+	 * boat foer each humaine and machine player
 	 */
 	public void createBoats(){
+		//getting humaine and machine borad to add the created boat
 		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
 			humanPlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 			machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
@@ -95,9 +95,9 @@ public class BattleNavaleGame implements Game {
 		this.boatTimeFactory = timeFactory;
 	}
 
-	public FileManager getFileManager() {
-		return fileManager;
-	}
+	public void setIsFinished(int isFinished) { this.isFinished = isFinished; }
+
+	public void setTurn(Turn turn) { this.turn = turn; }
 
 	public void setHumanPlayer(HumanPlayer humanPlayer) {
 		this.humanPlayer = humanPlayer;
@@ -111,8 +111,8 @@ public class BattleNavaleGame implements Game {
 		this.machinePlayer = machinePlayer;
 	}
 
-	public void setTurn(Turn turn) {
-		this.turn = turn;
+	public FileManager getFileManager() {
+		return fileManager;
 	}
 
 	public Turn getTurn() {
@@ -133,10 +133,6 @@ public class BattleNavaleGame implements Game {
 
 	@Override
 	public void draw(BufferedImage img) throws InterruptedException {
-
 	}
 
-	public void setIsFinished(int isFinished) {
-		this.isFinished = isFinished;
-	}
 }

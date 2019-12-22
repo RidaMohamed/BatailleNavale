@@ -28,7 +28,8 @@ public class Board {
     }
 
     /**
-     * Add boat to board
+     * Add created boat by the
+     * boatTimeFactory to board
      * @param boat
      */
     public void addBoat(Boat boat){

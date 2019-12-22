@@ -1,6 +1,6 @@
 package engine;
 
-import engine.game__splash_screen.DrawingPanelSplashScreen;
+import engine.game_splash_screen.DrawingPanelSplashScreen;
 import engine.game_menu_home.DrawingPanelMenu;
 import engine.game_party.DrawingPanelParty;
 import engine.gamecentury.DrawingPanelCentury;

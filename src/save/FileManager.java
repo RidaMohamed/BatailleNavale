@@ -128,18 +128,11 @@ public class FileManager implements Serializable {
                     b.setCases(list);
                     game.getMachinePlayer().getBoard().addBoatToList(b);
                 }
-
             }
-
-            //
             buff.close();
             lecture.close();
             file.close();
-
         }
-
-
-
     }
 
     /**
@@ -165,20 +158,6 @@ public class FileManager implements Serializable {
                     e.printStackTrace();
                 }
             }
-
-//            FileOutputStream configStream = new FileOutputStream("res/gameSaves.txt");
-//            OutputStream f = configStream;
-//            OutputStreamWriter write = new OutputStreamWriter(f);
-//            BufferedWriter b = new BufferedWriter(write);
-//            System.out.println(dataH);
-//            b.write(dataH);
-//            //System.out.println(dataH);
-//            b.write(dataM);
-           // System.out.println(dataM);
-//            b.close();
-//            write.close();
-//            f.close();
-
 
     }
 

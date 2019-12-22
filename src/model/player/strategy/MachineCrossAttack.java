@@ -104,7 +104,6 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
         for (Boat boat : boats) {
             //do {
             if (boat.isOnCase(randX, randY)) {
-                System.out.println(randX + " / " + randY);
 
                 //adding the hited pos to the borad shoot list
                 board.addPosAttacked(new Position(randX, randY), true);
@@ -114,19 +113,15 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
 
                 if(randX+1<=Constants.WIDTH){
                     x1=new Position(randX+1,randY);
-                    System.out.println(x1.getX() + " /// " + x1.getY());
                 }
                 if(randY+1<=Constants.HEIGHT){
                     x2=new Position(randX,randY+1);
-                    System.out.println(x2.getX() + " /// " + x2.getY());
                 }
                 if (randX-1>=1){
                     x3=new Position(randX-1,randY);
-                    System.out.println(x3.getX() + " /// " + x3.getY());
                 }
                 if (randY-1>=1){
                     x4=new Position(randX,randY-1);
-                    System.out.println(x4.getX() + " /// " + x4.getY());
                 }
 
                 if (boat.isDistruct()) {

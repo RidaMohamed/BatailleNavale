@@ -15,46 +15,44 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class BattleNavaleController implements GameController {
-
-		private BattleNavaleGame battleNavaleGame;
-		private Boat selected_boat = null;
-		private Position selected_boat_init_pos = null;
+	private BattleNavaleGame battleNavaleGame;
+	private Boat selected_boat = null;
+	private Position selected_boat_init_pos = null;
 
 	/**
 	 * Simple constructor game controller
 	 * @param battleNavaleGame
 	 */
-		public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
+	public BattleNavaleController(BattleNavaleGame battleNavaleGame) {
 			this.battleNavaleGame = battleNavaleGame;
 		}
 
-		@Override
-		public void mouseClicked(MouseEvent e) {
+	@Override
+	public void mouseClicked(MouseEvent e) {
 
-			if(battleNavaleGame.isFinished() == -2){
-				if (Constants.rect_oneplayer.contains(e.getPoint())){
-					getBattleNavaleGame().initialize();
-					getBattleNavaleGame().setIsFinished(-1);
-				}
-				else if(Constants.rect_multiplayer.contains(e.getPoint())){
-				}
-				else if(Constants.rect_load.contains(e.getPoint())){
-					try {
-						getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
-						getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
-						getBattleNavaleGame().getFileManager().load();
-					    getBattleNavaleGame().setIsFinished(1);
-					} catch (IOException e1) {
+		if(battleNavaleGame.isFinished() == -2){
+			if (Constants.rect_oneplayer.contains(e.getPoint())){
+				getBattleNavaleGame().initialize();
+				getBattleNavaleGame().setIsFinished(-1);
+			}
+			else if(Constants.rect_multiplayer.contains(e.getPoint())){
+			}
+			else if(Constants.rect_load.contains(e.getPoint())){
+				try {
+					getBattleNavaleGame().getHumanPlayer().getBoard().getBoats().clear();
+					getBattleNavaleGame().getMachinePlayer().getBoard().getBoats().clear();
+					getBattleNavaleGame().getFileManager().load();
+					getBattleNavaleGame().setIsFinished(1);
+				} catch (IOException e1) {
 						e1.printStackTrace();
-					}
-				}
-				else if(Constants.rect_quit.contains(e.getPoint())){
-					System.exit(0);
 				}
 			}
+			else if(Constants.rect_quit.contains(e.getPoint())){
+				System.exit(0);
+			}
+			}
 			else if(battleNavaleGame.isFinished()==-1){
-                System.out.println(51);
-                if(Constants.rect_xxcentury.contains(e.getPoint())) {
+				if(Constants.rect_xxcentury.contains(e.getPoint())) {
                     battleNavaleGame.setCentury(new BoatFactoryXXCentury());
                     battleNavaleGame.setIsFinished(0);
                 }
@@ -112,10 +110,9 @@ public class BattleNavaleController implements GameController {
 			}
 		}
 
-		@Override
-		public void mousePressed(MouseEvent e) {
-
-		}
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {

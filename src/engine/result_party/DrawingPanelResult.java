@@ -2,11 +2,9 @@ package engine.result_party;
 
 import engine.DrawingPanel;
 import engine.GameController;
-import engine.game__splash_screen.SplashScreenPainter;
 import model.BattleNavalePainter;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
