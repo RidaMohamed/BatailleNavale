@@ -5,10 +5,17 @@ import model.century_factory.boats.Boat;
 import model.global.Orientation;
 import model.global.Position;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
-public class FileManager {
+public class FileManager implements Serializable {
 
     private String dataH;
     private String dataM;
@@ -25,97 +32,106 @@ public class FileManager {
      */
     public void load() throws IOException {
 
-        InputStream file = FileManager.class.getClassLoader().getResourceAsStream("gameSaves.txt");
-        InputStreamReader lecture = new InputStreamReader(file);
-        BufferedReader buff = new BufferedReader(lecture);
-        String line;
-        Boat b;
-        String[] boatsNumbers;
-        String[] boatsNumbers1;
-        String[] info;
-        int boatSize, X, Y, boatHealth;
-        int initX = 0, initY = 0;
-        Orientation orientation;
-        ArrayList<Position> list = new ArrayList<>();
+        JFileChooser e = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int  u = e.showOpenDialog(null);
 
-        if ((line = buff.readLine()) != null){
-            //Loading Humaine player data
-            boatsNumbers = line.split(",");
-             for(int i = 0; i<Integer.valueOf(boatsNumbers[1]);i++){
-                 //orientation
-                line = buff.readLine();
-                info = line.split(",");
-                 //System.out.println(info[0]);
-                 if (info[0].equals("1"))
-                     orientation = Orientation.HORIZONTAL;
-                 else
-                     orientation = Orientation.VERTICAL;
-                //boatHealth
-                boatHealth = Integer.valueOf(info[1]);
-                //boatSize
-                boatSize = Integer.valueOf(info[2]);
-                //boatsNumbers1
-                line = buff.readLine();
-                boatsNumbers1 = line.split(",");
-//                 System.out.println( info[0] + " " + info[1] + " " + info[2]);
-                for (int j=0 ; j < Integer.valueOf(boatsNumbers1[1]); j++){
-                    line = buff.readLine();
-                    info = line.split("/");
-                    if (j == 0 ){
-                        initX = Integer.valueOf(info[0]);
-                        initY = Integer.valueOf(info[1]);
-                    }
-                    X = Integer.valueOf(info[0]);
-                    Y = Integer.valueOf(info[1]);
-                    list.add(new Position(X,Y));
-                }
-                b = new Boat(boatSize,boatHealth, initX,initY);
-                b.setOrientation(orientation);
-                b.setCases(list);
-                game.getPlayer1().getBoard().addBoatToList(b);
-            }
-            //setting the score and the missedshot
-            line = buff.readLine();
-            info = line.split(":");
-            int score = Integer.valueOf(info[1]);
-            info = line.split(":");
-            int missedShot = Integer.valueOf(info[1]);
-            game.getPlayer1().setScoreHits(score);
-            game.getPlayer1().setMissedShots(missedShot);
+        if (u == 0 ){
+            Path f = Paths.get(e.getSelectedFile().getAbsolutePath());
+            InputStream file = new FileInputStream(f.toString());
+            InputStreamReader lecture = new InputStreamReader(file);
+            BufferedReader buff = new BufferedReader(lecture);
+            String line;
+            Boat b;
+            String[] boatsNumbers;
+            String[] boatsNumbers1;
+            String[] info;
+            int boatSize, X, Y, boatHealth;
+            int initX = 0, initY = 0;
+            Orientation orientation;
+            ArrayList<Position> list = new ArrayList<>();
 
-            //////////////////////////////////////////////////////////
-            list = new ArrayList<>();
-            line = buff.readLine();
-            //Loading Machine pLayer data
-            boatsNumbers1 = line.split(",");
-            for(int i = 0; i<Integer.valueOf(boatsNumbers1[1]);i++){
-                line = buff.readLine();
-                info = line.split(",");
-                if (info[0].equals(1))
-                    orientation = Orientation.HORIZONTAL;
-                else
-                    orientation = Orientation.VERTICAL;
-                boatHealth = Integer.valueOf(info[1]);
-                boatSize = Integer.valueOf(info[2]);
-
-                line = buff.readLine();
+            if ((line = buff.readLine()) != null){
+                //Loading Humaine player data
                 boatsNumbers = line.split(",");
-                for (int j=0 ; j < Integer.valueOf(boatsNumbers[1]); j++){
+                for(int i = 0; i<Integer.valueOf(boatsNumbers[1]);i++){
+                    list = new ArrayList<>();
+                    //orientation
                     line = buff.readLine();
-                    info = line.split("/");
-                    if (j == 0 ){
-                         initX = Integer.valueOf(info[0]);
-                         initY = Integer.valueOf(info[1]);
+                    info = line.split(",");
+                    //System.out.println(info[0]);
+                    if (info[0].equals("1"))
+                        orientation = Orientation.HORIZONTAL;
+                    else
+                        orientation = Orientation.VERTICAL;
+                    //boatHealth
+                    boatHealth = Integer.valueOf(info[1]);
+                    //boatSize
+                    boatSize = Integer.valueOf(info[2]);
+                    //boatsNumbers1
+                    line = buff.readLine();
+                    boatsNumbers1 = line.split(",");
+                    for (int j=0 ; j < Integer.valueOf(boatsNumbers1[1]); j++){
+                        line = buff.readLine();
+                        info = line.split("/");
+                        if (j == 0 ){
+                            initX = Integer.valueOf(info[0]);
+                            initY = Integer.valueOf(info[1]);
+                        }
+                        X = Integer.valueOf(info[0]);
+                        Y = Integer.valueOf(info[1]);
+                        list.add(new Position(X,Y));
                     }
-                    X = Integer.valueOf(info[0]);
-                    Y = Integer.valueOf(info[1]);
-                    list.add(new Position(X,Y));
+                    b = new Boat(boatSize,boatHealth, initX,initY);
+                    b.setOrientation(orientation);
+                    b.setCases(list);
+                    game.getPlayer1().getBoard().addBoatToList(b);
                 }
-                b = new Boat(boatSize,boatHealth, initX, initY);
-                b.setOrientation(orientation);
-                b.setCases(list);
-                game.getMachinePlayer().getBoard().addBoatToList(b);
+                //setting the score and the missedshot
+                line = buff.readLine();
+                info = line.split(":");
+                int score = Integer.valueOf(info[1]);
+                info = line.split(":");
+                int missedShot = Integer.valueOf(info[1]);
+                game.getPlayer1().setScoreHits(score);
+                game.getPlayer1().setMissedShots(missedShot);
+
+                //////////////////////////////////////////////////////////
+                line = buff.readLine();
+                //Loading Machine pLayer data
+                boatsNumbers1 = line.split(",");
+                for(int i = 0; i<Integer.valueOf(boatsNumbers1[1]);i++){
+                    list = new ArrayList<>();
+                    line = buff.readLine();
+                    info = line.split(",");
+                    if (info[0].equals(1))
+                        orientation = Orientation.HORIZONTAL;
+                    else
+                        orientation = Orientation.VERTICAL;
+                    boatHealth = Integer.valueOf(info[1]);
+                    boatSize = Integer.valueOf(info[2]);
+
+                    line = buff.readLine();
+                    boatsNumbers = line.split(",");
+                    for (int j=0 ; j < Integer.valueOf(boatsNumbers[1]); j++){
+                        line = buff.readLine();
+                        info = line.split("/");
+                        if (j == 0 ){
+                            initX = Integer.valueOf(info[0]);
+                            initY = Integer.valueOf(info[1]);
+                        }
+                        X = Integer.valueOf(info[0]);
+                        Y = Integer.valueOf(info[1]);
+                        list.add(new Position(X,Y));
+                    }
+                    b = new Boat(boatSize,boatHealth, initX, initY);
+                    b.setOrientation(orientation);
+                    b.setCases(list);
+                    game.getMachinePlayer().getBoard().addBoatToList(b);
+                }
             }
+            buff.close();
+            lecture.close();
+            file.close();
         }
     }
 
@@ -128,20 +144,20 @@ public class FileManager {
         //Getting the data
         this.dataH = game.getPlayer1().getData().toString();
         this.dataM = game.getMachinePlayer().getData().toString();
-
+        String str = dataH + dataM;
+        List<String> l = new ArrayList<>();
+        l.add(str);
         //Writing the data on the saveFile
-        try {
-          //  FileWriter fw = new FileWriter("res/gameSaves.txt", true);
-          //  BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter("res/gameSaves.txt");
-            out.print(dataH);
-            //System.out.println(dataH);
-            out.print(dataM);
-           // System.out.println(dataM);
-            out.close();
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
-        }
+            JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            int  u = j.showSaveDialog(null);
+            if (u  == 0){
+                Path f = Paths.get(j.getSelectedFile().getAbsolutePath());
+                try {
+                    Files.write(f , l , StandardCharsets.UTF_8);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
     }
 

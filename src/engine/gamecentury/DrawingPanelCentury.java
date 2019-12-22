@@ -57,6 +57,11 @@ public class DrawingPanelCentury extends DrawingPanel {
             this.nextImage.getGraphics().drawImage(xvcent , (int) Constants.rect_xvcentury.x, (int) Constants.rect_xvcentury.y, (int)Constants.rect_xvcentury.width,(int) Constants.rect_xvcentury.height , null);
         } catch (IOException e) {
             e.printStackTrace();
+        }try {
+            BufferedImage xvcent = ImageIO.read(this.getClass().getResourceAsStream("/retour.png"));
+            this.nextImage.getGraphics().drawImage(xvcent , (int) Constants.rect_retour.x, (int) Constants.rect_retour.y, (int)Constants.rect_retour.width,(int) Constants.rect_retour.height , null);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 

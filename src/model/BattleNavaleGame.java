@@ -62,11 +62,9 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		readyPlayers = 0;
 	}
 
-
 	/**
 	 * Simple Constructor
 	 */
-
 
 	public BattleNavaleGame()throws RemoteException {
 		this.player1 = null;
@@ -79,19 +77,19 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		isMulti = false;
 	}
 
-
-	public void initializeOnePlayer() throws RemoteException {
+	/**
+	 * Initialize the game
+	 */
+	public void initialize(){
 		player1 = new HumanPlayer(this);
 		machinePlayer = new MachinePlayer(this);
 		machinePlayer.setStrategy( new MachineCrossAttack(this));
 		boatTimeFactory = new BoatFactoryXVCentury();
 		fileManager = new FileManager(this);
 		turn = Turn.PLAYER1;
-
 	}
 
-
-	public void join()throws RemoteException {
+	public void join() throws RemoteException {
 		if (this.player1 == null) {
 			this.player1 = new HumanPlayer(this);
 			isFinished = -4;
@@ -110,13 +108,11 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	}
 
 	/**
-	 *
+	 * This methode call the boatTimeFactory to create
+	 * boat foer each humaine and machine player
 	 */
-	public void createBoats()throws RemoteException {
-		System.out.println("create boats");
-		System.out.println("player 1 = " + this.getPlayer1());
-		System.out.println("player 2 = " + this.getPlayer2());
-
+	public void createBoats(){
+		//getting humaine and machine borad to add the created boat
 		for (int i = 0 ; i<Constants.boat_length_size.length  ; i++){
 			this.player1.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 			if (this.player2 != null)
@@ -124,7 +120,6 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 			else
 				this.machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
-		//fileManager.save();
 	}
 
 	@Override
@@ -138,7 +133,7 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	}
 
 	/**
-	 *
+	 * change boat position using mouse
 	 */
 	public void moveBoats() {
 
@@ -176,9 +171,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		this.boatTimeFactory = timeFactory;
 	}
 
-	public FileManager getFileManager() {
-		return fileManager;
-	}
+
+	public void setTurn(Turn turn) { this.turn = turn; }
 
 	public void setFactory(BoatTimeFactory timeFactory){
 		this.boatTimeFactory = timeFactory;
@@ -200,8 +194,8 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 		this.machinePlayer = machinePlayer;
 	}
 
-	public void setTurn(Turn turn) {
-		this.turn = turn;
+	public FileManager getFileManager() {
+		return fileManager;
 	}
 
 	public Turn getTurn() {
@@ -256,7 +250,6 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 
 	@Override
 	public void draw(BufferedImage img) throws InterruptedException {
-
 	}
 
 	public BattleNavaleClient getClient() {

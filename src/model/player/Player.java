@@ -6,6 +6,7 @@ import model.BattleNavaleGame;
 import model.global.Constants;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 
 public class Player implements Serializable {
 
@@ -37,16 +38,31 @@ public class Player implements Serializable {
     }
 
 
+    /**
+     * Methode to get data to save the game party
+     * @return
+     */
     public StringBuilder getData(){
         StringBuilder str = new StringBuilder();
         str.append("/");
         return str;
     }
 
+    /**
+     * Methode to get data to save the game party
+     * @return
+     */
+    public void attack() throws RemoteException {
+    }
+
     public int getPv() {
         return pv;
     }
 
+    /**
+     * methode de decrease the pv of player
+     * which represente the live on game for each player
+     */
     public void subPv(){
         this.pv--;
         //if (this.pv == 0)

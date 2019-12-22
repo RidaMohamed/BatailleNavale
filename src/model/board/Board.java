@@ -30,7 +30,8 @@ public class Board implements Serializable {
     }
 
     /**
-     * Add boat to board
+     * Add created boat by the
+     * boatTimeFactory to board
      * @param boat
      */
     public void addBoat(Boat boat){

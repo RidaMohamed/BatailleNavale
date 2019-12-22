@@ -41,14 +41,6 @@ public class Boat implements Serializable {
         this.y = y;
     }
 
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
     /**
      * set position of boat
      * @param x
@@ -125,6 +117,10 @@ public class Boat implements Serializable {
         this.cases.clear();
     }
 
+    /**
+     * set new orientation
+     * @param orientation
+     */
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
         cases = new ArrayList<>();
@@ -149,13 +145,21 @@ public class Boat implements Serializable {
     public ArrayList<Position> getCases() {
         return cases;
     }
+    public  Position getPosition(){
+        return new Position(this.x , this.y);
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public int getSize() {
+        return size;
+    }
 
     public void setCases(ArrayList<Position> cases) {
         this.cases = cases;
     }
 
-    public  Position getPosition(){
-        return new Position(this.x , this.y);
-    }
 
 }
