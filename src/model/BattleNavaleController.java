@@ -77,6 +77,9 @@ public class BattleNavaleController implements GameController {
 				battleNavaleGame.setIsFinished(0);
 				getBattleNavaleGame().createBoats();
 			}
+			else if(Constants.rect_retour.contains(e.getPoint())){
+			    battleNavaleGame.setIsFinished(-2);
+            }
 
 		}
 		else if (battleNavaleGame.isFinished()==0){
