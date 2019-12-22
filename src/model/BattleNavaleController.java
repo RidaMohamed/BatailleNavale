@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class BattleNavaleController implements GameController {
-
 		private BattleNavaleGame battleNavaleGame;
 		private Boat selected_boat = null;
 		private Position selected_boat_init_pos = null;
@@ -61,15 +60,14 @@ public class BattleNavaleController implements GameController {
 					    getBattleNavaleGame().setIsFinished(1);
 					} catch (IOException e1) {
 						e1.printStackTrace();
-					}
-				}
-				else if(Constants.rect_quit.contains(e.getPoint())){
-					System.exit(0);
 				}
 			}
+			else if(Constants.rect_quit.contains(e.getPoint())){
+				System.exit(0);
+			}
+			}
 			else if(battleNavaleGame.isFinished()==-1){
-                System.out.println(51);
-                if(Constants.rect_xxcentury.contains(e.getPoint())) {
+				if(Constants.rect_xxcentury.contains(e.getPoint())) {
                     battleNavaleGame.setCentury(new BoatFactoryXXCentury());
                     battleNavaleGame.setIsFinished(0);
                 }
@@ -127,10 +125,9 @@ public class BattleNavaleController implements GameController {
 			}
 		}
 
-		@Override
-		public void mousePressed(MouseEvent e) {
-
-		}
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {

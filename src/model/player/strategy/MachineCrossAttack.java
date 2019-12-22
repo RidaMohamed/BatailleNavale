@@ -34,9 +34,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
 
         do {
             if(randomIsOut) {
-
                 // Generating a random
-                //System.out.println("la machine a choisi " + randX + "  "+randY);
                 //get borad of humain model.player
                 //Verfie is the postions is ok to attack
                 randX = (int) (Math.random()*(Constants.WIDTH )+1);
@@ -70,7 +68,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                         next = false;
                         break;
                     case 4 :
-                        if (x3 != null) {
+                        if (x4 != null) {
                             randX = x4.getX();
                             randY = x4.getY();
                             break;
@@ -104,7 +102,6 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
         for (Boat boat : boats) {
             //do {
             if (boat.isOnCase(randX, randY)) {
-                System.out.println(randX + " / " + randY);
 
                 //adding the hited pos to the borad shoot list
                 board.addPosAttacked(new Position(randX, randY), true);
@@ -114,19 +111,15 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
 
                 if(randX+1<=Constants.WIDTH){
                     x1=new Position(randX+1,randY);
-                    System.out.println(x1.getX() + " /// " + x1.getY());
                 }
                 if(randY+1<=Constants.HEIGHT){
                     x2=new Position(randX,randY+1);
-                    System.out.println(x2.getX() + " /// " + x2.getY());
                 }
                 if (randX-1>=1){
                     x3=new Position(randX-1,randY);
-                    System.out.println(x3.getX() + " /// " + x3.getY());
                 }
                 if (randY-1>=1){
                     x4=new Position(randX,randY-1);
-                    System.out.println(x4.getX() + " /// " + x4.getY());
                 }
 
                 if (boat.isDistruct()) {
@@ -136,9 +129,7 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
                         board.addPosAttacked(positions.get(k), true);
                     }
                     boat.deletePositions();
-                    //board.deleteBoat(boat);
                 }
-                //}while(!boat.isDistruct());
             }
         }
 
@@ -147,19 +138,15 @@ public class MachineCrossAttack implements StrategyMahcineAttack {
             if(chosenPos == 0){
                 if(randX+1<=Constants.WIDTH){
                     x1=new Position(randX+1,randY);
-                    System.out.println(x1.getX() + " /// " + x1.getY());
                 }
                 if(randY+1<=Constants.HEIGHT){
                     x2=new Position(randX,randY+1);
-                    System.out.println(x2.getX() + " /// " + x2.getY());
                 }
                 if (randX-1>=1){
                     x3=new Position(randX-1,randY);
-                    System.out.println(x3.getX() + " /// " + x3.getY());
                 }
                 if (randY-1>=1){
                     x4=new Position(randX,randY-1);
-                    System.out.println(x4.getX() + " /// " + x4.getY());
                 }
             }
         }

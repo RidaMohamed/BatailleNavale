@@ -26,18 +26,7 @@ public class HumanPlayer extends Player {
     }
 
     /**
-     * Increase score hitted
-     */
-    public void inscreseScoreHits(){this.scoreHits++; }
-
-    /**
-     * Increaser the missed shots
-     * score
-     */
-    public void inscreseMissedShots(){ this.missedShots++;}
-
-    /**
-     * Le joueur humaine attack la position X et Y
+     * humaine player attack the position X et Y
      * @param x
      * @param y
      */
@@ -139,4 +128,15 @@ public class HumanPlayer extends Player {
     public int getMissedShots() {
         return missedShots;
     }
+
+    /**
+     * Increase score hitted
+     */
+    public void inscreseScoreHits(){this.scoreHits++; }
+
+    /**
+     * Increaser the missed shots
+     * score
+     */
+    public void inscreseMissedShots(){ this.missedShots++;}
 }

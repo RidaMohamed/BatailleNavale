@@ -34,16 +34,31 @@ public class Player {
     }
 
 
+    /**
+     * Methode to get data to save the game party
+     * @return
+     */
     public StringBuilder getData(){
         StringBuilder str = new StringBuilder();
         str.append("/");
         return str;
     }
 
+    /**
+     * Methode to get data to save the game party
+     * @return
+     */
+    public void attack(){
+    }
+
     public int getPv() {
         return pv;
     }
 
+    /**
+     * methode de decrease the pv of player
+     * which represente the live on game for each player
+     */
     public void subPv(){
         this.pv--;
         if (this.pv == 0)

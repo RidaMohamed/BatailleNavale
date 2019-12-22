@@ -1,4 +1,4 @@
-package engine.game__splash_screen;
+package engine.game_splash_screen;
 
 import model.BattleNavalePainter;
 
