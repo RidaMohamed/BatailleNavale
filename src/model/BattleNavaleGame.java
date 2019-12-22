@@ -120,7 +120,6 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 				this.machinePlayer.getBoard().addBoat(boatTimeFactory.createBoat(Constants.boat_length_size[i]));
 		}
 		boatshealth = this.player1.getBoard().boatsHealth();
-		System.out.println("boats health = "  + boatshealth);
 	}
 
 	@Override
@@ -259,17 +258,35 @@ public class BattleNavaleGame extends UnicastRemoteObject implements Game {
 	public String isOver(){
 		String over = null;
 		if(isFinished >0) {
-			if(isMulti){
+			if(client.getServerGame() != null && isMulti){
 				try {
-				if (getPlayer1().getScoreHits() == client.getServerGame().getBoatshealth()) {
-					over = "win";
-				}else if (getPlayer2().getScoreHits() == client.getServerGame().getBoatshealth()) {
-						over = "lose";
+					if(playerId == 1) {
+						if (client.getServerGame().getPlayer1().getScoreHits() == client.getServerGame().getBoatshealth()) {
+							over = "win";
+						} else if (getPlayer2().getScoreHits() == client.getServerGame().getBoatshealth()) {
+							over = "lose";
+						}
+					}else{
+						if (client.getServerGame().getPlayer2().getScoreHits() == client.getServerGame().getBoatshealth()) {
+							over = "win";
+						} else if (getPlayer1().getScoreHits() == client.getServerGame().getBoatshealth()) {
+							over = "lose";
+						}
 					}
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
-			}	else{
+			}else if(client.getServerGame() == null && isMulti){
+				if (player1.getScoreHits() == boatshealth) {
+					over = "win";
+				} else if (player2.getScoreHits() == boatshealth) {
+					over = "lose";
+				}
+
+			}
+
+
+			else{
 				if (getPlayer1().getScoreHits() == boatshealth) {
 					over = "win";
 				}else if (machinePlayer.getScoreHits() == boatshealth) {

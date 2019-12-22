@@ -97,6 +97,7 @@ public class GameEngineGraphical {
 		// creation de l'interface graphique
 		// boucle de game
 		while (this.game.isFinished() >= 0) {
+
 			if (this.game.isFinished() == 0)
 				this.gui.paintPositioning(false, "");
 

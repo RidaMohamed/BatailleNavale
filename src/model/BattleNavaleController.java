@@ -104,7 +104,17 @@ public class BattleNavaleController implements GameController {
 			if (Constants.rect_random.contains(e.getPoint())) {
 				battleNavaleGame.moveBoats();
 			} else if (Constants.rect_ok.contains(e.getPoint())) {
-				battleNavaleGame.setIsFinished(1);
+				if (battleNavaleGame.getMulti()) {
+					try {
+						battleNavaleGame.getClient().getServerGame().addReadyPlayer();
+						battleNavaleGame.setIsFinished(5);
+
+					} catch (RemoteException ex) {
+						ex.printStackTrace();
+					}
+				}
+				else
+					battleNavaleGame.setIsFinished(1);
 			} else {
 				int x = (e.getX() - e.getX() % Constants.CASE_WIDTH) / Constants.CASE_WIDTH - 7;
 				int y = (e.getY() - e.getY() % Constants.CASE_HEIGHT + Constants.CASE_HEIGHT) / Constants.CASE_HEIGHT - 3;
